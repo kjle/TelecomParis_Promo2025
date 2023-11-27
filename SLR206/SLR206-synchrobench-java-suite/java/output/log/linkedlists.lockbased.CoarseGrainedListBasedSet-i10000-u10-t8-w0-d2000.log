@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------
+Synchrobench-java
+A benchmark-suite to evaluate synchronization techniques
+-------------------------------------------------------------------------------
+
+Benchmark parameters
+--------------------
+  Detailed stats:          	enabled
+  Number of threads:       	8
+  Length:                  	2000 ms
+  Write ratio:             	10 %
+  WriteAll ratio:          	0 %
+  Snapshot ratio:          	0 %
+  Size:                    	10000 elts
+  Range:                   	20000 elts
+  WarmUp:                  	0 s
+  Iterations:              	1
+  Benchmark:               	linkedlists.lockbased.CoarseGrainedListBasedSet
+Thread #5 finished.
+Thread #1 finished.
+Thread #2 finished.
+Thread #4 finished.
+Thread #0 finished.
+Thread #3 finished.
+Thread #7 finished.
+Thread #6 finished.
+-------------------------------------------------------------------------------
+Benchmark statistics
+-------------------------------------------------------------------------------
+  Average traversal length: 	NaN
+  Struct Modifications:     	0
+  Throughput (ops/s):       	8269.880715705765
+  Elapsed time (s):         	2.012
+  Operations:               	16639	( 100 %)
+    effective updates:     	825	( 4.96 %)
+    |--add successful:     	389	( 2.34 %)
+    |--remove succ.:       	436	( 2.62 %)
+    |--addAll succ.:       	0	( 0.00 %)
+    |--removeAll succ.:    	0	( 0.00 %)
+    size successful:       	0	( 0.00 %)
+    contains succ.:        	7381	( 44.36 %)
+    unsuccessful ops:      	8433	( 50.68 %)
+  Final size:              	9953
+  Expected size:           	9953
+-------------------------------------------------------------------------------
+TM statistics
+-------------------------------------------------------------------------------
+  Commits:                  	0
+  |--regular read only  (%) 	0	( NaN %)
+  |--elastic (%)            	0	( NaN %)
+  |--regular update (%)     	0	( NaN %)
+  Starts:                   	0
+  Aborts:                   	0	( 100 %)
+  |--between succ. reads:   	0	( NaN %)
+  |--between read & write:  	0	( NaN %)
+  |--extend upon read:      	0	( NaN %)
+  |--write after read:      	0	( NaN %)
+  |--locked on write:       	0	( NaN %)
+  |--locked before read:    	0	( NaN %)
+  |--locked before eread:   	0	( NaN %)
+  |--locked on read:        	0	( NaN %)
+  |--invalid commit:        	0	( NaN %)
+  |--invalid snapshot:      	0	( NaN %)
+  Read set size on avg.:    	NaN
+  Write set size on avg.:   	NaN
+  Tx time-to-commit on avg.:	NaN microsec
+  Number of elastic reads       0
+  Number of reads in RO prefix  0

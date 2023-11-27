@@ -1,0 +1,123 @@
+FelixStartLevel INFO 2020-12-01 13:43:19,689, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2020-12-01 13:43:19,696, AgentServer#0, init()
+FelixStartLevel INFO 2020-12-01 13:43:19,763, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2020-12-01 13:43:19,814, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2020-12-01 13:43:19,814, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2020-12-01 13:43:19,818, Engine#0, factory created
+FelixStartLevel INFO 2020-12-01 13:43:19,821, AgentServer#0, initialized at Tue Dec 01 13:43:19 CET 2020
+FelixStartLevel INFO 2020-12-01 13:43:19,822, AgentServer#0, start()
+FelixStartLevel INFO 2020-12-01 13:43:19,861, Message.Pool: 150
+FelixStartLevel INFO 2020-12-01 13:43:19,894, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2020-12-01 13:43:19,894, AgentServer#0, started at Tue Dec 01 13:43:19 CET 2020
+JndiServer.Monitor#1 INFO 2020-12-01 13:43:32,934, JndiServer.Monitor#1, connection from /127.0.0.1:49880
+JndiServer.Monitor#0 INFO 2020-12-01 13:43:32,962, JndiServer.Monitor#0, connection from /127.0.0.1:49881
+JndiServer.Monitor#2 INFO 2020-12-01 13:43:32,964, JndiServer.Monitor#2, connection from /127.0.0.1:49882
+JndiServer.Monitor#1 INFO 2020-12-01 13:43:32,967, JndiServer.Monitor#1, connection from /127.0.0.1:49883
+JndiServer.Monitor#0 INFO 2020-12-01 13:44:30,051, JndiServer.Monitor#0, connection from /127.0.0.1:49894
+JndiServer.Monitor#2 INFO 2020-12-01 13:44:30,082, JndiServer.Monitor#2, connection from /127.0.0.1:49895
+JndiServer.Monitor#1 INFO 2020-12-01 13:44:41,144, JndiServer.Monitor#1, connection from /127.0.0.1:49897
+JndiServer.Monitor#0 INFO 2020-12-01 13:44:41,174, JndiServer.Monitor#0, connection from /127.0.0.1:49898
+FelixStartLevel INFO 2020-12-01 13:50:58,964, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2020-12-01 13:50:58,970, AgentServer#0, init()
+FelixStartLevel INFO 2020-12-01 13:50:59,048, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2020-12-01 13:50:59,091, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2020-12-01 13:50:59,091, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2020-12-01 13:50:59,095, Engine#0, factory created
+FelixStartLevel INFO 2020-12-01 13:50:59,096, AgentServer#0, initialized at Tue Dec 01 13:50:59 CET 2020
+FelixStartLevel INFO 2020-12-01 13:50:59,098, AgentServer#0, start()
+FelixStartLevel INFO 2020-12-01 13:50:59,142, Message.Pool: 150
+FelixStartLevel INFO 2020-12-01 13:50:59,174, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2020-12-01 13:50:59,174, AgentServer#0, started at Tue Dec 01 13:50:59 CET 2020
+JndiServer.Monitor#1 INFO 2020-12-01 13:51:11,354, JndiServer.Monitor#1, connection from /127.0.0.1:49930
+JndiServer.Monitor#0 INFO 2020-12-01 13:51:11,385, JndiServer.Monitor#0, connection from /127.0.0.1:49931
+JndiServer.Monitor#2 INFO 2020-12-01 13:51:11,387, JndiServer.Monitor#2, connection from /127.0.0.1:49932
+JndiServer.Monitor#1 INFO 2020-12-01 13:51:11,392, JndiServer.Monitor#1, connection from /127.0.0.1:49933
+JndiServer.Monitor#0 INFO 2020-12-01 13:51:16,593, JndiServer.Monitor#0, connection from /127.0.0.1:49934
+JndiServer.Monitor#2 INFO 2020-12-01 13:51:16,631, JndiServer.Monitor#2, connection from /127.0.0.1:49935
+JndiServer.Monitor#1 INFO 2020-12-01 13:51:24,445, JndiServer.Monitor#1, connection from /127.0.0.1:49937
+JndiServer.Monitor#0 INFO 2020-12-01 13:51:24,484, JndiServer.Monitor#0, connection from /127.0.0.1:49938
+FelixStartLevel INFO 2020-12-01 14:02:44,980, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2020-12-01 14:02:44,987, AgentServer#0, init()
+FelixStartLevel INFO 2020-12-01 14:02:45,060, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2020-12-01 14:02:45,098, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2020-12-01 14:02:45,098, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2020-12-01 14:02:45,102, Engine#0, factory created
+FelixStartLevel INFO 2020-12-01 14:02:45,103, AgentServer#0, initialized at Tue Dec 01 14:02:45 CET 2020
+FelixStartLevel INFO 2020-12-01 14:02:45,104, AgentServer#0, start()
+FelixStartLevel INFO 2020-12-01 14:02:45,139, Message.Pool: 150
+FelixStartLevel INFO 2020-12-01 14:02:45,170, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2020-12-01 14:02:45,170, AgentServer#0, started at Tue Dec 01 14:02:45 CET 2020
+FelixStartLevel INFO 2020-12-01 14:08:39,620, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2020-12-01 14:08:39,626, AgentServer#0, init()
+FelixStartLevel INFO 2020-12-01 14:08:39,693, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2020-12-01 14:08:39,742, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2020-12-01 14:08:39,742, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2020-12-01 14:08:39,745, Engine#0, factory created
+FelixStartLevel INFO 2020-12-01 14:08:39,747, AgentServer#0, initialized at Tue Dec 01 14:08:39 CET 2020
+FelixStartLevel INFO 2020-12-01 14:08:39,748, AgentServer#0, start()
+FelixStartLevel INFO 2020-12-01 14:08:39,789, Message.Pool: 150
+FelixStartLevel INFO 2020-12-01 14:08:39,821, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2020-12-01 14:08:39,822, AgentServer#0, started at Tue Dec 01 14:08:39 CET 2020
+FelixStartLevel INFO 2020-12-01 14:13:17,331, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2020-12-01 14:13:17,338, AgentServer#0, init()
+FelixStartLevel INFO 2020-12-01 14:13:17,408, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2020-12-01 14:13:17,461, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2020-12-01 14:13:17,461, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2020-12-01 14:13:17,465, Engine#0, factory created
+FelixStartLevel INFO 2020-12-01 14:13:17,466, AgentServer#0, initialized at Tue Dec 01 14:13:17 CET 2020
+FelixStartLevel INFO 2020-12-01 14:13:17,468, AgentServer#0, start()
+FelixStartLevel INFO 2020-12-01 14:13:17,505, Message.Pool: 150
+FelixStartLevel INFO 2020-12-01 14:13:17,540, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2020-12-01 14:13:17,541, AgentServer#0, started at Tue Dec 01 14:13:17 CET 2020
+JndiServer.Monitor#2 INFO 2020-12-01 14:15:41,947, JndiServer.Monitor#2, connection from /127.0.0.1:50023
+JndiServer.Monitor#1 INFO 2020-12-01 14:15:41,975, JndiServer.Monitor#1, connection from /127.0.0.1:50024
+JndiServer.Monitor#0 INFO 2020-12-01 14:15:41,978, JndiServer.Monitor#0, connection from /127.0.0.1:50025
+JndiServer.Monitor#2 INFO 2020-12-01 14:15:41,981, JndiServer.Monitor#2, connection from /127.0.0.1:50026
+JndiServer.Monitor#1 INFO 2020-12-01 14:17:07,058, JndiServer.Monitor#1, connection from /127.0.0.1:50027
+JndiServer.Monitor#0 INFO 2020-12-01 14:17:07,088, JndiServer.Monitor#0, connection from /127.0.0.1:50028
+JndiServer.Monitor#2 INFO 2020-12-01 14:18:42,083, JndiServer.Monitor#2, connection from /127.0.0.1:50031
+JndiServer.Monitor#1 INFO 2020-12-01 14:18:42,113, JndiServer.Monitor#1, connection from /127.0.0.1:50032
+JndiServer.Monitor#0 INFO 2020-12-01 14:20:30,121, JndiServer.Monitor#0, connection from /127.0.0.1:50040
+JndiServer.Monitor#2 INFO 2020-12-01 14:20:30,156, JndiServer.Monitor#2, connection from /127.0.0.1:50041
+JndiServer.Monitor#1 INFO 2020-12-01 14:21:30,564, JndiServer.Monitor#1, connection from /127.0.0.1:50043
+JndiServer.Monitor#0 INFO 2020-12-01 14:21:30,597, JndiServer.Monitor#0, connection from /127.0.0.1:50044
+JndiServer.Monitor#2 INFO 2020-12-01 14:21:47,133, JndiServer.Monitor#2, connection from /127.0.0.1:50046
+JndiServer.Monitor#1 INFO 2020-12-01 14:21:47,166, JndiServer.Monitor#1, connection from /127.0.0.1:50047
+FelixStartLevel INFO 2023-10-09 02:02:10,173, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2023-10-09 02:02:10,179, AgentServer#0, init()
+FelixStartLevel INFO 2023-10-09 02:02:10,205, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2023-10-09 02:02:10,246, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2023-10-09 02:02:10,246, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2023-10-09 02:02:10,251, Engine#0, factory created
+FelixStartLevel INFO 2023-10-09 02:02:10,252, AgentServer#0, initialized at Mon Oct 09 02:02:10 PDT 2023
+FelixStartLevel INFO 2023-10-09 02:02:10,253, AgentServer#0, start()
+FelixStartLevel INFO 2023-10-09 02:02:10,297, Message.Pool: 150
+FelixStartLevel INFO 2023-10-09 02:02:10,328, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2023-10-09 02:02:10,329, AgentServer#0, started at Mon Oct 09 02:02:10 PDT 2023
+TcpConnectionListener SEVERE 2023-10-09 02:19:42,903, TcpConnectionListener: close connection, Connection from /127.0.0.1:58000 bad magic number. Client is not compatible with JORAM.
+TcpConnectionListener SEVERE 2023-10-09 02:19:47,911, TcpConnectionListener: close connection, Connection from /127.0.0.1:58010 cannot read magic number. Client is not compatible with JORAM.
+TcpConnectionListener SEVERE 2023-10-09 02:20:21,208, TcpConnectionListener: close connection, Connection from /127.0.0.1:45092 bad magic number. Client is not compatible with JORAM.
+TcpConnectionListener SEVERE 2023-10-09 02:20:26,215, TcpConnectionListener: close connection, Connection from /127.0.0.1:45096 cannot read magic number. Client is not compatible with JORAM.
+JndiServer.Monitor#1 INFO 2023-10-09 02:20:30,870, JndiServer.Monitor#1, connection from /127.0.0.1:48854
+JndiServer.Monitor#1 SEVERE 2023-10-09 02:20:30,885, JndiServer.Monitor#1, error during connection from /127.0.0.1:48854
+JndiServer.Monitor#0 INFO 2023-10-09 02:20:30,886, JndiServer.Monitor#0, connection from /127.0.0.1:48862
+JndiServer.Monitor#0 SEVERE 2023-10-09 02:20:30,886, JndiServer.Monitor#0, error during connection from /127.0.0.1:48862
+JndiServer.Monitor#1 INFO 2023-10-09 02:20:33,691, JndiServer.Monitor#1, connection from /127.0.0.1:48868
+JndiServer.Monitor#1 SEVERE 2023-10-09 02:20:33,697, JndiServer.Monitor#1, error during connection from /127.0.0.1:48868
+JndiServer.Monitor#2 INFO 2023-10-09 02:20:33,699, JndiServer.Monitor#2, connection from /127.0.0.1:48870
+JndiServer.Monitor#2 SEVERE 2023-10-09 02:20:33,700, JndiServer.Monitor#2, error during connection from /127.0.0.1:48870
+JndiServer.Monitor#2 INFO 2023-10-09 02:20:34,446, JndiServer.Monitor#2, connection from /127.0.0.1:48872
+JndiServer.Monitor#2 SEVERE 2023-10-09 02:20:34,462, JndiServer.Monitor#2, error during connection from /127.0.0.1:48872
+JndiServer.Monitor#0 INFO 2023-10-09 02:20:34,463, JndiServer.Monitor#0, connection from /127.0.0.1:48878
+JndiServer.Monitor#0 SEVERE 2023-10-09 02:20:34,464, JndiServer.Monitor#0, error during connection from /127.0.0.1:48878
+FelixStartLevel INFO 2023-10-09 02:38:04,171, Debug.initialize() - a3debug.cfg
+FelixStartLevel INFO 2023-10-09 02:38:04,184, AgentServer#0, init()
+FelixStartLevel INFO 2023-10-09 02:38:04,208, AgentServer#0, XML configuration file loaded
+FelixStartLevel INFO 2023-10-09 02:38:04,239, AgentServer#0, ServiceManager initialized
+FelixStartLevel INFO 2023-10-09 02:38:04,239, AgentServer#0, Updates ServiceManager
+FelixStartLevel INFO 2023-10-09 02:38:04,242, Engine#0, factory created
+FelixStartLevel INFO 2023-10-09 02:38:04,243, AgentServer#0, initialized at Mon Oct 09 02:38:04 PDT 2023
+FelixStartLevel INFO 2023-10-09 02:38:04,244, AgentServer#0, start()
+FelixStartLevel INFO 2023-10-09 02:38:04,272, Message.Pool: 150
+FelixStartLevel INFO 2023-10-09 02:38:04,318, AgentServer#0, ServiceManager started
+FelixStartLevel INFO 2023-10-09 02:38:04,319, AgentServer#0, started at Mon Oct 09 02:38:04 PDT 2023

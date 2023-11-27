@@ -1,0 +1,115 @@
+lamedell16% bash test-script.sh 2
+HandOverHandListIntSet
+Who I am: HandOverHandListIntSet on lamedell16.enst.fr
+started on Sat Oct 7 14:56:45 CEST 2023
+→	HandOverHandListIntSet	1	0	100	200
+  Throughput (ops/s):       	888435.628742515
+→	HandOverHandListIntSet	1	0	1000	2000
+  Throughput (ops/s):       	86634.18290854573
+→	HandOverHandListIntSet	1	0	10000	20000
+  Throughput (ops/s):       	9574.712643678162
+→	HandOverHandListIntSet	1	10	100	200
+  Throughput (ops/s):       	865442.0579420581
+→	HandOverHandListIntSet	1	10	1000	2000
+  Throughput (ops/s):       	61446.05394605395
+→	HandOverHandListIntSet	1	10	10000	20000
+  Throughput (ops/s):       	5878.0609695152425
+→	HandOverHandListIntSet	1	100	100	200
+  Throughput (ops/s):       	960532.9670329671
+→	HandOverHandListIntSet	1	100	1000	2000
+  Throughput (ops/s):       	83207.39630184908
+→	HandOverHandListIntSet	1	100	10000	20000
+  Throughput (ops/s):       	7932.601098352471
+→	HandOverHandListIntSet	4	0	100	200
+  Throughput (ops/s):       	134051.42286570143
+→	HandOverHandListIntSet	4	0	1000	2000
+  Throughput (ops/s):       	59284.07388916625
+→	HandOverHandListIntSet	4	0	10000	20000
+  Throughput (ops/s):       	8488.01198801199
+→	HandOverHandListIntSet	4	10	100	200
+  Throughput (ops/s):       	209459.58083832337
+→	HandOverHandListIntSet	4	10	1000	2000
+  Throughput (ops/s):       	80042.43634548178
+→	HandOverHandListIntSet	4	10	10000	20000
+  Throughput (ops/s):       	8356.287425149701
+→	HandOverHandListIntSet	4	100	100	200
+  Throughput (ops/s):       	152311.37724550898
+→	HandOverHandListIntSet	4	100	1000	2000
+  Throughput (ops/s):       	69487.26909635546
+→	HandOverHandListIntSet	4	100	10000	20000
+  Throughput (ops/s):       	9254.364089775561
+→	HandOverHandListIntSet	6	0	100	200
+  Throughput (ops/s):       	129994.00898652022
+→	HandOverHandListIntSet	6	0	1000	2000
+  Throughput (ops/s):       	60109.28143712575
+→	HandOverHandListIntSet	6	0	10000	20000
+  Throughput (ops/s):       	9885.785536159601
+→	HandOverHandListIntSet	6	10	100	200
+  Throughput (ops/s):       	129392.21556886227
+→	HandOverHandListIntSet	6	10	1000	2000
+  Throughput (ops/s):       	116052.89421157684
+→	HandOverHandListIntSet	6	10	10000	20000
+  Throughput (ops/s):       	11194.208686969545
+→	HandOverHandListIntSet	6	100	100	200
+  Throughput (ops/s):       	128429.64071856288
+→	HandOverHandListIntSet	6	100	1000	2000
+  Throughput (ops/s):       	88209.08183632734
+→	HandOverHandListIntSet	6	100	10000	20000
+  Throughput (ops/s):       	11196.107784431138
+→	HandOverHandListIntSet	8	0	100	200
+  Throughput (ops/s):       	122118.70324189527
+→	HandOverHandListIntSet	8	0	1000	2000
+  Throughput (ops/s):       	81014.97005988024
+→	HandOverHandListIntSet	8	0	10000	20000
+  Throughput (ops/s):       	13176.147704590818
+→	HandOverHandListIntSet	8	10	100	200
+  Throughput (ops/s):       	133997.50623441397
+→	HandOverHandListIntSet	8	10	1000	2000
+  Throughput (ops/s):       	122387.3379860419
+→	HandOverHandListIntSet	8	10	10000	20000
+  Throughput (ops/s):       	13346.460618145566
+→	HandOverHandListIntSet	8	100	100	200
+  Throughput (ops/s):       	122447.38154613467
+→	HandOverHandListIntSet	8	100	1000	2000
+  Throughput (ops/s):       	142925.6487025948
+→	HandOverHandListIntSet	8	100	10000	20000
+  Throughput (ops/s):       	14914.342629482071
+→	HandOverHandListIntSet	10	0	100	200
+  Throughput (ops/s):       	161574.77567298108
+→	HandOverHandListIntSet	10	0	1000	2000
+  Throughput (ops/s):       	86279.02341803687
+→	HandOverHandListIntSet	10	0	10000	20000
+  Throughput (ops/s):       	18436.907730673316
+→	HandOverHandListIntSet	10	10	100	200
+  Throughput (ops/s):       	187972.5822532403
+→	HandOverHandListIntSet	10	10	1000	2000
+  Throughput (ops/s):       	155949.65104685945
+→	HandOverHandListIntSet	10	10	10000	20000
+  Throughput (ops/s):       	15597.00748129676
+→	HandOverHandListIntSet	10	100	100	200
+  Throughput (ops/s):       	141186.84603886397
+→	HandOverHandListIntSet	10	100	1000	2000
+  Throughput (ops/s):       	173207.87637088736
+→	HandOverHandListIntSet	10	100	10000	20000
+  Throughput (ops/s):       	17399.302093718845
+→	HandOverHandListIntSet	12	0	100	200
+  Throughput (ops/s):       	185240.55666003976
+→	HandOverHandListIntSet	12	0	1000	2000
+  Throughput (ops/s):       	118736.78963110669
+→	HandOverHandListIntSet	12	0	10000	20000
+  Throughput (ops/s):       	18411.559541604383
+→	HandOverHandListIntSet	12	10	100	200
+  Throughput (ops/s):       	192844.04583956153
+→	HandOverHandListIntSet	12	10	1000	2000
+  Throughput (ops/s):       	144629.7957149975
+→	HandOverHandListIntSet	12	10	10000	20000
+  Throughput (ops/s):       	19006.972111553783
+→	HandOverHandListIntSet	12	100	100	200
+  Throughput (ops/s):       	166916.79123069256
+→	HandOverHandListIntSet	12	100	1000	2000
+  Throughput (ops/s):       	119073.20717131475
+→	HandOverHandListIntSet	12	100	10000	20000
+  Throughput (ops/s):       	19277.03039362232
+finished on Sat Oct 7 15:03:27 CEST 2023
+DONE \o/
+lamedell16% 

@@ -1,0 +1,151 @@
+jkang-23@lamedell14:~$ bash test-script.sh 1
+CoarseGrainedListBasedSet
+Who I am: CoarseGrainedListBasedSet on lamedell14.enst.fr
+started on Wed Oct 11 21:29:29 CEST 2023
+→	CoarseGrainedListBasedSet	5	0	100	200
+  Throughput (ops/s):       	4546402.597402598
+→	CoarseGrainedListBasedSet	5	0	1000	2000
+  Throughput (ops/s):       	553539.9600399601
+→	CoarseGrainedListBasedSet	5	0	10000	20000
+  Throughput (ops/s):       	31630.184907546227
+→	CoarseGrainedListBasedSet	5	10	100	200
+  Throughput (ops/s):       	3851661.338661339
+→	CoarseGrainedListBasedSet	5	10	1000	2000
+  Throughput (ops/s):       	268905.54722638684
+→	CoarseGrainedListBasedSet	5	10	10000	20000
+  Throughput (ops/s):       	28581.70914542729
+→	CoarseGrainedListBasedSet	5	100	100	200
+  Throughput (ops/s):       	2641339.330334833
+→	CoarseGrainedListBasedSet	5	100	1000	2000
+  Throughput (ops/s):       	332503.99600399606
+→	CoarseGrainedListBasedSet	5	100	10000	20000
+  Throughput (ops/s):       	23910.08991008991
+→	CoarseGrainedListBasedSet	10	0	100	200
+  Throughput (ops/s):       	4479777.833250125
+→	CoarseGrainedListBasedSet	10	0	1000	2000
+  Throughput (ops/s):       	524466.7998002996
+→	CoarseGrainedListBasedSet	10	0	10000	20000
+  Throughput (ops/s):       	30121.378621378626
+→	CoarseGrainedListBasedSet	10	10	100	200
+  Throughput (ops/s):       	3411223.664503245
+→	CoarseGrainedListBasedSet	10	10	1000	2000
+  Throughput (ops/s):       	275852.6473526474
+→	CoarseGrainedListBasedSet	10	10	10000	20000
+  Throughput (ops/s):       	28868.696954568146
+→	CoarseGrainedListBasedSet	10	100	100	200
+  Throughput (ops/s):       	2669130.304543185
+→	CoarseGrainedListBasedSet	10	100	1000	2000
+  Throughput (ops/s):       	293513.98601398605
+→	CoarseGrainedListBasedSet	10	100	10000	20000
+  Throughput (ops/s):       	23455.816275586618
+→	CoarseGrainedListBasedSet	15	0	100	200
+  Throughput (ops/s):       	4450348.976535197
+→	CoarseGrainedListBasedSet	15	0	1000	2000
+  Throughput (ops/s):       	474326.510234648
+→	CoarseGrainedListBasedSet	15	0	10000	20000
+  Throughput (ops/s):       	30958.562156764852
+→	CoarseGrainedListBasedSet	15	10	100	200
+  Throughput (ops/s):       	3231554.1687468793
+→	CoarseGrainedListBasedSet	15	10	1000	2000
+  Throughput (ops/s):       	267502.2466300549
+→	CoarseGrainedListBasedSet	15	10	10000	20000
+  Throughput (ops/s):       	27234.031936127743
+→	CoarseGrainedListBasedSet	15	100	100	200
+  Throughput (ops/s):       	2631567.8642714573
+→	CoarseGrainedListBasedSet	15	100	1000	2000
+  Throughput (ops/s):       	288656.8431568432
+→	CoarseGrainedListBasedSet	15	100	10000	20000
+  Throughput (ops/s):       	23879.680479281076
+→	CoarseGrainedListBasedSet	20	0	100	200
+  Throughput (ops/s):       	4608166.583541147
+→	CoarseGrainedListBasedSet	20	0	1000	2000
+  Throughput (ops/s):       	494147.20558882237
+→	CoarseGrainedListBasedSet	20	0	10000	20000
+  Throughput (ops/s):       	32530.204692960557
+→	CoarseGrainedListBasedSet	20	10	100	200
+  Throughput (ops/s):       	3183588.029925187
+→	CoarseGrainedListBasedSet	20	10	1000	2000
+  Throughput (ops/s):       	258810.87824351297
+→	CoarseGrainedListBasedSet	20	10	10000	20000
+  Throughput (ops/s):       	27996.007984031938
+→	CoarseGrainedListBasedSet	20	100	100	200
+  Throughput (ops/s):       	2727712.3629112663
+→	CoarseGrainedListBasedSet	20	100	1000	2000
+  Throughput (ops/s):       	288306.3872255489
+→	CoarseGrainedListBasedSet	20	100	10000	20000
+  Throughput (ops/s):       	22149.052841475575
+→	CoarseGrainedListBasedSet	25	0	100	200
+  Throughput (ops/s):       	5452709.870388834
+→	CoarseGrainedListBasedSet	25	0	1000	2000
+  Throughput (ops/s):       	797497.0089730809
+→	CoarseGrainedListBasedSet	25	0	10000	20000
+  Throughput (ops/s):       	71882.35294117648
+→	CoarseGrainedListBasedSet	25	10	100	200
+  Throughput (ops/s):       	3071679.461615155
+→	CoarseGrainedListBasedSet	25	10	1000	2000
+  Throughput (ops/s):       	250478.56430707878
+→	CoarseGrainedListBasedSet	25	10	10000	20000
+  Throughput (ops/s):       	53656.20328849028
+→	CoarseGrainedListBasedSet	25	100	100	200
+  Throughput (ops/s):       	2605951.1465603192
+→	CoarseGrainedListBasedSet	25	100	1000	2000
+  Throughput (ops/s):       	285958.62412761716
+→	CoarseGrainedListBasedSet	25	100	10000	20000
+  Throughput (ops/s):       	29586.241276171488
+→	CoarseGrainedListBasedSet	30	0	100	200
+  Throughput (ops/s):       	5094112.655086848
+→	CoarseGrainedListBasedSet	30	0	1000	2000
+  Throughput (ops/s):       	762460.8134920634
+→	CoarseGrainedListBasedSet	30	0	10000	20000
+  Throughput (ops/s):       	77655.97235932873
+→	CoarseGrainedListBasedSet	30	10	100	200
+  Throughput (ops/s):       	3169018.8492063493
+→	CoarseGrainedListBasedSet	30	10	1000	2000
+  Throughput (ops/s):       	234156.37450199202
+→	CoarseGrainedListBasedSet	30	10	10000	20000
+  Throughput (ops/s):       	53859.99003487793
+→	CoarseGrainedListBasedSet	30	100	100	200
+  Throughput (ops/s):       	2662461.155378486
+→	CoarseGrainedListBasedSet	30	100	1000	2000
+  Throughput (ops/s):       	265362.2321873443
+→	CoarseGrainedListBasedSet	30	100	10000	20000
+  Throughput (ops/s):       	27826.28173220508
+→	CoarseGrainedListBasedSet	35	0	100	200
+  Throughput (ops/s):       	4664479.900744417
+→	CoarseGrainedListBasedSet	35	0	1000	2000
+  Throughput (ops/s):       	758453.5980148882
+→	CoarseGrainedListBasedSet	35	0	10000	20000
+  Throughput (ops/s):       	80389.90598713509
+→	CoarseGrainedListBasedSet	35	10	100	200
+  Throughput (ops/s):       	3262257.4404761903
+→	CoarseGrainedListBasedSet	35	10	1000	2000
+  Throughput (ops/s):       	223750.61850569028
+→	CoarseGrainedListBasedSet	35	10	10000	20000
+  Throughput (ops/s):       	56650.64420218038
+→	CoarseGrainedListBasedSet	35	100	100	200
+  Throughput (ops/s):       	2601842.757936508
+→	CoarseGrainedListBasedSet	35	100	1000	2000
+  Throughput (ops/s):       	267242.4091587855
+→	CoarseGrainedListBasedSet	35	100	10000	20000
+  Throughput (ops/s):       	27645.49483013294
+→	CoarseGrainedListBasedSet	40	0	100	200
+  Throughput (ops/s):       	4658691.315136476
+→	CoarseGrainedListBasedSet	40	0	1000	2000
+  Throughput (ops/s):       	768234.0109072881
+→	CoarseGrainedListBasedSet	40	0	10000	20000
+  Throughput (ops/s):       	81931.18811881189
+→	CoarseGrainedListBasedSet	40	10	100	200
+  Throughput (ops/s):       	3224869.9029126214
+→	CoarseGrainedListBasedSet	40	10	1000	2000
+  Throughput (ops/s):       	200054.26356589148
+→	CoarseGrainedListBasedSet	40	10	10000	20000
+  Throughput (ops/s):       	55440.59405940594
+→	CoarseGrainedListBasedSet	40	100	100	200
+  Throughput (ops/s):       	2437697.0149253733
+→	CoarseGrainedListBasedSet	40	100	1000	2000
+  Throughput (ops/s):       	268483.63095238095
+→	CoarseGrainedListBasedSet	40	100	10000	20000
+  Throughput (ops/s):       	27164.59472899055
+finished on Wed Oct 11 21:46:33 CEST 2023
+DONE \o/
+jkang-23@lamedell14:~$ 

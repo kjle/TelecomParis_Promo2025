@@ -1,0 +1,115 @@
+lamedell16% bash test-script.sh 3
+LazyLinkedListSortedSet
+Who I am: LazyLinkedListSortedSet on lamedell16.enst.fr
+started on Sat Oct 7 15:04:44 CEST 2023
+→	LazyLinkedListSortedSet	1	0	100	200
+  Throughput (ops/s):       	3840603.886397608
+→	LazyLinkedListSortedSet	1	0	1000	2000
+  Throughput (ops/s):       	433352.1478521479
+→	LazyLinkedListSortedSet	1	0	10000	20000
+  Throughput (ops/s):       	8641.858141858143
+→	LazyLinkedListSortedSet	1	10	100	200
+  Throughput (ops/s):       	3564421.5784215787
+→	LazyLinkedListSortedSet	1	10	1000	2000
+  Throughput (ops/s):       	291375.6243756244
+→	LazyLinkedListSortedSet	1	10	10000	20000
+  Throughput (ops/s):       	9761.738261738263
+→	LazyLinkedListSortedSet	1	100	100	200
+  Throughput (ops/s):       	2354071.3929106337
+→	LazyLinkedListSortedSet	1	100	1000	2000
+  Throughput (ops/s):       	308934.0988517224
+→	LazyLinkedListSortedSet	1	100	10000	20000
+  Throughput (ops/s):       	8526.709935097353
+→	LazyLinkedListSortedSet	4	0	100	200
+  Throughput (ops/s):       	1.4081258982035927E7
+→	LazyLinkedListSortedSet	4	0	1000	2000
+  Throughput (ops/s):       	1649163.6726546907
+→	LazyLinkedListSortedSet	4	0	10000	20000
+  Throughput (ops/s):       	29426.360459311032
+→	LazyLinkedListSortedSet	4	10	100	200
+  Throughput (ops/s):       	9810320.359281437
+→	LazyLinkedListSortedSet	4	10	1000	2000
+  Throughput (ops/s):       	987531.2031952072
+→	LazyLinkedListSortedSet	4	10	10000	20000
+  Throughput (ops/s):       	34276.22377622378
+→	LazyLinkedListSortedSet	4	100	100	200
+  Throughput (ops/s):       	2465196.606786427
+→	LazyLinkedListSortedSet	4	100	1000	2000
+  Throughput (ops/s):       	608277.9711586275
+→	LazyLinkedListSortedSet	4	100	10000	20000
+  Throughput (ops/s):       	32483.033932135728
+→	LazyLinkedListSortedSet	6	0	100	200
+  Throughput (ops/s):       	2.432745109780439E7
+→	LazyLinkedListSortedSet	6	0	1000	2000
+  Throughput (ops/s):       	2273164.6706586825
+→	LazyLinkedListSortedSet	6	0	10000	20000
+  Throughput (ops/s):       	55642.3940149626
+→	LazyLinkedListSortedSet	6	10	100	200
+  Throughput (ops/s):       	1.10974753117207E7
+→	LazyLinkedListSortedSet	6	10	1000	2000
+  Throughput (ops/s):       	1236195.608782435
+→	LazyLinkedListSortedSet	6	10	10000	20000
+  Throughput (ops/s):       	48731.03792415169
+→	LazyLinkedListSortedSet	6	100	100	200
+  Throughput (ops/s):       	2543887.225548902
+→	LazyLinkedListSortedSet	6	100	1000	2000
+  Throughput (ops/s):       	805111.2219451373
+→	LazyLinkedListSortedSet	6	100	10000	20000
+  Throughput (ops/s):       	43404.987531172075
+→	LazyLinkedListSortedSet	8	0	100	200
+  Throughput (ops/s):       	2.743700897308076E7
+→	LazyLinkedListSortedSet	8	0	1000	2000
+  Throughput (ops/s):       	2961714.7132169576
+→	LazyLinkedListSortedSet	8	0	10000	20000
+  Throughput (ops/s):       	83540.64837905238
+→	LazyLinkedListSortedSet	8	10	100	200
+  Throughput (ops/s):       	1.3127250249252245E7
+→	LazyLinkedListSortedSet	8	10	1000	2000
+  Throughput (ops/s):       	961317.2069825437
+→	LazyLinkedListSortedSet	8	10	10000	20000
+  Throughput (ops/s):       	77227.93017456359
+→	LazyLinkedListSortedSet	8	100	100	200
+  Throughput (ops/s):       	3263240.399002494
+→	LazyLinkedListSortedSet	8	100	1000	2000
+  Throughput (ops/s):       	1004036.9077306733
+→	LazyLinkedListSortedSet	8	100	10000	20000
+  Throughput (ops/s):       	62555.33399800599
+→	LazyLinkedListSortedSet	10	0	100	200
+  Throughput (ops/s):       	2.7481557050323866E7
+→	LazyLinkedListSortedSet	10	0	1000	2000
+  Throughput (ops/s):       	3401379.860418744
+→	LazyLinkedListSortedSet	10	0	10000	20000
+  Throughput (ops/s):       	99300.74812967582
+→	LazyLinkedListSortedSet	10	10	100	200
+  Throughput (ops/s):       	1.3015222443890275E7
+→	LazyLinkedListSortedSet	10	10	1000	2000
+  Throughput (ops/s):       	1341322.0338983051
+→	LazyLinkedListSortedSet	10	10	10000	20000
+  Throughput (ops/s):       	93110.72319201996
+→	LazyLinkedListSortedSet	10	100	100	200
+  Throughput (ops/s):       	3419344.965104686
+→	LazyLinkedListSortedSet	10	100	1000	2000
+  Throughput (ops/s):       	1110767.6969092723
+→	LazyLinkedListSortedSet	10	100	10000	20000
+  Throughput (ops/s):       	78219.1235059761
+→	LazyLinkedListSortedSet	12	0	100	200
+  Throughput (ops/s):       	2.2073577191235058E7
+→	LazyLinkedListSortedSet	12	0	1000	2000
+  Throughput (ops/s):       	3197419.5316392626
+→	LazyLinkedListSortedSet	12	0	10000	20000
+  Throughput (ops/s):       	117257.47011952191
+→	LazyLinkedListSortedSet	12	10	100	200
+  Throughput (ops/s):       	1.662138515196811E7
+→	LazyLinkedListSortedSet	12	10	1000	2000
+  Throughput (ops/s):       	2083206.7762830094
+→	LazyLinkedListSortedSet	12	10	10000	20000
+  Throughput (ops/s):       	109698.05680119581
+→	LazyLinkedListSortedSet	12	100	100	200
+  Throughput (ops/s):       	3752172.722747636
+→	LazyLinkedListSortedSet	12	100	1000	2000
+  Throughput (ops/s):       	1596441.9531639263
+→	LazyLinkedListSortedSet	12	100	10000	20000
+  Throughput (ops/s):       	107497.01195219123
+finished on Sat Oct 7 15:11:21 CEST 2023
+DONE \o/
+lamedell16% 

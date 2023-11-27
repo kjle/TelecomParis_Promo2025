@@ -1,0 +1,312 @@
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i100-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.CoarseGrainedListBasedSet-i1000-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.CoarseGrainedListBasedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i100-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.LazyLinkedListSortedSet-i1000-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.LazyLinkedListSortedSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i100-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.HandOverHandListIntSet-i1000-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.HandOverHandListIntSet
+Cannot find benchmark class: linkedlists.lockbased.HandOverHandListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u0-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u0-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u0-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u0-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 0 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u10-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u10-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u10-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u10-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 10 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u100-t1-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 1 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u100-t4-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 4 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u100-t8-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 8 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i100-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 100 -r 200 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+rm: cannot remove '../output/log/linkedlists.lockbased.OptimisticListIntSet-i1000-u100-t12-w0-d2000.log': No such file or directory
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet
+java -server -cp ../lib/compositional-deucestm-0.1.jar:../lib/mydeuce.jar:../bin contention.benchmark.Test -n 1 -W 0 -u 100 -a 0 -s 0 -d 2000 -t 12 -i 1000 -r 2000 -b linkedlists.lockbased.OptimisticListIntSet
+Cannot find benchmark class: linkedlists.lockbased.OptimisticListIntSet

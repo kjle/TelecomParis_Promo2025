@@ -1,0 +1,36 @@
+home.dir = downloaded TP directory -- ex : tp-jms2 
+
+1. compile
+(from: home.dir) 
+> ant compile
+
+2. start joram - centralised/single server
+> ant single_server
+=>      [java] AgentServer#0 started: OK
+
+3. run the administration script or class
+(from: home.dir)
+> ant adminxml 
+(using config/joramAdmin_TP.xml)
+
+> ant classicadmin
+(using ClassicAdmin.class)
+
+4. run the Sender
+> ant sender -Ddestination=<destination> -Dcount=<count>
+ex: ant sender -Ddestination=queue1 -Dcount=9
+
+5. run the Broser
+> ant broser -Dqueue=<queue> 
+ex: ant browser -Dqueue=queue1 
+
+6. run the Receiver
+> ant receiver -Ddestination=<destination> [-Dcount=<count>]
+ex: ant receiver -Ddestination=queue1 -Dcount=9
+
+7. run the Subscriber
+> ant subscriber -Ddestination=<destination>
+ex: ant subscriber -Ddestination=queue1
+
+
+jconsole    -> localhost:9191

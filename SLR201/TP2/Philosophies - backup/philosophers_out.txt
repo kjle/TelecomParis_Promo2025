@@ -1,0 +1,97 @@
+Philosopher 0 thinkingPhilosopher 3 thinking
+
+Philosopher 4 thinking
+Philosopher 2 thinking
+Philosopher 1 thinking
+Philosopher 4 takes left fork
+Philosopher 4 takes right fork
+Philosopher 4 eating times:1
+Philosopher 1 takes left fork
+Philosopher 1 takes right fork
+Philosopher 1 eating times:1
+Philosopher 4 releases forks
+Philosopher 4 thinking
+Philosopher 3 takes left fork
+Philosopher 3 takes right fork
+Philosopher 3 eating times:1
+Philosopher 0 takes left fork
+Philosopher 3 releases forks
+Philosopher 3 thinking
+Philosopher 1 releases forks
+Philosopher 1 thinking
+Philosopher 0 takes right fork
+Philosopher 0 eating times:1
+Philosopher 2 takes left fork
+Philosopher 2 takes right fork
+Philosopher 2 eating times:1
+Philosopher 0 releases forks
+Philosopher 0 thinking
+Philosopher 4 takes left fork
+Philosopher 4 takes right fork
+Philosopher 4 eating times:2
+Philosopher 1 takes left fork
+Philosopher 4 releases forks
+Philosopher 4 thinking
+Philosopher 0 takes left fork
+Philosopher 2 releases forks
+Philosopher 1 takes right fork
+Philosopher 2 thinking
+Philosopher 1 eating times:2
+Philosopher 3 takes left fork
+Philosopher 3 takes right fork
+Philosopher 3 eating times:2
+Philosopher 1 releases forks
+Philosopher 1 thinking
+Philosopher 0 takes right fork
+Philosopher 0 eating times:2
+Philosopher 2 takes left fork
+Philosopher 3 releases forks
+Philosopher 3 thinking
+Philosopher 2 takes right fork
+Philosopher 2 eating times:2
+Philosopher 0 releases forks
+Philosopher 0 thinking
+Philosopher 4 takes left fork
+Philosopher 1 takes left fork
+Philosopher 4 takes right fork
+Philosopher 4 eating times:3
+Philosopher 2 releases forks
+Philosopher 2 thinking
+Philosopher 1 takes right fork
+Philosopher 3 takes left fork
+Philosopher 1 eating times:3
+Philosopher 4 releases forks
+Philosopher 4 thinking
+Philosopher 3 takes right fork
+Philosopher 3 eating times:3
+Philosopher 0 takes left fork
+Philosopher 1 releases forks
+Philosopher 1 thinking
+Philosopher 2 takes left fork
+Philosopher 0 takes right fork
+Philosopher 0 eating times:3
+Philosopher 3 releases forks
+Philosopher 3 thinking
+Philosopher 2 takes right fork
+Philosopher 2 eating times:3
+Philosopher 0 releases forks
+Philosopher 0 thinking
+Philosopher 1 takes left fork
+Philosopher 4 takes left fork
+Philosopher 4 takes right fork
+Philosopher 4 eating times:4
+Philosopher 2 releases forks
+Philosopher 2 thinking
+Philosopher 1 takes right forkPhilosopher 3 takes left fork
+
+Philosopher 1 eating times:4
+Philosopher 4 releases forks
+Philosopher 4 thinking
+Philosopher 0 takes left fork
+Philosopher 3 takes right fork
+Philosopher 3 eating times:4
+Philosopher 1 releases forks
+Philosopher 1 thinking
+Philosopher 0 takes right fork
+Philosopher 0 eating times:4
+Philosopher 2 takes left fork

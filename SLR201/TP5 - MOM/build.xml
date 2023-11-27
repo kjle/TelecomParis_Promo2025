@@ -1,0 +1,196 @@
+<project default="compile" basedir="." xmlns:m2="urn:maven-artifact-ant">
+
+  <!-- Initializes the environment paths and properties -->
+  <target name="init">
+    <!-- Initializes the directory structure properties -->
+    <property name="src.dir" location="./src"/>
+    <property name="ship.dir" location="./ship"/>
+    <property name="obj.dir" location="./classes"/>
+    <property name="lib.dir" location="${ship.dir}/lib"/>
+    <property name="run.dir" location="./run"/>
+    <property name="conf.dir" location="./config"/>
+    <property name="felix.dir" location="${ship.dir}/bin/"/>
+    <property name="bundle.dir" location="${ship.dir}/bundle"/>
+    <property name="admin-file-path" location="${conf.dir}/joramAdmin_TP.xml"/>
+
+  	<!-- Project classpath needed for execution -->
+    <path id="project.class.path">
+      <pathelement path="${java.class.path}/"/>
+      <fileset dir="${lib.dir}">
+         <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${bundle.dir}">
+         <include name="*.jar"/>
+      </fileset>
+      <pathelement path="${obj.dir}/joram"/>
+      <pathelement path="${run.dir}"/>
+    </path>
+    <property name="project.class.path" refid="project.class.path"/>
+    
+    <path id="felix.class.path">
+      <pathelement path="${java.class.path}/"/>
+      <fileset file="${felix.dir}/felix.jar"/>
+      <pathelement path="${run.dir}"/>
+    </path>
+    <property name="felix.class.path" refid="felix.class.path"/>  	
+  </target>
+
+  <!-- Cleans run directory -->
+  <target name="reset" depends="init"
+          description="--> Cleans run directory">
+    <delete quiet="true" dir="${run.dir}"/>
+  </target>
+	
+  <!-- Cleans samples - deletes generated files -->
+  <target name="clean" depends="init,reset"
+          description="--> Deletes generated files">
+    <delete quiet="true" dir="${obj.dir}"/>
+  </target>
+
+  <!-- Compiles (be careful, deprecation, nowarn and verbose properties are not defined -->
+  <target name="compile" depends="init,clean"
+    description="--> Compile all samples">
+    <mkdir dir="${obj.dir}/joram"/>
+    <javac srcdir="${src.dir}"
+           destdir="${obj.dir}/joram"
+           debug="true"
+           optimize="false"
+           deprecation="${deprecation}"
+           nowarn="${nowarn}"
+           verbose="${verbose}"
+           includeantruntime="false">
+      <classpath refid="project.class.path"/>
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+	
+  <!-- Initializes a centralized configuration -->
+  <target name="server_init" depends="init">
+    <mkdir dir="${run.dir}/server${sid}"/>
+    <copy file="${conf.dir}/a3config.dtd" todir="${run.dir}/server${sid}"/>
+    <copy file="${conf.dir}/a3debug.cfg" todir="${run.dir}/server${sid}"/>
+    <copy file="${a3.conf}" tofile="${run.dir}/server${sid}/a3servers.xml"/>
+    <copy file="${osgi.conf}" tofile="${run.dir}/server${sid}/config.properties"/>
+    <!--copy file="${monit.conf}" tofile="${run.dir}/server${sid}/MonitoringConfig.xml"/-->
+  	<!-- copy file="${conf.dir}/fileMonitoring.props" tofile="${run.dir}/server${sid}/fileMonitoring.props"/ -->
+    <!-- copy file="${conf.dir}/fileMonitoring.props" tofile="${run.dir}/server${sid}/logMonitoring.props"/ -->
+    <!-- copy file="${conf.dir}/fileMonitoring.props" tofile="${run.dir}/server${sid}/windowMonitoring.props"/ -->
+  </target>
+
+  <target name="simple_init" depends="init">
+    <copy file="${conf.dir}/a3debug.cfg" todir="${run.dir}"/>
+    <copy file="${conf.dir}/jndi.properties" todir="${run.dir}"/>
+  </target>
+
+  <target name="server" depends="server_init">
+    <java classname="org.apache.felix.main.Main"
+          failonerror="no" fork="yes"
+          dir="${run.dir}/server${sid}">
+      <classpath path="${felix.class.path}"/>
+      <!-- jvmarg line="-Dfelix.config.properties=file:config.properties -Dfr.dyade.aaa.agent.AgentServer.id=${sid} -Dcom.sun.management.jmxremote.port=9191 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -DTransaction.SyncOnWrite=false"/ -->
+      <!-- jvmarg line="-server -Xmx2G -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dfelix.config.properties=file:config.properties -Dfr.dyade.aaa.agent.AgentServer.id=${sid} -Dcom.sun.management.jmxremote -DTransaction.SyncOnWrite=false"/ -->
+      <jvmarg line="-server -Xmx2G -Xdebug -Xnoagent -Djava.compiler=NONE -Dfelix.config.properties=file:config.properties -Dfr.dyade.aaa.agent.AgentServer.id=${sid} 
+
+-Dcom.sun.management.jmxremote.port=9191 
+-Dcom.sun.management.jmxremote.authenticate=false 
+-Dcom.sun.management.jmxremote.ssl=false
+
+-Dcom.sun.management.jmxremote -DTransaction.SyncOnWrite=false
+
+-DMXServer=com.scalagent.jmx.JMXServer 
+"/>
+      <!-- jvmarg line="-server -Xmx1500m -Xincgc -Dfelix.config.properties=file:config.properties -Dfr.dyade.aaa.agent.AgentServer.id=${sid} -Dcom.sun.management.jmxremote"/ -->
+      <!-- jvmarg line="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y"/ -->
+    </java>
+  </target>
+
+  <target name="server_nofork" depends="server_init">
+    <java classname="org.apache.felix.main.Main"
+          failonerror="no" fork="no"
+          dir="${run.dir}/server${sid}">
+      <classpath path="${felix.class.path}"/>
+      <jvmarg line="-Dfelix.config.properties=file:config.properties -Dfr.dyade.aaa.agent.AgentServer.id=${sid} -Dcom.sun.management.jmxremote"/>
+      <!-- jvmarg line="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y"/ -->
+    </java>
+  </target>
+  
+  <!-- Start a single server in NullTransaction mode -->
+  <target name="single_server" depends="init"
+          description="--> Starts a single server in non-persistent mode">
+    <antcall target="server">
+      <param name="sid" value="0"/>
+      <param name="a3.conf" value="${conf.dir}/centralized_a3servers.xml"/>
+      <param name="osgi.conf" value="${conf.dir}/config.properties"/>
+    </antcall>
+  </target>
+
+
+
+<!--                   -->
+<!--    ADMIN tasks    -->
+<!--                   -->
+
+	<!-- Setup the classic configuration -->
+	<target name="adminxml" depends="init"
+	          description="--> Runs a classic administration XML (for a centralized architecture)">
+		<copy file="${conf.dir}/joramAdmin_TP.xml" overwrite="true" todir="${run.dir}"/>
+	    	<java classname="org.objectweb.joram.client.jms.admin.AdminModule"
+	      failonerror="no" fork="yes"
+	      dir="${run.dir}">
+	      <classpath path="${project.class.path}"/>
+	      <arg line="${admin-file-path}"/>
+	    	</java>
+	</target>
+
+
+
+	<!--                    -->
+	<!--    CLIENT tasks    -->
+	<!--                    -->
+	  <!-- Runs the Sender client -->
+	  <target name="sender" depends="simple_init"
+	    description="--> Starts a Sender client">
+	    <java classname="tpt.jms.Sender" failonerror="no" fork="yes"
+	          dir="${run.dir}">
+	      <classpath path="${project.class.path}"/>
+	      <arg value="${destination}"/>
+	      <arg value="${count}"/>
+	    </java>
+	  </target>
+
+
+	<!-- Runs the Browser client -->
+	  <target name="browser" depends="simple_init"
+	    description="--> Starts a Browser client">
+	    <java classname="tpt.jms.Browser" failonerror="no" fork="yes"
+	          dir="${run.dir}">
+	      <classpath path="${project.class.path}"/>
+	      <arg value="${queue}"/>
+	    </java>
+	  </target>
+	
+	  <!-- Runs the Receiver client -->
+	  <target name="receiver" depends="simple_init"
+	    description="--> Starts a Receiver client">
+	    <java classname="tpt.jms.Receiver" failonerror="no" fork="yes"
+	          dir="${run.dir}">
+	      <classpath path="${project.class.path}"/>
+	      <arg value="${destination}"/>
+	      <arg value="${count}"/>
+	    </java>
+	  </target>
+	
+	  <!-- Runs the Subscriber client -->
+	  <target name="subscriber" depends="simple_init"
+	    description="--> Starts a Subscriber client">
+	    <java classname="tpt.jms.Subscriber" failonerror="no" fork="yes"
+	          dir="${run.dir}">
+	      <classpath path="${project.class.path}"/>
+	      <arg value="${destination}"/>
+	    </java>
+	  </target>
+
+
+
+
+</project>
