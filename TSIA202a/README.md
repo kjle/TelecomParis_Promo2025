@@ -1,0 +1,3 @@
+# TSIA202a : Séries chronologiques (partie 1)
+
+Une série chronologique consiste en la modélisation d'une suite de valeurs numériques par une suite de variables aléatoires statistiquement dépendantes. Ce module introduit les concepts inhérents aux propriétés du second ordre : autocovariance, densité et mesure spectrale, prédiction linéaire, processus des innovations, ainsi que les modèles linéaires les plus couramment utilisés :processus AR, MA, ARMA.

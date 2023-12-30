@@ -8,4 +8,4 @@ website: [SLR206](https://perso.telecom-paristech.fr/kuznetso/SLR206-21-temp/)
 - atomic and snapshot memory
 - concensus
 
-Project: test the performences among some linked list algorithms using [specified device](https://lames.enst.fr/grafana/d/3rE8q-FZk/dashboard-infres?orgId=2).
+Project: test the performences among some linked list algorithms using [specified devices](https://lames.enst.fr/grafana/d/3rE8q-FZk/dashboard-infres?orgId=2).
