@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<acl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ns="http://www.scalagent.com/schema/MqttAclSchema">
+  
+  <!-- AC Example for guest user -->
+  <user name="guest" comment="" >
+    <clientId prefix="g0-" comment="" />
+    <clientId prefix="g1-" comment="" />
+    
+    <topic filter="a" mode="rw" comment="" />
+    <topic filter="b/a" mode="rw" comment="" />
+    <topic filter="c/#" mode="rw" comment="" />
+    <topic filter="d/+/a" mode="rw" comment="" />
+    
+    <!-- AC rules needed for MQTT connector check component with default configuration -->
+    <clientId prefix="Jorammq-MQTT-check-" comment="" />
+    <topic filter="topic/+" mode="rw" comment="" />
+  </user>
+  
+  <!-- Defines generic rules for all nodemcuXX user (X in [0..9] -->
+  <generic user="nodemcu\d\d"> 
+    <clientId prefix="${user}" comment="" />
+
+    <topic filter="home/${user}/data/#" mode="rw" comment="" />
+    <topic filter="home/${user}/ctrl/#" mode="rw" comment="" />
+  </generic>
+</acl>
+  

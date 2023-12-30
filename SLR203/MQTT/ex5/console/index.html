@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - (C) 2015 ScalAgent Distributed Technologies
+  - All rights reserved
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Demo console using MQTT/WebSocket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="mqttws31.js" type="text/javascript"></script>
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+<!--
+    google.load("visualization", "1", {packages:["table"]});
+    google.load("visualization", "1", {packages: ["corechart"]});
+-->
+
+    google.charts.load('current', {packages: ['table', 'corechart', 'line']});
+    google.setOnLoadCallback(initTables);
+    
+    var mqtt;
+    var reconnectTimeout = 2000;
+
+    var host = 'localhost';	        // hostname or IP address
+    var port = 9001;
+    var topic = '/home/Lyon/sido/#';	// topic to subscribe to
+    var useTLS = false;
+    var username = null;
+    var password = null;
+    var cleansession = true;
+
+    // Needs data from sensors (DHT22 / SHT30) or simulator.
+    var TOPIC_PREFIX = "/home/Lyon/sido/";
+    var DHT_TEMP = "dht22/value"; // temperature
+    var DHT_HUM = "dht22/value2"; // humidity
+    var SHT_TEMP = "sht30/value"; // temperature
+    var SHT_HUM = "sht30/value2"; // humidity
+    var AVE_TEMP = "average/value"; // average temperature
+    var AVE_HUM = "average/value2"; // average humidity
+    
+    // Needs to activate JoramMQ MQTT monitoring (see documentation chapter 9)
+    var HEALTHCHECK_TOPIC_PREFIX = "$SYS/monitor/status/tcp-1883/";
+    var CONNECT_LATENCY = "LatencyConnect";
+    var PUBSUB_LATENCY = "LatencyPubSub";
+
+    var GREEN_COLOR = '#75dc6d';
+    var YELLOW_COLOR = '#ffff6d';
+    var RED_COLOR = '#ff6b47';
+
+    var consoleStatusData;
+    var consoleStatusTable;
+
+
+    var tempTableData;
+    var tempTable;
+    var tempChartData;
+    var tempChart;
+	
+	<!-- ada: increased temp range: from -40 to 100 -->
+    var tempChartOptions = {
+      hAxis: {showTextEvery: 2},
+      vAxis: {minValue: -40, maxValue: 100, viewWindow: {min:-40, max: 100}},
+      pointSize: 3,
+      series: {0:{color:'a8a8dc',lineWidth:2}, 1:{color:'2d2da0',lineWidth:2}}
+    };   
+    
+    var humTableData;
+    var humTable;
+    var humChartData;
+    var humChart;
+    var humChartOptions = {
+      hAxis: {showTextEvery: 2},
+      vAxis: {minValue: 0, maxValue: 100, viewWindow: {min:0, max: 100}},
+      pointSize: 3,
+      series: {0:{color:'a8a8dc',lineWidth:2}, 1:{color:'2d2da0',lineWidth:2}}
+    };
+
+    var healthCheckData;
+    var healthCheckChart;
+    var healthCheckChartOptions = {
+      hAxis: {showTextEvery: 2},
+      vAxis: {minValue: 0, logScale: true, viewWindow: {min: 0}},
+      pointSize: 3,
+      series: {0:{color:'a8a8dc',lineWidth:2}, 1:{color:'2d2da0',lineWidth:2}},
+      legend: { position: 'bottom' }
+    };
+   
+    // 1/4 heure (= 10s * 90)
+    var CHART_SIZE = 90;
+    // Update period (ms)
+    //var UPDATE_PERIOD = 5000;//ada commented and changed to 100ms for faster rendering
+    var UPDATE_PERIOD = 100;
+	
+    var consoleClientId;
+
+    function MQTTconnect() {
+    	topic = $('#topic').val();
+    	host = $('#host').val();
+    	port = parseInt($('#port').val(), 10);
+    	username = $('#username').val();
+    	password = $('#password').val();
+    	consoleClientId = "web_" + parseInt(Math.random() * 100000, 10);
+    	
+        mqtt = new Paho.MQTT.Client(
+                        host,
+                        port,
+                        consoleClientId);
+        var options = {
+            timeout: 3,
+            useSSL: useTLS,
+            cleanSession: cleansession,
+            onSuccess: onConnect,
+            onFailure: function (message) {
+                $('#status').val("Connection failed: " + message.errorMessage + "Retrying");
+                setTimeout(MQTTconnect, reconnectTimeout);
+            }
+        };
+
+        mqtt.onConnectionLost = onConnectionLost;
+        mqtt.onMessageArrived = onMessageArrived;
+
+        if (username != null) {
+            options.userName = username;
+            options.password = password;
+        }
+        //console.log("Host="+ host + ", port=" + port + " TLS = " + useTLS + " username=" + username + " password=" + password);
+        mqtt.connect(options);
+    }
+
+    function onConnect() {
+    	updateConsoleStatusTable(0, 3, 'Connected to ' + host + ':' + port);
+        //$('#status').val('Connected to ' + host + ':' + port);
+        
+        // Connection succeeded; subscribe to our topic
+        mqtt.subscribe(topic, {qos: 0});
+        mqtt.subscribe(HEALTHCHECK_TOPIC_PREFIX + "#", {qos: 0});
+        
+        updateConsoleStatusTable(0, 0, topic);
+        updateConsoleStatusTable(0, 2, consoleClientId);
+        //$('#topic').val(topic);
+    }
+
+    function onConnectionLost(response) {
+        // Avoid automatic reconnection
+    	//setTimeout(MQTTconnect, reconnectTimeout);
+        
+        //console.log("connection lost: " + response.errorMessage);
+        updateConsoleStatusTable(0, 2, "connection lost: " + response.errorMessage);
+        //$('#status').val("connection lost: " + response.errorMessage + ". Reconnecting");
+    };
+    
+    function endsWith(str, suffix) {
+        return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    };
+    
+    function startsWith(str, prefix) {
+        return str.indexOf(prefix) === 0;
+    };
+
+    function onMessageArrived(message) {
+      try {
+    	handleMessage(message);
+      } catch(err) {
+    	console.log("onMessageArrived: " + err);
+      }
+    }
+    
+    function handleMessage(message) {
+    	var tempScrollTop = $(window).scrollTop();
+    	
+    	var now = new Date();
+        var topic = message.destinationName;
+        var payload = message.payloadString;
+        
+        if (payload.length == 0) return;
+        
+        // console.log("onMessageArrived: " + topic);
+        
+        var row;
+        if (endsWith(topic, DHT_TEMP)) {
+          updateTempTable(0, payload);
+          updateChart(tempChartData, tempChart, 1, payload, now, tempChartOptions);
+        } else if (endsWith(topic, SHT_TEMP)) {
+          updateTempTable(1, payload);
+          updateChart(tempChartData, tempChart, 2, payload, now, tempChartOptions);
+        } else if (endsWith(topic, DHT_HUM)) {
+          updateHumTable(0, payload);
+          updateChart(humChartData, humChart, 1, payload, now, humChartOptions);
+        } else if (endsWith(topic, SHT_HUM)) {
+          updateHumTable(1, payload);
+          updateChart(humChartData, humChart, 2, payload, now, humChartOptions);
+        } else if (endsWith(topic, AVE_TEMP)) {
+          updateTempTable(2, payload);
+          updateChart(tempChartData, tempChart, 3, payload, now, tempChartOptions);
+        } else if (endsWith(topic, AVE_HUM)) {
+          updateHumTable(2, payload);
+          updateChart(humChartData, humChart, 3, payload, now, humChartOptions);
+        }  else if (startsWith(topic, HEALTHCHECK_TOPIC_PREFIX)) {
+          var sepIndex1 = topic.lastIndexOf("/");
+          var attName = topic.substring(sepIndex1 + 1);
+          // console.log("$SYS/monitorstatus/tcp-1883/" + attName + " = " + payload)
+          if (attName == CONNECT_LATENCY) {
+            //updateHealthCheckTable(0, payload);
+            updateChart(healthCheckData, healthCheckChart, 1, payload, now, healthCheckChartOptions);
+          } else if (attName == PUBSUB_LATENCY) {
+            //updateHealthCheckTable(1, payload);
+            updateChart(healthCheckData, healthCheckChart, 2, payload, now, healthCheckChartOptions);
+          }
+        }
+        updateConsoleStatusTable(0, 1, now);
+
+        $(window).scrollTop(tempScrollTop);
+    };
+    
+    function updateTempTable(column, payload) {
+      payload = parseFloat(payload, 10).toFixed(1);
+      // console.log("updateTempTable: " + column + ", " + payload);
+      var color;
+      if ((payload < 10.0) || (payload > 28.0)) {
+        color = RED_COLOR;
+      } else if ((payload < 16.0) || (payload > 25.0)) {
+  	color = YELLOW_COLOR;
+      } else {
+         color = GREEN_COLOR;
+      }
+            	
+      tempTableData.setCell(0, column, payload);
+      tempTableData.setProperty(0, column, 'style', 'background-color: ' + color);
+
+      tempTable.draw(tempTableData, {allowHtml: true, showRowNumber: false});
+    }
+    
+    function updateHumTable(column, payload) {
+      payload = parseFloat(payload, 10).toFixed(1);
+      // console.log("updateHumTable: " + column + ", " + payload);
+      var color;
+      if ((payload < 30.0) || (payload > 90.0)) {
+        color = RED_COLOR;
+      } else if ((payload < 50.0) || (payload > 80.0)) {
+  	color = YELLOW_COLOR;
+      } else {
+         color = GREEN_COLOR;
+      }
+            	
+      humTableData.setCell(0, column, payload);
+      humTableData.setProperty(0, column, 'style', 'background-color: ' + color);
+
+      humTable.draw(humTableData, {allowHtml: true, showRowNumber: false});
+    }
+    
+    function updateChart(data, chart, column, payload, now, options) {
+      payload = parseFloat(payload, 10).toFixed(1);
+      // console.log("updateChart: " + column + ", " + payload);
+        if (data.getNumberOfRows() > CHART_SIZE) {
+        	data.removeRow(0);
+        }
+        
+        var rowInd;
+        var rowCount = data.getNumberOfRows();
+        if (rowCount > 0) {
+          var lastRowInd = rowCount - 1;
+          var currentDate = data.getValue(lastRowInd, 0);
+          if (now.getTime() - currentDate.getTime() < UPDATE_PERIOD) {
+        	rowInd = lastRowInd;
+          } else {
+            rowInd = data.addRows(1);
+          }
+        } else {
+          rowInd = data.addRows(1);
+        }
+        
+        data.setCell(rowInd, 0, now);
+        data.setCell(rowInd, column, payload);
+        
+        var dateFormatter = new google.visualization.DateFormat({pattern: "HH:mm:ss"});
+        dateFormatter.format(data, 0);
+
+        chart.draw(data, options);
+    };
+    
+    function updateConsoleStatusTable(row, column, value) {
+    	consoleStatusData.setCell(row, column, value);
+        
+        var dateFormatter = new google.visualization.DateFormat({pattern: "HH:mm:ss"});
+        dateFormatter.format(consoleStatusData, 1);
+
+        consoleStatusTable.draw(consoleStatusData, {allowHtml: true, showRowNumber: false});
+    };
+    
+    function initTables() {
+    	var now = new Date();
+    	
+        consoleStatusData = new google.visualization.DataTable();
+        consoleStatusData.addColumn('string', 'Topic');
+        consoleStatusData.addColumn('date', 'Last update time');
+        consoleStatusData.addColumn('string', 'Client id');
+        consoleStatusData.addColumn('string', 'Status');
+        consoleStatusData.addRows([
+          ["",  now, "", ""]
+        ]);
+        consoleStatusTable = new google.visualization.Table(document.getElementById('console_status_table_div'));
+
+        tempTableData = new google.visualization.DataTable();
+        tempTableData.addColumn('number', 'DHT22');
+        tempTableData.addColumn('number', 'SHT30');
+        tempTableData.addColumn('number', 'Average');
+        tempTableData.addRows([
+          [-1, -1, -1]
+        ]);
+        tempTable = new google.visualization.Table(document.getElementById('temp_table_div'));
+
+        tempChartData = new google.visualization.DataTable();
+        tempChartData.addColumn('date', 'Time');
+        tempChartData.addColumn('number', 'DHT22');
+        tempChartData.addColumn('number', 'SHT30');
+        tempChartData.addColumn('number', 'Average');
+        tempChart = new google.visualization.LineChart(document.getElementById('temp_chart_div'));
+       
+        humTableData = new google.visualization.DataTable();
+        humTableData.addColumn('number', 'DHT22');
+        humTableData.addColumn('number', 'SHT30');
+        humTableData.addColumn('number', 'Average');
+        humTableData.addRows([
+          [50, 50, 50]
+        ]);
+        humTable = new google.visualization.Table(document.getElementById('hum_table_div'));
+       
+        humChartData = new google.visualization.DataTable();
+        humChartData.addColumn('date', 'Time');
+        humChartData.addColumn('number', 'DHT22');
+        humChartData.addColumn('number', 'SHT30');
+        humChartData.addColumn('number', 'Average');
+        humChart = new google.visualization.LineChart(document.getElementById('hum_chart_div'));
+                
+        healthCheckData = new google.visualization.DataTable();
+        healthCheckData.addColumn('date', 'Time');
+        healthCheckData.addColumn('number', 'Connection latency (ms)');
+        healthCheckData.addColumn('number', 'Pub/Sub Latency (ms)');
+
+        healthCheckChart = new google.visualization.LineChart(document.getElementById('health_check_div'));
+    };
+
+    $(document).ready(function() {
+    	$('#topic').val(topic);
+    	$('#host').val(host);
+    	$('#port').val(port);
+    	$('#username').val(username);
+    	
+    	//initTables();
+        //MQTTconnect();
+    });
+
+    </script>
+    
+  </head>
+  <body>
+    <h1>Demo console using MQTT/WebSocket</h1>
+    <h2>Temperature &#176;C</h2>
+    <div id="temp_table_div"></div>
+    <div id="temp_chart_div"></div>
+    <h2>Humidity %</h2>
+    <div id="hum_table_div"></div>
+    <div id="hum_chart_div"></div>
+    <h2>Console status</h2>
+    <div id="console_status_table_div"></div>
+    <h2>Health-Check</h2>
+    <div id="health_check_div"></div>
+    <h2>Console parameters</h2>
+    <h3>Connection</h3>
+    <table>
+    <tr><td>Topic</td><td><input type='text' id='topic' /></td></tr>
+    <tr><td>Host</td><td><input type='text' id='host' /></td></tr>
+    <tr><td>Port</td><td><input type='text' id='port' /></td></tr>
+    <tr><td>User name</td><td><input type='text' id='username' /></td></tr>
+    <tr><td>Password</td><td><input type='password' id='password' /></td></tr>
+    </table>
+    <div>
+    <input onclick="MQTTconnect();" type=button value="Connect">
+    <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
+    </div>
+  </body>
+</html>

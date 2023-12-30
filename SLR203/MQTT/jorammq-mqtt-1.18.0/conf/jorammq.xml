@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<!-- JoramMQ broker configuration with a single server.
+     With the default configuration, the modifications of this file are taken into
+     account each time JoramMQ is started.
+	 Otherwise the server has to be stopped, and the command 'bin/jorammq-admin -update' 
+     has to be called, before the server can be restarted. -->
+<config>
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Transactional persistence configuration.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Class name of the transaction monitor.
+       If updated, the directory 'data/jorammq' needs to be deleted. -->
+  <property name="Transaction" value="com.scalagent.txlog.TxLogTransaction" />
+
+  <!-- Size of a log file in MB (1024*1024)
+  <property name="Transaction.FileSize" value="10" /> -->
+
+  <!-- Number of log files initially created
+  <property name="Transaction.MinFileCount" value="10" /> -->
+
+  <!-- Number of log files to be filled before compacting
+  <property name="Transaction.MinCompactFileCount" value="5" /> -->
+
+  <!-- Number of times an object has been compacted in the log before going 
+    in the repository
+  <property name="Transaction.CompactCountThreshold" value="1" /> -->
+
+  <!-- Flag indicating whether the log compaction should be done synchronously or not
+  <property name="Transaction.SynchronousCompact" value="false" /> -->
+
+  <!-- Disk synchronization requires to enable SyncOnWrite. In that case, 
+    AsyncWrite should also be enabled in order to reduce the overhead caused 
+    by the synchronization. AsyncWrite does not lower the reliability level. 
+    It allows to synchronize only once for a group of write operations. The disk 
+    synchronization completeness is notified by a callback mechanism. So, for 
+    example, the disk synchronizations required by several concurrent message 
+    producers can be done by a single disk synchronization. The producers do 
+    not return until the synchronization has been completed successfully. -->
+  <!-- <property name="Transaction.SyncOnWrite" value="true" /> -->
+  <!-- <property name="Transaction.AsyncWrite" value="false" /> -->
+
+  <!-- Buffer used when asyncWrite is enabled -->
+  <property name="Transaction.BufferSize" value="4194304" />
+
+  <!-- Timeout before a flush (unit: nanoseconds) -->
+  <property name="Transaction.BufferTimeout" value="30000000" />
+
+  <!-- Should be always true; automatically disabled if sleep does not work properly -->
+  <property name="Transaction.UseSleep" value="true" />
+
+  <!-- Should be true on Linux and false on Windows -->
+  <property name="Transaction.UseNioFileChannel" value="true" />
+
+  <!-- Storage for objects going out of the log
+  <property name="Transaction.RepositoryImpl" value="com.scalagent.txlog.LevelDBRepository" /> -->
+  <!-- Property allowing to force the usage of the Java implementation of LevelDB. Use with care.
+  <property name="Transaction.LevelDBRepository.useJavaImpl" value="true" /> -->
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Transactional engine configuration.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Engine consuming batches of messages without increasing the message processing latency -->
+  <property name="Engine" value="com.scalagent.batchengine.BatchEngine" />
+
+  <!-- Maximum number of messages serially processed before a commit. 
+       If the number of operations to commit is greater than MaxSerialReactions 
+       then a commit is done even if there are still some messages to process.
+  <property name="Engine.MaxSerialReactions" value="10000" /> -->
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ MQTT Adapter configuration.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+       
+  <!-- Maximum number of bytes allowed for messages being processed by the broker
+       for a given MQTT publisher client
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxProducerWindowSize"
+    		value="2097152" /> -->
+    
+  <!-- Maximum number of bytes allowed for in-flight MQTT messages (QoS 1,2 
+       and 0 if queuedQos0 is true). Above this limit, messages remains in queue 
+       (they are not dropped).
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxConsumerWindowSize"
+   		 	value="2097152" /> -->
+
+  <!-- Maximum number of in-flight MQTT messages between the broker and the client
+      (QoS 1,2). With MQTT v5 this value can be overridden by client at connection.
+      Above this limit, messages remains in queue (they are not dropped).
+      Default value is 65535. -->
+  <property name="com.scalagent.jorammq.mqtt.adapter.client.ReceiveMaximum" value="16384" />
+  
+  <!-- Maximum number of in-flight MQTT messages between the client and the broker
+    (QoS 1,2). With MQTT v5 this value is sent to the client at connection.
+    Default value is 65535. -->
+  <property name="com.scalagent.jorammq.mqtt.adapter.broker.ReceiveMaximum" value="16384" />
+    
+  <!-- If 'queuedQos0' is false, a window is created for QoS 0 messages waiting to
+       be sent (overflowed connection) -->
+  <property name="com.scalagent.jorammq.mqtt.adapter.qos0WindowSize" value="16777216" />
+    
+  <!-- Set to true to queue messages with QoS 0
+  <property name="com.scalagent.jorammq.mqtt.adapter.queuedQos0" value="false" /> -->
+
+  <!-- Set to 'true' to discard the old messages when 'maxQueuedCount' is reached. 
+       Set to 'false' to reject the new messages.
+  <property name="com.scalagent.jorammq.mqtt.adapter.discardOld" value="false" /> -->
+    
+  <!-- The maximum number of QoS 1 and 2 messages to hold in a queue above 
+       those that are currently in-flight. Above this limit, messages are dropped. 
+       Set to 0 for no maximum. Defaults to 0.
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxQueuedCount" value="0" /> -->
+    
+  <!-- Size of a receive buffer in bytes
+  <property name="com.scalagent.jorammq.mqtt.adapter.receiveBufferSize" value="32768" /> -->
+    
+  <!-- Size of a sending buffer in bytes
+  <property name="com.scalagent.jorammq.mqtt.adapter.sendBufferSize" value="32768" /> -->
+    
+  <!-- TCP backlog for MQTT/TCP and MQTT/Websocket
+  <property name="com.scalagent.jorammq.mqtt.adapter.tcpBacklog" value="128" /> -->
+  
+  <!-- TCP keepAlive for MQTT/TCP
+  <property name="com.scalagent.jorammq.mqtt.adapter.tcpKeepAlive" value="true" /> -->
+    
+  <!-- Read rate control (in bytes per second) for MQTT/TCP. 
+       The value 'O' disables the rate control.
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxReadRate" value="0" /> -->
+    
+  <!-- Write rate control (in bytes per second) for MQTT/TCP. 
+       The value 'O' disables the rate control.
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxWriteRate" value="0" /> -->
+
+  <!-- Default priority for MQTT messages.
+       Allowed priority levels are integers starting from 0 to 9.
+  <property name="com.scalagent.jorammq.mqtt.adapter.defaultPriority" value="4" /> -->
+    
+  <!-- Maximum number of bytes allowed for the MQTT messages stored in memory
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxMessageTableSize"
+            value="16777216" /> -->
+    
+  <!-- Maximum number of bytes allowed in the body of an MQTT message
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxMessageSize"
+            value="1048576" /> -->
+    
+  <!-- Enable subscriptions to be replicated across a cluster of MQTT servers -->
+  <property name="com.scalagent.jorammq.mqtt.adapter.replicateSubscriptions"
+    value="true" />
+    
+  <!-- Maximum number of messages queuing in the engine when a publish is done
+  <property name="com.scalagent.jorammq.mqtt.adapter.maxEngineLoad" value="10000" />
+  <property name="com.scalagent.jorammq.mqtt.adapter.enginePause" value="1000" /> -->
+  
+  <!-- Prefix for dynamically allocated client identifier
+  <property name="com.scalagent.jorammq.mqtt.assignedClientIdPrefix" value="JMQDCId" /> -->
+  
+  <!-- Maximum number of topic alias defined by a client (Shall be less than 32767).
+  <property name="com.scalagent.jorammq.mqtt.maxTopicAlias" value="5" /> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ JoramMQ license key.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+ 
+  <!-- JoramMQ license key  -->
+  <property name="com.scalagent.jorammq.key" value="eSEwaIEBpmSgbs6e1mZH8ephj00EsuApzn1s/ZV+YtE1j4wAq3Wut5cxNxv8vXdh3SSSEH73XnrAW57UzQBE5fKIFWqySvbPfUIGKpzd1pFHy6979MonyaZtXOoEsE7WgxIXn84znEuOeNvqOiRCRUaEK+Vx2FDiJJY/mZbiKw8=" />
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Security, authentication and access-control.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <!-- SSL/TLS configuration -->
+  <property name="org.objectweb.joram.keystore" value="./conf/keystore" />
+  <property name="org.objectweb.joram.keystorepass" value="jorampass" />
+  <property name="org.objectweb.joram.keystoretype" value="JKS" />
+
+  <!-- Enable authentication, i.e. requires user name and password to be 
+    passed when connecting -->
+  <!-- property name="com.scalagent.jorammq.mqtt.adapter.accessControlEnabled" value="false" /> -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.accesscontrol.password.file"
+            value="./conf/passwd.properties" /> -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.accesscontrol.acl.file"
+            value="./conf/acl.xml" /> -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.accesscontrol.update.period" value="30000" /> -->
+  
+  <!-- List of IP addresses that will be accepted by all connectors.
+  <property name="com.scalagent.jorammq.mqtt.ipallowed" 
+  value="192.168.1.0/24, 192.168.10.1" />
+  -->
+
+  <!-- List of IP addresses that will be accepted by TCP-1883 connector.
+  <property name="com.scalagent.jorammq.mqtt.tcp-1883.ipallowed"
+    value="192.168.1.1, 192.168.1.2, 192.168.1.3" /> -->
+    
+  <!-- List of IP addresses that will be accepted by WS-9001 connector. 
+  <property name="com.scalagent.jorammq.mqtt.ws-9001.ipallowed"
+    value="192.168.0.0/16, 192.168.10.0/24" /> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ JoramMQ monitoring.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+       
+  <!-- Timeout before sending updates to the $SYS topic (unit: seconds).
+    The value 0 disables the $SYS topic. -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.adapter.sysTopicInterval" value="0" /> -->
+    
+  <property name="com.scalagent.jorammq.mqtt.monitor.conf"
+            value="./conf/monitor.xml" />
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Configuration of cleaning task.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Period to run the messages cleaning task (unit: seconds) 
+       Be careful, this property has been renamed in JoramMQ 1.13!!
+  <property name="com.scalagent.jorammq.mqtt.clean.messages.period" value="3600" /> -->
+  
+  <!-- Set default TTL for messages (unit: seconds)
+  <property name="com.scalagent.jorammq.mqtt.clean.default.ttl" value="240" /> -->
+  
+  <!-- Set the message TTL for some topics (unit: seconds)
+  <property name="com.scalagent.jorammq.mqtt.clean.topics"
+     value="topic/sensors/sensor1=60, topic/sensors/sensor2=60, topic/sensors/+=30" /> -->
+  
+  <!-- Set specific TTL for durable clients (unit: seconds)
+  <property name="com.scalagent.jorammq.mqtt.clean.clients"
+     value="sensor[0-9]*=120, admin=0, client1=240" /> -->
+  
+  <!-- Period to run the sessions cleaning task (unit: seconds) 
+  <property name="com.scalagent.jorammq.mqtt.clean.sessions.period" value="3600" /> -->
+  
+  <!-- Configuration file for sessions cleaning
+  <property name="com.scalagent.jorammq.mqtt.clean.sessions.conf" value="./conf/cleanSessions.xml" /> -->
+
+  <!--
+  <property name="org.objectweb.joram.mom.util.message.id.list.factory.class" 
+    value="com.scalagent.jorammq.mom.subscription.GroupedMessageIdListFactory" /> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Resource consumption restriction.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Limit the number of connections (0 to ignore), the value must be less than the value registered in license key.
+  <property name="com.scalagent.jorammq.maxNbOfConnections" value="10"/> -->
+  <!-- Limit the number of subscriptions (0 to ignore), the value must be less than the value registered in license key.
+  <property name="com.scalagent.jorammq.maxNbOfSubscriptions" value="10"/> -->
+  <!-- Percentage alert threshold (0 to ignore)
+  <property name="com.scalagent.jorammq.thresholdPercentage" value="80"/> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties dedicated to regulating client MBean registration..
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Forces register MBeans of all clients.
+  <property name="com.scalagent.jorammq.mqtt.registerAllClientMbean" value="false"/> -->
+  
+  <!-- Defines the list of client identifier prefixes whose MBean must be registered.
+       If registerAllClientMbean property above is true, this property is ignored.
+  <property name="com.scalagent.jorammq.mqtt.registerMbeanAllowedClientIdPrefix" value=""/> -->
+  
+  <!-- Defines the list of client identifier prefixes whose MBean should not be registered (even if registerAllClientMbean is true).
+  <property name="com.scalagent.jorammq.mqtt.registerMbeanForbiddenClientIdPrefix" value="Jorammq-MQTT-check-"/> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Mechanism allowing to avoid DoS attack.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <!-- Maximum time interval between the TCP connection and the MQTT CONNECT message received
+  <property name="com.scalagent.jorammq.mqtt.serverConnectionTimeout" value="15000" /> -->
+  <!-- Maximum number of pending connections
+  <property name="com.scalagent.jorammq.mqtt.serverMaxPendingConnections" value="100" /> -->
+  <!-- Number of rejected connections needed to log an alert
+  <property name="com.scalagent.jorammq.mqtt.serverPendingConnectionsWarnThreshold" value="1000" /> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties dedicated to the check of client contexts.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <!-- If the threshold is less than or equal to 0 the property is not checked. -->
+  <property name="com.scalagent.jorammq.warnMaxToDeliverMessageCount" value="1000" />
+  <property name="com.scalagent.jorammq.errorMaxToDeliverMessageCount" value="10000" />
+  <property name="com.scalagent.jorammq.warnMaxNotAckedSize" value="0" />
+  <property name="com.scalagent.jorammq.errorMaxNotAckedSize" value="0" />
+  <property name="com.scalagent.jorammq.warnDisconnectionTime" value="86400" />
+  <property name="com.scalagent.jorammq.errorDisconnectionTime" value="604800" />
+  <!--  Activation period in seconds, not activated if less than or equal to zero -->
+  <property name="com.scalagent.jorammq.checkClientContext.period" value="3600" />
+   
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties dedicated to the dump of MQTT frames: if dumpAuthorizedClientId is not empty,
+       ++ only specified sessions are dumped in log. If dumpAuthorizedClientId is empty, all sessions
+       ++ are dumped except the client identifier specified in dumpForbiddenClientId.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+  <!-- Contains a comma separated list of client identifier prefix not allowed. -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.dumpForbiddenClientIdPrefix" value="Jorammq-MQTT-check-" /> -->
+  <!-- Contains a comma separated list of client identifier prefix allowed. -->
+  <!-- <property name="com.scalagent.jorammq.mqtt.dumpAuthorizedClientIdPrefix" value="" /> -->
+  
+   
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties dedicated to the mechanism handling the "ping-pong" disconnection.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<!--    
+  <property name="com.scalagent.jorammq.mqtt.disconnection.threshold" value="10" />
+  <property name="com.scalagent.jorammq.mqtt.disconnection.timeout" value="15000" />
+  <property name="com.scalagent.jorammq.mqtt.disconnection.log.threshold" value="10" />
+  <property name="com.scalagent.jorammq.mqtt.disconnection.log.timeout" value="15000" />
+  
+  <property name="com.scalagent.jorammq.mqtt.disconnection.strict.mqtt" value="false" />
+ -->
+ 
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties allowing to configure the MQTT bridge component.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+     
+  <!-- If this property is defined to true an MQTT message is published on $SYS/broker/mqttbridge/{name}/status
+       topic each time the bridge is connected or disconnected.
+  <property name="com.scalagent.jorammq.mqtt.bridge.publishStatus" value="false" /> -->
+     
+  <!-- Minimum delay (in ms) between two connection attempts, the delay increases after each attempt.
+       Default value: 100ms.
+  <property name="com.scalagent.jorammq.mqtt.bridge.delay.base" value="100" /> -->
+   
+  <!-- Maximum delay (in ms) between two connection attempts.
+       Default value: 10.000ms.
+  <property name="com.scalagent.jorammq.mqtt.bridge.delay.max" value="10000" /> -->
+  
+  <!-- Maximum number of attempts before failure for the initial connection.
+       Default value: -1, infinite tries.
+  <property name="com.scalagent.jorammq.mqtt.bridge.connect.max" value="-1" /> -->
+  
+  <!-- Maximum number of connection attempts before failure for the reconnection mechanism.
+       Default value:  -1, infinite tries.
+  <property name="com.scalagent.jorammq.mqtt.bridge.reconnect.max" value="-1" /> -->
+  
+  <!-- Maximum time interval in seconds between messages sent from the MQTT bridge.
+       Default value: 30s.
+  <property name="com.scalagent.jorammq.mqtt.bridge.keepalive" value="30" /> -->
+  
+  <!-- Maximum number of message payload bytes allowed to be in-flight for the bridge MQTT subscriber
+       client before doing flow control.
+  <property name="com.scalagent.jorammq.mqtt.bridge.maxConsumerWindowSize" value="2097152 " /> -->
+  
+  <!-- Maximum number of messages that are allowed to be enqueued for the bridge MQTT client
+       default value: 65535 -->
+  <property name="com.scalagent.jorammq.mqtt.bridge.maxInflightMessageCount" value="16384" />
+  
+  <!-- Set to true to queue messages with QoS 0
+  <property name="com.scalagent.jorammq.mqtt.bridge.queuedQos0" value="false" /> -->
+  
+  <!-- Maximum number of messages that are allowed to be enqueued for the bridge MQTT client.
+  <property name="com.scalagent.jorammq.mqtt.bridge.maxQueuedCount" value="0" /> -->
+  
+  <!-- Set to 'true' to discard the old messages when 'maxQueuedCount' is reached. 
+       Set to 'false' to reject the new messages.
+  <property name="com.scalagent.jorammq.mqtt.bridge.discardOld" value="false" /> -->
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Properties dedicated to controlling MQTT codecs.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+     
+  <!-- If this property is true, an error during the frame decoding throws an exception, and
+       therefore an error is returning to the client. Otherwise a warning is written in the log.
+  <property name="com.scalagent.jorammq.mqtt.codec.throwBadProperty" value="false" /> -->
+     
+  <!-- If this property is true the multiple presence of a property is tested during decoding.
+  <property name="com.scalagent.jorammq.mqtt.codec.checkDupProperty" value="true" /> -->
+     
+  <!-- if this property is true, a duplicated property throws an exception.
+       By default initialized with the value of "com.scalagent.jorammq.mqtt.codec.throwBadProperty".
+  <property name="com.scalagent.jorammq.mqtt.codec.throwdupProperty" value="false" /> -->
+  
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ++ Broker configuration.
+       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  
+  <server id="0" name="S0" hostname="localhost">
+    <!-- Enable the following property if a bridge is needed. -->
+    <!--   <property name="com.scalagent.jorammq.mqtt.bridge.file"
+    value="./conf/bridge.xml" /> -->
+
+    <!-- Joram connection manager required by every protocol: JMS/Joram, AMQP 
+    (v0.9 and v1.0), and MQTT -->
+    <service class="org.objectweb.joram.mom.proxies.ConnectionManager"
+      args="root root" />
+      
+    <!-- TCP entry point for JMS -->
+    <service class="org.objectweb.joram.mom.proxies.tcp.TcpProxyService"
+      args="17600" />
+
+    <!-- Optimized version of TcpProxyService
+    <service class="com.scalagent.jorammq.mom.tcp.TcpProxyService"
+      args="17600" /> -->
+
+    <!-- TCP entry point for JNDI -->
+    <service class="fr.dyade.aaa.jndi2.server.JndiServer" args="17500" />
+
+    <!-- Entry points for MQTT. The protocols WebSocket (ws), secure WebSocket 
+      (wss), SSL (ssl), and TLS (tls) are supported. -->
+    <service class="com.scalagent.jorammq.mqtt.adapter.MqttAdapter"
+      args="tcp://0.0.0.0:1883
+            tcp://0.0.0.0:1884?prod.win=1024&amp;client.mx.inflight=128&amp;snd.buf=1024&amp;rcv.buf=1024 
+            ws://0.0.0.0:9001 " />
+
+    <!--    invm://0.0.0.0:0 -->
+  </server>
+
+</config>

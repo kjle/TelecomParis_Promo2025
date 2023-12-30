@@ -1,0 +1,60 @@
+#!/bin/bash
+# (C) 2015 - 2021 ScalAgent Distributed Technologies
+# All rights reserved
+
+# --------------------------------------------------------------------------------
+# Set JORAMMQ_MQTT_HOME if not defined
+PRG="$0"
+while [ -h "$PRG" ] ; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+PRGDIR=`dirname "$PRG"`
+
+if [ -z "$JORAMMQ_MQTT_HOME" ]; then
+  echo The JORAMMQ_MQTT_HOME environment variable is not defined.
+  [ -z "$JORAMMQ_MQTT_HOME" ] && export JORAMMQ_MQTT_HOME=`cd "$PRGDIR/.." >/dev/null; pwd`
+fi
+
+if [ ! -z "$JORAMMQ_MQTT_HOME" ]; then
+  if [ ! -d "$JORAMMQ_MQTT_HOME" ]; then
+    echo "The JORAMMQ_MQTT_HOME environment variable is not defined correctly: $JORAMMQ_MQTT_HOME"
+    exit 1
+  fi
+else
+  echo "JORAMMQ_MQTT_HOME is not defined"
+  exit 1
+fi
+
+# set environment
+source "$JORAMMQ_MQTT_HOME/bin/setenv.sh"
+# --------------------------------------------------------------------------------
+
+JORAMMQ_CONF_FILE=$CONFIG_DIR/jorammq.xml
+
+if [ ! -d "$SERVER_RUN_DIR/log" ] ; then
+  mkdir $SERVER_RUN_DIR/log
+fi
+
+SSH_CLASSPATH=$JORAM_BUNDLE/sshd-osgi.jar:$JORAM_BUNDLE/slf4j-api.jar:$JORAM_BUNDLE/slf4j-jdk14.jar
+A3_CLASSPATH=$JORAM_BUNDLE/a3-rt.jar:$JORAM_BUNDLE/a3-common.jar:$JORAM_BUNDLE/txlog.jar:$FELIX_JAR:$JORAM_BUNDLE/monolog.jar
+JORAM_CLASSPATH=$JORAM_BUNDLE/ow2-jms-2.0-spec.jar:$JORAM_BUNDLE/joram-client-jms.jar:$JORAM_BUNDLE/joram-shared.jar:$JORAM_BUNDLE/jndi-client.jar:$JORAM_BUNDLE/jcup.jar
+JORAMMQ_CLASSPATH=$JORAM_BUNDLE/jorammq-mqtt-util.jar:$JORAM_BUNDLE/commons-cli.jar
+
+CLASSPATH=$SSH_CLASSPATH:$A3_CLASSPATH:$JORAM_CLASSPATH:$JORAMMQ_CLASSPATH
+
+# For Cygwin, switch paths to Windows format before running java
+if $cygwin; then
+  CONFIG_DIR=`cygpath --absolute --windows "$CONFIG_DIR"`
+  JORAMMQ_CONF_FILE=`cygpath --absolute --windows "$JORAMMQ_CONF_FILE"`  
+  STORAGE_DIR=`cygpath --absolute --windows "$STORAGE_DIR"`
+  FELIX_CONF_FILE=`cygpath --absolute --windows "$FELIX_CONF_FILE"`
+  CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
+fi
+
+cd "$SERVER_RUN_DIR"; exec "$JAVA" $JORAMMQ_JAVA_OPTS $JORAMMQ_TMP_DIR_OPT -Dfr.dyade.aaa.DEBUG_DIR="$CONFIG_DIR" -Dfr.dyade.aaa.DEBUG_FILE=cmdlog.properties -Dserver.config.file="$JORAMMQ_CONF_FILE" -Dserver.data.dir="$STORAGE_DIR" -Dfelix.config.file="$FELIX_CONF_FILE" -Dserver.id=$SERVER_ID -classpath "$CLASSPATH" com.scalagent.jorammq.mqtt.util.AdminCommand "$1" "$2" "$3" "$4" "$5" "$6"

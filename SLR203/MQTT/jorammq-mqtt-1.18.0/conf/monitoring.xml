@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Definition of monitoring tasks reading the JMX attributes provided by the JVM and
+ writing results on different media (see the documentation).
+ This is an example that needs to be uncommented.
+ -->
+<MonitoringTimerTasks>
+  <Task name="task1" type="fr.dyade.aaa.common.monitoring.FileMonitoringTimerTask" period="30000">
+    <property name="result.path" value="MonitoringStats-1.csv" />
+    <monitor mbean="AgentServer:server=AgentServer#0,cons=Transaction" attribute="*" />
+    <monitor mbean = "AgentServer:server=AgentServer#0,cons=Engine#0" attribute="NbWaitingMessages" />
+    <monitor mbean = "com.scalagent.jorammq:host=localhost,manager=SubscriptionManager,subscriptionContext=*"
+             attribute="SubscriptionCount" />
+  </Task>
+
+<!--
+
+  <Task name="task2" type="fr.dyade.aaa.common.monitoring.LogMonitoringTimerTask" period="30000">
+    <property name="result.logger" value="fr.dyade.aaa.Monitoring" />
+    <property name="log.message" value="**Monitoring**" />
+    <monitor mbean="AgentServer:server=AgentServer#0,cons=Transaction" attribute="*" />
+    <monitor mbean = "AgentServer:server=AgentServer#0,cons=Engine#0" attribute="NbWaitingMessages" />
+  </Task>
+  <Task name="task3" type="fr.dyade.aaa.common.monitoring.WindowMonitoringTimerTask" period="10000">
+    <monitor mbean="AgentServer:server=AgentServer#0,cons=Transaction" attribute="*" />
+    <monitor mbean = "AgentServer:server=AgentServer#0,cons=Engine#0" attribute="NbWaitingMessages" />
+  </Task>
+
+ -->
+
+</MonitoringTimerTasks>

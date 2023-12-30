@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+  <comment>XML Configuration file for MQTT sessions cleaning</comment>
+
+  <entry key="nodemcu\d\d">3600</entry>
+  <entry key="user.*">86400</entry>
+</properties>

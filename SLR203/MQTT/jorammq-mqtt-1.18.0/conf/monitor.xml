@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Read JMX attributes provided by the MQTT server and
+ publish MQTT messages to the corresponding topics.
+ The message payload is encoded in the same way as $SYS
+ topic messages (UTF-8).
+ This is an example that needs to be activated (attribute 'enabled')
+ and updated according to a particular configuration, in particular
+ the client identifiers.
+ -->
+<monitor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ns="http://www.scalagent.com/schema/MqttMonitorSchema" enabled="false">
+  <task period="10" topicPrefix="$SYS/monitor" comment="" >
+    <connectorManager>
+      <attribute name="ConnectionCount"/>
+      <attribute name="SubscriptionCount"/>
+      <!-- The following attributes are only available if the property 
+           'com.scalagent.jorammq.mqtt.adapter.sysTopicInterval'
+           is set to a positive value in 'conf/jorammq.xml'
+           e.g. 30 seconds. Otherwise these attributes are not
+           computed and the returned value is 0.  -->
+      <rate name="MessagesPublishReceived"/>
+      <rate name="MessagesPublishSent"/>
+    </connectorManager>
+    <clients>
+      <!-- List the identifiers of the clients you need to monitor.
+           The example below lists all the clients used by a data 
+           centre to consume messages with load balancing.
+       -->
+      <!--  
+      <client id="DataCentre-0-0"/>
+      <client id="DataCentre-0-1"/>
+      <client id="DataCentre-0-2"/>
+      <client id="DataCentre-0-3"/>
+      <client id="DataCentre-0-4"/>
+      <client id="DataCentre-1-0"/>
+      <client id="DataCentre-1-1"/>
+      <client id="DataCentre-1-2"/>
+      <client id="DataCentre-1-3"/>
+      <client id="DataCentre-1-4"/>
+      -->
+      <attribute name="Connected"/>
+      <attribute name="QueuingCountPerMinute"/>
+      <attribute name="ToDeliverMessageCount"/>
+      <rate name="DeliveredMessageCount"/> 
+    </clients>
+    <connectors>
+       <!-- List the identifiers of the connectors you need to monitor.
+           The example below lists the default connectors provided by
+           the MQTT server.
+       -->
+      <connector id="tcp-1883"/>
+      <connector id="tcp-1884"/>
+      <connector id="ws-9001"/>
+      <attribute name="ConnectionCount"/>
+    </connectors>
+    <java type="OperatingSystem">
+      <attribute name="ProcessCpuLoad"/>
+    </java>
+    <mbean name="com.scalagent.jorammq:host=localhost,manager=Status,connector=tcp-1883" id="status/tcp-1883">
+      <attribute name="StatusInfo"/>
+    </mbean>
+    <sharedSubscriptions>
+      <!-- List the names of the shared subscriptions you need to monitor.
+           The example below lists the default connectors provided by
+           the MQTT server.
+      -->
+      <!-- 
+      <sharedSubscription id="dataCentre:#"/>
+      -->
+      <attribute name="ClientCount"/>
+      <attribute name="ToDeliverMessageCount"/>
+    </sharedSubscriptions>
+  </task>
+  <task period="30" topicPrefix="$SYS/monitor" comment="" >
+    <connections>
+      <!-- List the identifier of every client whose connection is monitored.
+           The example below specifies the connections opened by two devices. -->
+      <!--  
+      <connection id="Device-0"/>
+      <connection id="Device-1"/>
+      -->
+      <rate name="PublishCount"/>
+    </connections>
+  </task>
+</monitor>

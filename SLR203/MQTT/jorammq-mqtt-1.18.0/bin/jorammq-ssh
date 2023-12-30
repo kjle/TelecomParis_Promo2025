@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# --------------------------------------------------------------------------------
+# Set JORAMMQ_MQTT_HOME if not defined
+PRG="$0"
+while [ -h "$PRG" ] ; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+PRGDIR=`dirname "$PRG"`
+
+if [ -z "$JORAMMQ_MQTT_HOME" ]; then
+  echo The JORAMMQ_MQTT_HOME environment variable is not defined, use default.
+  [ -z "$JORAMMQ_MQTT_HOME" ] && export JORAMMQ_MQTT_HOME=`cd "$PRGDIR/.." >/dev/null; pwd`
+fi
+
+if [ ! -z "$JORAMMQ_MQTT_HOME" ]; then
+  if [ ! -d "$JORAMMQ_MQTT_HOME" ]; then
+    echo "The JORAMMQ_MQTT_HOME environment variable is not defined correctly: $JORAMMQ_MQTT_HOME"
+    exit 1
+  fi
+else
+  echo "JORAMMQ_MQTT_HOME is not defined"
+  exit 1
+fi
+
+# --------------------------------------------------------------------------------
+# Executes appropriate command
+cmd=$(basename "$0")
+if [ ${cmd}  = "jorammq-ssh" ] ; then
+  if [ "$#" -eq 0 ] ; then
+ssh admin@localhost -p 18090  <<EOF
+$*
+EOF
+  else
+    $JORAMMQ_MQTT_HOME/bin/jorammq-admin -exec "$*" | grep -v "^g!"
+  fi
+else
+  $JORAMMQ_MQTT_HOME/bin/jorammq-admin -exec "${cmd} $*" | grep -v "^g!"
+fi
