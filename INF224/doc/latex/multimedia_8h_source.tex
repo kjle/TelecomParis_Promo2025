@@ -1,0 +1,74 @@
+\doxysection{multimedia.\+h}
+\hypertarget{multimedia_8h_source}{}\label{multimedia_8h_source}\index{src/multimedia.h@{src/multimedia.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ @brief:\ Abstract\ base\ class\ of\ the\ class\ heritage\ tree.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MULTIMEDIA\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MULTIMEDIA\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_multimedia}{Multimedia}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{string}\ path;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ \ *\ Constructor\ of\ the\ class\ Multimedia\ with\ parameters}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ \ *\ @param\ name:\ name\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ \ *\ @param\ path:\ path\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_multimedia}{Multimedia}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_multimedia}{Multimedia}}(\textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{string}\ path);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ \ *\ Destructor\ of\ the\ class\ Multimedia}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_multimedia}{\string~Multimedia}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ *\ Getters\ and\ setters\ of\ the\ class\ Multimedia}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ *\ @return\ name:\ name\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{string}\ getName()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ *\ Getters\ and\ setters\ of\ the\ class\ Multimedia}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ *\ @return\ path:\ path\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{string}\ getPath()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ *\ Getters\ and\ setters\ of\ the\ class\ Multimedia}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ *\ @param\ name:\ name\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ setName(\textcolor{keywordtype}{string}\ name);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ *\ Getters\ and\ setters\ of\ the\ class\ Multimedia}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ *\ @param\ path:\ path\ of\ the\ multimedia\ object}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setPath(\textcolor{keywordtype}{string}\ path);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ *\ Display\ the\ multimedia\ object\ with\ the\ name\ and\ the\ path}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ *\ @param\ ostrm:\ output\ stream}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ display(std::ostream\&\ ostrm)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ *\ Play\ the\ multimedia\ object}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ play()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MULTIMEDIA\_H}}
+
+\end{DoxyCode}

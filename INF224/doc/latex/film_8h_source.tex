@@ -1,0 +1,52 @@
+\doxysection{film.\+h}
+\hypertarget{film_8h_source}{}\label{film_8h_source}\index{src/film.h@{src/film.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ @brief:\ subclass\ of\ Video,\ with\ additional\ parameters:\ chapiter}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ FILM\_H}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ FILM\_H}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}video.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_film}{Film}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_video}{Video}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ chapiterNum;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ *chapiters;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ Constructor\ of\ the\ class\ Film\ with\ parameters}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ @param\ chapiterNum:\ number\ of\ chapiters}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ @param\ chapiters:\ array\ of\ chapiters}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_film}{Film}}();}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_film}{Film}}(\textcolor{keywordtype}{int}\ chapiterNum,\ \textcolor{keywordtype}{int}\ *chapiters);}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_film}{Film}}(\textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{string}\ path,\ \textcolor{keywordtype}{double}\ length,\ \textcolor{keywordtype}{int}\ chapiterNum,\ \textcolor{keywordtype}{int}\ *chapiters);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ Destructor\ of\ the\ class\ Film}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_film}{\string~Film}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ Getters\ and\ setters\ of\ the\ class\ Film}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ @param\ chapiterNum:\ number\ of\ chapiters}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ @param\ chapiters:\ array\ of\ chapiters}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ getChapiterNum()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ *getChapiters()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ setChapiterNum(\textcolor{keywordtype}{int}\ chapiterNum);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ setChapiters(\textcolor{keywordtype}{int}\ *chapiters);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ setChapiterNumAndChapiters(\textcolor{keywordtype}{int}\ chapiterNum,\ \textcolor{keywordtype}{int}\ *chapiters);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ Display\ the\ film\ object\ with\ the\ name,\ the\ path,\ the\ length,\ the\ number\ of\ chapiters\ and\ the\ array\ of\ chapiters}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ display(std::ostream\&\ ostrm)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FILM\_H}}
+
+\end{DoxyCode}

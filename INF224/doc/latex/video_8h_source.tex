@@ -1,0 +1,68 @@
+\doxysection{video.\+h}
+\hypertarget{video_8h_source}{}\label{video_8h_source}\index{src/video.h@{src/video.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ @brief:\ subclass\ of\ Multimedia,\ to\ specify\ the\ propotes\ of\ the\ video\ which\ include\ one\ parameter}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ VIDEO\_H}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ VIDEO\_H}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}multimedia.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_video}{Video}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_multimedia}{Multimedia}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{double}\ length;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00018\ \textcolor{comment}{*\ Constructor\ of\ the\ class\ Video\ with\ parameters}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*\ @param\ name:\ name\ of\ the\ video}}
+\DoxyCodeLine{00020\ \textcolor{comment}{*\ @param\ path:\ path\ of\ the\ video}}
+\DoxyCodeLine{00021\ \textcolor{comment}{*\ @param\ length:\ length\ of\ the\ video}}
+\DoxyCodeLine{00022\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_video}{Video}}()\ :\ length(0)\ \{\};}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_video}{Video}}(\textcolor{keywordtype}{double}\ length)\ :\ length(length)\ \{\};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_video}{Video}}(\textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{string}\ path,\ \textcolor{keywordtype}{double}\ length)\ :\ \mbox{\hyperlink{class_multimedia}{Multimedia}}(name,\ path),\ length(length)\ \{\};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ Destructor\ of\ the\ class\ Video}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_video}{\string~Video}}()\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Video\ object:\ "{}}\ <<\ getName()\ <<\ \textcolor{stringliteral}{"{}\ deleted\ !"{}}\ <<\ endl;}
+\DoxyCodeLine{00032\ \ \ \ \ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ Getters\ and\ setters\ of\ the\ class\ Video}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ @param\ length:\ length\ of\ the\ video}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ @return\ length:\ length\ of\ the\ video}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{double}\ getLength()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ length;\ \};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ setLength(\textcolor{keywordtype}{double}\ length)\ \{\ this-\/>length\ =\ length;\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ Display\ the\ video\ object\ with\ the\ name,\ the\ path,\ and\ the\ length}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ @param\ ostrm:\ output\ stream}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ display(std::ostream\&\ ostrm)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ ostrm\ <<\ \textcolor{stringliteral}{"{}Video\ object:"{}}\ <<\ endl;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ostrm\ <<\ \textcolor{stringliteral}{"{}\ \ Name:\ "{}}\ <<\ getName()\ <<\ endl;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ ostrm\ <<\ \textcolor{stringliteral}{"{}\ \ Path:\ "{}}\ <<\ getPath()\ <<\ endl;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ ostrm\ <<\ \textcolor{stringliteral}{"{}\ \ length:\ "{}}\ <<\ length\ <<\ endl;}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ Play\ the\ video\ object\ with\ the\ mpv}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ play()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ string\ cmd\ =\ "{}mpv\ "{}\ +\ getPath()\ +\ getName()\ +\ "{}\ \&"{};}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cmd\ =\ \textcolor{stringliteral}{"{}open\ "{}}\ +\ getPath()\ +\ getName();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ system(cmd.c\_str());}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VIDEO\_H}}
+
+\end{DoxyCode}
