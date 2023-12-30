@@ -4,6 +4,8 @@
 #ifndef PHOTO_H
 #define PHOTO_H
 
+#define Ubuntu
+
 #include <iostream>
 #include <string>
 #include "multimedia.h"
@@ -61,8 +63,14 @@ public:
  * Play the photo object with the imagej
  */
     virtual void play() const {
-        // string cmd = "imagej " + getPath() + getName() + " &";
+        #if defined(Ubuntu)
+        string cmd = "mpv " + getPath() + getName() + " &";
+        #elif defined(Mac)
         string cmd = "open " + getPath() + getName();
+        #else
+        string cmd = "show " + getPath() + getName();
+        #endif
+
         system(cmd.c_str());
     };
 };
