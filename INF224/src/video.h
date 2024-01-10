@@ -4,6 +4,8 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
+#define Ubuntu
+
 #include <iostream>
 #include <string>
 #include "multimedia.h"
@@ -54,8 +56,14 @@ public:
  * Play the video object with the mpv
  */
     virtual void play() const {
-        // string cmd = "mpv " + getPath() + getName() + " &";
+        #if defined(Ubuntu)
+        string cmd = "mpv " + getPath() + getName() + " &";
+        #elif defined(Mac)
         string cmd = "open " + getPath() + getName();
+        #else
+        string cmd = "show " + getPath() + getName();
+        #endif
+
         system(cmd.c_str());
     };
 
