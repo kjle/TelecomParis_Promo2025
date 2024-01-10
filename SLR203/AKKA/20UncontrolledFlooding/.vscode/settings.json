@@ -1,0 +1,8 @@
+{
+    "maven.terminal.favorites": [
+        {
+            "command": "mvn exec:exec",
+            "debug": false
+        }
+    ]
+}

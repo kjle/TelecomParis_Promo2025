@@ -37,6 +37,10 @@ public:
 
     void deleteMultimedia(string name);
     void deleteGroup(string name);
+
+    // Serialization
+    void saveMultimedia(const string &outputFile);
+    void loadMultimedia(const string &inputFile);
 };
 
 #endif // MULTIMEDIAMANAGER_H

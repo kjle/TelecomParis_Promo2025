@@ -138,9 +138,11 @@ int main(int argc, const char* argv[])
     shared_ptr<Photo> photo = manager->createPhoto("test.png", "./ressource/", 10, 11);
     shared_ptr<Video> video = manager->createVideo("test.mp4", "./ressource/", 12);
     shared_ptr<Film> film = manager->createFilm("test.mkv", "./ressource/", 13, 2, tab);
+    
     // shared_ptr<Photo> photo = manager->createMultimedia<Photo>("test.png", "./ressource/", new Photo("test.png", "./ressource/", 10, 11));
     // shared_ptr<Video> video = manager->createMultimedia<Video>("test.mp4", "./ressource/", new Video("test.mp4", "./ressource/", 12));
     // shared_ptr<Film> film = manager->createMultimedia<Film>("test.mkv", "./ressource/", new Film("test.mkv", "./ressource/", 13, 2, tab));
+    
     shared_ptr<Group> group = manager->createGroup("group");
     group->insertObject(photo);
     group->insertObject(video);
@@ -174,6 +176,14 @@ int main(int argc, const char* argv[])
             string name;
             istrstream >> name;
             manager->playMultimedia(name);
+        } else if (cmd == "Save" || cmd == "save") {
+            string outputFile;
+            istrstream >> outputFile;
+            manager->saveMultimedia(outputFile);
+        } else if (cmd == "Load" || cmd == "load") {
+            string inputFile;
+            istrstream >> inputFile;
+            manager->loadMultimedia(inputFile);
         } else {
             response = "Command not found";
         }

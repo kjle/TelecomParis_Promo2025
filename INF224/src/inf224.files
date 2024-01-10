@@ -13,6 +13,7 @@ multimediamanager.h
 photo.h
 ressource/test.mp4
 ressource/test.png
+save.txt
 tcpserver.cpp
 tcpserver.h
 video.h

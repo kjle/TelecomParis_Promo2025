@@ -65,6 +65,35 @@ public:
         string cmd = "open " + getPath() + getName();
         system(cmd.c_str());
     };
+
+/*
+ * Write the photo object to the output stream
+ * @param ostrm: output stream
+ */
+    virtual void write(std::ostream& ostrm) const {
+        ostrm << "Photo object:" << endl;
+        ostrm << getName() << endl;
+        ostrm << getPath() << endl;
+        ostrm << latitude << endl;
+        ostrm << longitude << endl;
+    };
+
+/*
+ * Read the photo object from the input stream
+ * @param istrm: input stream
+ */
+    void read(std::istream& istrm) {
+        string name, path;
+        getline(istrm, name);
+        getline(istrm, path);
+        setName(name);
+        setPath(path);
+        string latitude, longitude;
+        getline(istrm, latitude);
+        getline(istrm, longitude);
+        setLatitude(stod(latitude));
+        setLongitude(stod(longitude));
+    };
 };
 
 #endif // PHOTO_H

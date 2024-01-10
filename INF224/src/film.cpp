@@ -68,4 +68,49 @@ void Film::display(std::ostream& ostrm) const {
             ostrm << chapiters[i] << " ";
         }
         ostrm << endl;
-    };
+};
+
+/*
+ * Write the video object to the output stream
+ * @param ostrm: output stream
+ */
+void Film::write(std::ostream& ostrm) const {
+        ostrm << "Film object:" << endl;
+        ostrm << getName() << endl;
+        ostrm << getPath() << endl;
+        ostrm << getLength() << endl;
+        ostrm << chapiterNum << endl;
+        for (int i = 0; i < chapiterNum; i++) {
+            ostrm << chapiters[i] << endl;
+        }
+};
+
+/*
+ * Read the multimedia object from the input stream
+ * @param istrm: input stream
+ */
+void Film::read(std::istream& istrm) {
+    string name;
+    string path;
+    getline(istrm, name);
+    getline(istrm, path);
+    setName(name);
+    setPath(path);
+    string length;
+    getline(istrm, length);
+    setLength(stod(length));
+
+    int *chapiters;
+    string chapiterNum;
+    getline(istrm, chapiterNum);
+    int chapiterNumInt = stod(chapiterNum);
+    chapiters = new int[chapiterNumInt];
+    for (int i = 0; i < chapiterNumInt; i++) {
+        string it;
+        getline(istrm, it);
+        chapiters[i] = stod(it);
+    }
+    
+    setChapiterNumAndChapiters(chapiterNumInt, chapiters);
+    delete [] chapiters;
+};

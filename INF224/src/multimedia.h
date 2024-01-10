@@ -63,6 +63,18 @@ public:
      * Play the multimedia object
      */
     virtual void play() const = 0;
+
+    /*
+     * Write the multimedia object to the output stream
+     * @param ostrm: output stream
+     */
+    virtual void write(ostream& ostrm) const;
+
+    /*
+     * Read the multimedia object from the input stream
+     * @param istrm: input stream
+     */
+    virtual void read(istream& istrm);
 };
 
 #endif // MULTIMEDIA_H

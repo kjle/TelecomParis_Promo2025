@@ -1,0 +1,16 @@
+Film object:
+test.mkv
+./ressource/
+13
+2
+14
+15
+Video object:
+test.mp4
+./ressource/
+12
+Photo object:
+test.png
+./ressource/
+10
+11

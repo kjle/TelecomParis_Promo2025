@@ -5,6 +5,7 @@
 #define FILM_H
 
 #include "video.h"
+#include <ostream>
 
 class Film : public Video
 {
@@ -41,6 +42,19 @@ public:
  * Display the film object with the name, the path, the length, the number of chapiters and the array of chapiters
  */
     void display(std::ostream& ostrm) const override;
+
+
+/*
+ * Write the multimedia object to the output stream
+ * @param ostrm: output stream
+ */
+    void write(std::ostream& ostrm) const override;
+
+/*
+ * Read the multimedia object from the input stream
+ * @param istrm: input stream
+ */
+    void read(std::istream& istrm) override;
 };
 
 #endif // FILM_H

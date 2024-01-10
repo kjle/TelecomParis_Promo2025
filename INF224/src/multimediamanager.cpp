@@ -1,4 +1,7 @@
 #include "multimediamanager.h"
+#include "photo.h"
+#include <fstream>
+#include <memory>
 
 MultimediaManager::MultimediaManager() : multimediaTable(), groupTable(){};
 
@@ -81,4 +84,86 @@ void MultimediaManager::deleteGroup(string name) {
     } else {
         cout << "Group " << name << " not found !" << endl;
     }
+}
+
+void MultimediaManager::saveMultimedia(const string &outputFile) {
+    ofstream ofs(outputFile);
+    if(ofs) {
+        for (auto it = multimediaTable.begin(); it != multimediaTable.end(); ++it) {
+            it->second->write(ofs);
+        }
+        ofs.close();
+    } else {
+        cerr << "Error: cannot open the file " << outputFile << endl;
+    }
+}
+
+void MultimediaManager::loadMultimedia(const string &inputFile) {
+    ifstream ifs(inputFile);
+    if(ifs) {
+        string type;
+        while(getline(ifs, type)) {
+            if (type == "Photo object:") {
+                // Photo *r = new Photo();
+                // r->read(ifs);
+                string name, path;
+                getline(ifs, name);
+                getline(ifs, path);
+                string latitude, longitude;
+                getline(ifs, latitude);
+                getline(ifs, longitude);
+                // Photo *element = new Photo(name, path, stod(latitude), stod(longitude));
+                shared_ptr<Photo> photo = createPhoto(name, path, stod(latitude), stod(longitude));
+
+            } else if (type == "Video object:") {
+                // Video *r = new Video();
+                // r->read(ifs);
+                string name;
+                string path;
+                getline(ifs, name);
+                getline(ifs, path);
+                string length;
+                getline(ifs, length);
+                shared_ptr<Video> video = createVideo(name, path, stoi(length));
+            } else if (type == "Film object:") {
+                // Film *r = new Film();
+                // r->read(ifs);
+                string name;
+                string path;
+                getline(ifs, name);
+                getline(ifs, path);
+               
+                string length;
+                getline(ifs, length);
+
+                // int *chapiters;
+                string chapiterNum;                
+
+                getline(ifs, chapiterNum);
+                int chapiterNumInt = stod(chapiterNum);
+                int *chapiters = new int[chapiterNumInt]();
+                // int *tab = new int[]();
+                int tab[10];
+                for (int i = 0; i < chapiterNumInt; i++) {
+                    string it;
+                    getline(ifs, it);
+                    cout << "getline: " << it << endl;
+                    // chapiters[i] = stod(it);
+                    // (*(chapiters + i)) = stod(it);
+                    tab[i] = stod(it);
+                }
+                shared_ptr<Film> film = createFilm(name, path, stod(length), chapiterNumInt, tab);
+                cout << "test for chapiters:" << endl;
+                for (int i = 0; i < chapiterNumInt; i++) {
+                    cout << chapiters[i] << " ";
+                }
+                delete [] chapiters;
+            }
+        }
+        
+        ifs.close();
+    } else {
+        cerr << "Error: cannot open the file " << inputFile << endl;
+    }
+
 }

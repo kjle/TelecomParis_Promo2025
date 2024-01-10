@@ -58,5 +58,32 @@ public:
         string cmd = "open " + getPath() + getName();
         system(cmd.c_str());
     };
+
+/*
+ * Write the video object to the output stream
+ * @param ostrm: output stream
+ */
+    virtual void write(std::ostream& ostrm) const {
+        ostrm << "Video object:" << endl;
+        ostrm << getName() << endl;
+        ostrm << getPath() << endl;
+        ostrm << length << endl;
+    };
+
+/*
+ * Read the video object from the input stream
+ * @param istrm: input stream
+ */
+    virtual void read(std::istream& istrm) {
+        string name;
+        string path;
+        getline(istrm, name);
+        setName(name);
+        getline(istrm, path);
+        setPath(path);
+        string length;
+        getline(istrm, length);
+        setLength(stod(length));
+    };
 };
 #endif // VIDEO_H

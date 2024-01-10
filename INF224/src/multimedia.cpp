@@ -62,4 +62,23 @@ void Multimedia::display(ostream& ostrm) const {
     ostrm << "Path: " << path << endl;
 }
 
+/*
+ * Write the multimedia object to the output stream
+ * @param ostrm: output stream
+ */
+void Multimedia::write(ostream& ostrm) const {
+    ostrm << "Multimedia object:" << endl;
+    ostrm << name << endl;
+    ostrm << path << endl;
+}
+
+/*
+ * Read the multimedia object from the input stream
+ * @param istrm: input stream
+ */
+void Multimedia::read(istream& istrm) {
+    getline(istrm, this->name);
+    getline(istrm, this->path);
+}
+
 
