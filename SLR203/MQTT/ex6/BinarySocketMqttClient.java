@@ -88,6 +88,10 @@ public class BinarySocketMqttClient  {
 
         // receive the CONNACK message
         binarySocketMqttClient.receiveMessage();
+        // 0x20,                   // Control Header: CONNACK (Message Type)
+        // 0x02,                   // Remaining Length
+        // 0x00,                   // Variable Header: Reserved
+        // 0x00                    // Payload: Connect Return Code (0x00 = Connection Accepted)
 
         // PUBLISH message packet
         byte[] publishPacket = {
@@ -105,5 +109,8 @@ public class BinarySocketMqttClient  {
 
         // receive the PUBACK message (PUBACK)
         binarySocketMqttClient.receiveMessage();
+        // 0x40,                   // Control Header: PUBACK (Message Type)
+        // 0x02,                   // Remaining Length
+        // 0x12, 0x34              // Variable Header: Packet Identifier
     }
 }

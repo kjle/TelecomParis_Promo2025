@@ -13,7 +13,8 @@ public class SensorWebsocketMonitorMqttClient {//synchronous client
 		String topicPrefix = "/home/Lyon/sido/";
 		String[] topics = {"dht22/value", "dht22/value2", "sht30/value", "sht30/value2", "average/value", "average/value2"};
 		int qos = 0;
-	    String brokerURI       = "ws://localhost:9001";
+	    // String brokerURI       = "ws://localhost:9001";
+        String brokerURI = "ws://192.168.96.57:9001";
 	    String clientId     = "monitor";
 		boolean cleanSession = true;
 

@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/gaalokkang/Desktop/TelecomParis_Promo2025/SLR203/MQTT/org.eclipse.paho.client.mqttv3-1.2.5.jar"
+    ]
+}
