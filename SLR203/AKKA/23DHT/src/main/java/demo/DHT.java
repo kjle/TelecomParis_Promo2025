@@ -5,8 +5,6 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
-import demo.Matrix;
-import demo.Message.RefList;
 
 
 /**
@@ -19,42 +17,22 @@ public class DHT {
 
 		final ActorSystem system = ActorSystem.create("system");
 		final LoggingAdapter log = Logging.getLogger(system, "main");
-		final ArrayList<String> actorNameList = new ArrayList<String>();
-		
-		Matrix matrix = new Matrix(new int[][] {{0, 1, 1, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 0, 1}, {0, 1, 0, 0, 0}});
 
-		actorNameList.add("a");
-		actorNameList.add("b");
-		actorNameList.add("c");
-		actorNameList.add("d");
-		actorNameList.add("e");
-		
-		final ArrayList<ActorRef> actors = new ArrayList<ActorRef>();
-		for (String name : actorNameList) {
-			actors.add(system.actorOf(NodeActor.createActor(), name));
-		}
+		// Create the DHT actor
+		ActorRef dht = system.actorOf(DHTActor.createActor(), "dht");
 
-		for (int i = 0; i < actors.size(); i++) {
-			ArrayList<ActorRef> actorRefList = new ArrayList<ActorRef>();
-			for (int j = 0; j < actors.size(); j++) {
-				if (matrix.m[i][j] == 1) {
-					actorRefList.add(actors.get(j));
-				}
-			}
-			actors.get(i).tell(new RefList(actorRefList), ActorRef.noSender());
-		}
+		// Create the message actor
+		ActorRef messageActor = system.actorOf(MessageActor.createActor(), "messageActor");
 
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		// Create the nodes		
+		ArrayList<ActorRef> nodes = new ArrayList<>();
 
-		// send "0" to actor1
-		actors.get(0).tell("0", ActorRef.noSender());
-		actors.get(0).tell("1", ActorRef.noSender());
-		actors.get(0).tell("2", ActorRef.noSender());
-		
+        // Create a few nodes
+        for (int i = 0; i < 8; i++) {
+            ActorRef node = system.actorOf(NodeActor.createActor(Integer.toString(i), 2, 3), "node" + i);
+            nodes.add(node);
+        }
+
 		// We wait 5 seconds before ending system (by default)
 		// But this is not the best solution.
 		try {

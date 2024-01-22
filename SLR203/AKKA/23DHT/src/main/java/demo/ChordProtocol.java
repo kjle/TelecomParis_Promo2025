@@ -3,7 +3,7 @@ package demo;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import java.util.ArrayList;
-import demo.Node.*;
+import demo.ChordNode.*;
 
 /**
  * @author Luciano Freitas
@@ -19,21 +19,21 @@ public class ChordProtocol {
         Key k0 = new Key ("K0", "FOO");
         Key k1 = new Key ("K1", "BAR");
         // Initial actors:
-        ActorRef n0 = system.actorOf(Node.createActor("192.168.1.0"), "node0");
+        ActorRef n0 = system.actorOf(ChordNode.createActor("192.168.1.0"), "node0");
         n0.tell(new JoinMSG(n0), ActorRef.noSender());
         try {
 			wait1s();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        ActorRef n1 = system.actorOf(Node.createActor("192.168.1.1"), "node1");
+        ActorRef n1 = system.actorOf(ChordNode.createActor("192.168.1.1"), "node1");
         n1.tell(new JoinMSG(n0), ActorRef.noSender());
         try {
 			wait1s();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        ActorRef n2 = system.actorOf(Node.createActor("192.168.1.2"), "node2");
+        ActorRef n2 = system.actorOf(ChordNode.createActor("192.168.1.2"), "node2");
         n2.tell(new JoinMSG(n1), ActorRef.noSender());
         try {
 			wait1s();
@@ -47,7 +47,7 @@ public class ChordProtocol {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} 
-        ActorRef n3 = system.actorOf(Node.createActor("192.168.1.3"), "node3");
+        ActorRef n3 = system.actorOf(ChordNode.createActor("192.168.1.3"), "node3");
         n3.tell(new JoinMSG(n1), ActorRef.noSender());
         try {
 			wait1s();
