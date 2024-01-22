@@ -1,5 +1,7 @@
 package demo;
 
+import java.util.LinkedList;
+
 import akka.actor.ActorRef;
 
 public class Message {
@@ -36,9 +38,9 @@ public class Message {
     // Message types used by DHTActor
     public static class AddNodeMessage {
         public final ActorRef node;
-        public final String id;
+        public final int id;
 
-        public AddNodeMessage(ActorRef node, String id) {
+        public AddNodeMessage(ActorRef node, int id) {
             this.node = node;
             this.id = id;
         }
@@ -60,10 +62,10 @@ public class Message {
 
     // Message to check if a node is alive
     public static class PingMessage extends BaseMessage {
-        public final String nodeId;
+        public final int id;
 
-        public PingMessage(String nodeId) {
-            this.nodeId = nodeId;
+        public PingMessage(int id) {
+            this.id = id;
         }
     }
 
@@ -94,20 +96,25 @@ public class Message {
     }
 
     // Message for a new node to join the network
-    public static class NodeJoinMessage extends BaseMessage {
-        public final Node node;
+    // public static class NodeJoinMessage extends BaseMessage {
+    //     public final Node node;
 
-        public NodeJoinMessage(Node node) {
-            this.node = node;
-        }
-    }
+    //     public NodeJoinMessage(Node node) {
+    //         this.node = node;
+    //     }
+    // }
 
     // Message to find information about a specific node
     public static class FindNodeMessage extends BaseMessage {
-        public final String nodeId;
+        public final int id;
+        public final int numberOfNodes;
+        public LinkedList<Integer> closestNodes = new LinkedList<Integer>();
+        public int minDistance = Integer.MAX_VALUE;
 
-        public FindNodeMessage(String nodeId) {
-            this.nodeId = nodeId;
+        public FindNodeMessage(int id, int numberOfNodes) {
+            this.id = id;
+            this.numberOfNodes = numberOfNodes;
         }
+
     }
 }
