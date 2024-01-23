@@ -5,17 +5,30 @@
 The aim of this TP is to create a software for a multimedia set-top box that can play videos, films, display photos and more.
 
 ----| INF224
+
     ----| cpp
+
         ----| ressource
+
         ----| Makefile
+
         ----| *.cpp
+
         ----| *.h
+
+        
         ----| ....
+    
     ----| html
+    
         ----| index.html
+    
         ----| ...
+    
     ----| swing
+    
         ----| Makefile
+    
         ----| *.java
 
 ## How to run ?
