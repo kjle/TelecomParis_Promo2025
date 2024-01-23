@@ -117,4 +117,16 @@ public class Message {
         }
 
     }
+
+    public static class ResponseFindNodeMessage extends BaseMessage {
+        
+        public LinkedList<Integer> closestNodes = new LinkedList<Integer>();
+
+
+    }
+
+    public static class NodeDist {
+        public int id;
+        public int distance;
+    }
 }

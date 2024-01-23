@@ -10,11 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import demo.Message.StoreMessage;
 import demo.Message.RetrieveMessage;
 import demo.Message.AddNodeMessage;
 import demo.Message.FindNodeMessage;
+import demo.Message.ResponseFindNodeMessage;
 import demo.Message.ResultMessage;
 
 public class NodeActor extends AbstractActor {
@@ -148,6 +150,18 @@ public class NodeActor extends AbstractActor {
 	}
 
 	private void handleFindNodeMessage(FindNodeMessage message) {
+		if (!getSender().equals(ActorRef.noSender())) {
+			ResponseFindNodeMessage response = new ResponseFindNodeMessage();
+			PriorityQueue<NodeDist> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.dist));
+
+			for (int i = 0; i < routingTable.size(); i++) {
+				for (int nodeId : routingTable.get(i).getNodes()) {
+					
+				}
+			}
+		}
+
+
 		int xorDistance = Integer.toString(this.id).hashCode() ^ Integer.toString(message.id).hashCode();
 		if (xorDistance < message.minDistance) {
 			message.minDistance = xorDistance;
