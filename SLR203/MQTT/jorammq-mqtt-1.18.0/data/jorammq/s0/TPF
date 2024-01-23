@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-<comment>Transaction properties</comment>
-<entry key="Transaction.UseSleep">true</entry>
-<entry key="Transaction.BufferSize">4194304</entry>
-<entry key="Transaction.UseNioFileChannel">true</entry>
-<entry key="Transaction.BufferTimeout">30000000</entry>
-</properties>

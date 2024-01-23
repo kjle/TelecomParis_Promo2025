@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:ns="http://www.scalagent.com/schema/MqttBridgeSchema">
-  <bridge name="bridge-jorammq" uri="tcp://192.168.1.212:1883"
-    clientId="bridge-jorammq" userName="" password="" clean="true" prefix="jorammq/S0">
-    <outbound topic="" qos="" />
-  </bridge>
-</config>
