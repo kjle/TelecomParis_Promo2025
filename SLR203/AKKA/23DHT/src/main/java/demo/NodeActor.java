@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import demo.Message.StoreMessage;
-import demo.Message.RetrieveMessage;
+import demo.Message.FindValueMessage;
 import demo.Message.AddNodeMessage;
 import demo.Message.FindNodeMessage;
 import demo.Message.ResponseFindNodeMessage;
-import demo.Message.ResultMessage;
+import demo.Message.PrintRoutingTableMessage;
 
 public class NodeActor extends AbstractActor {
     private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
@@ -99,25 +99,35 @@ public class NodeActor extends AbstractActor {
     public Receive createReceive() {
         return receiveBuilder()
             .match(StoreMessage.class, this::handleStoreMessage)
-            .match(RetrieveMessage.class, this::handleRetrieveMessage)
+            .match(FindValueMessage.class, this::handleFindValueMessage)
 			.match(AddNodeMessage.class, this::handleAddNodeMessage)
 			.match(FindNodeMessage.class, this::handleFindNodeMessage)
+			.match(PrintRoutingTableMessage.class, this::handlePrintRoutingTableMessage)
             .matchAny(o -> log.info("Received unknown message"))
             .build();
     }
 
-    private void handleStoreMessage(StoreMessage message) {
-		int xorDistance = Integer.toString(this.id).hashCode() ^ message.getKey().hashCode();
+	private void handlePrintRoutingTableMessage(PrintRoutingTableMessage message) {
+		log.info("[RoutingTable]: Node {} : {}", this.id, printRoutingTable());
+	}
+
+	private int findClosestNode(int key) {
+		int xorDistance = Integer.toString(this.id).hashCode() ^ Integer.toString(key).hashCode();
 		int minId = this.id;
 		for (int i = 0; i < routingTable.size(); i++) {
 			for (int nodeId : routingTable.get(i).getNodes()) {
-				int xorDistance2 = Integer.toString(nodeId).hashCode() ^ message.getKey().hashCode();
+				int xorDistance2 = Integer.toString(nodeId).hashCode() ^ Integer.toString(key).hashCode();
 				if (xorDistance2 < xorDistance) {
 					xorDistance = xorDistance2;
 					minId = nodeId;
 				}
 			}
 		}
+		return minId;
+	}
+	
+    private void handleStoreMessage(StoreMessage message) {
+		int minId = findClosestNode(Integer.parseInt(message.getKey()));
 
 		if (minId == this.id) {
 			dataStore.put(message.getKey(), message.getValue());
@@ -130,11 +140,17 @@ public class NodeActor extends AbstractActor {
 
     }
 
-    private void handleRetrieveMessage(RetrieveMessage message) {
-        String value = dataStore.getOrDefault(message.key, "Not Found");
-        getSender().tell(new ResultMessage(message.key, value), getSelf());
-        log.info("Retrieved data for key: {}", message.key);
-    }
+    private void handleFindValueMessage(FindValueMessage message) {
+		int minId = findClosestNode(Integer.parseInt(message.key));
+		if (minId == this.id) {
+			String value = dataStore.get(message.key);
+			log.info("[Find_Value]: The value of key {} is {}", message.key, value);
+		} else {
+			// Forward the message to the determined target node
+			ActorSelection targetNode = getContext().getSystem().actorSelection("akka://system/user/node" + minId);
+			targetNode.tell(message, getSelf());
+		}
+	}
 
 	private void handleAddNodeMessage(AddNodeMessage message) {
 		// Add the node to the routing table
@@ -150,43 +166,14 @@ public class NodeActor extends AbstractActor {
 	}
 
 	private void handleFindNodeMessage(FindNodeMessage message) {
-		if (!getSender().equals(ActorRef.noSender())) {
-			ResponseFindNodeMessage response = new ResponseFindNodeMessage();
-			PriorityQueue<NodeDist> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.dist));
-
-			for (int i = 0; i < routingTable.size(); i++) {
-				for (int nodeId : routingTable.get(i).getNodes()) {
-					
-				}
-			}
+		int minId = findClosestNode(message.id);
+		if (minId == this.id) {
+			log.info("[Find_Node]: the closest Node to node {} is {}", message.id, this.id);
+		} else {
+			// Forward the message to the determined target node
+			ActorSelection targetNode = getContext().getSystem().actorSelection("akka://system/user/node" + minId);
+			targetNode.tell(message, getSelf());
 		}
-
-
-		int xorDistance = Integer.toString(this.id).hashCode() ^ Integer.toString(message.id).hashCode();
-		if (xorDistance < message.minDistance) {
-			message.minDistance = xorDistance;
-			message.closestNodes.addFirst(this.id);
-		}
-		// while (message.closestNodes.size() > message.numberOfNodes) {
-		// 	message.closestNodes.removeLast();
-		// }
-		for (int i = 0; i < routingTable.size(); i++) {
-			for (int nodeId : routingTable.get(i).getNodes()) {
-				log.info(this.id + "-->" + nodeId + " ");
-				ActorSelection targetNode = getContext().getSystem().actorSelection("akka://system/user/node" + nodeId);
-				targetNode.tell(message, getSelf());
-			}
-		}
-		
-
-		
-		// if (minId == this.id) {
-		// 	log.info("[Find_Node]: closest node id: {} to the required node id {}", this.id, message.id);
-		// } else {
-		// 	// Forward the message to the determined target node
-		// 	ActorSelection targetNode = getContext().getSystem().actorSelection("akka://system/user/node" + minId);
-		// 	targetNode.tell(message, getSelf());
-		// }
    
     }
 
@@ -195,7 +182,7 @@ public class NodeActor extends AbstractActor {
 			log.error("Cannot add node to its own routing table");
 			return -1;
 		}
-		int xorDistance = xorDistance(this.id, id);
+		int xorDistance = this.id ^ id; 
 		String xorDistanceString = Integer.toBinaryString(xorDistance);
 		xorDistanceString = String.format("%" + nodeIdLength + "s", xorDistanceString).replace(' ', '0');
 		int commonZeroPrefixLength = 0;
@@ -208,10 +195,6 @@ public class NodeActor extends AbstractActor {
 		}
 		// System.out.println("commonZeroPrefixLength: " + commonZeroPrefixLength);
 		return commonZeroPrefixLength;
-	}
-
-	private int xorDistance(int id1, int id2) {
-		return id1 ^ id2;
 	}
 
 }

@@ -7,6 +7,8 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import demo.Message.AddNodeMessage;
 import demo.Message.FindNodeMessage;
+import demo.Message.FindValueMessage;
+import demo.Message.PrintRoutingTableMessage;
 import demo.Message.StoreMessage;
 
 
@@ -29,8 +31,9 @@ public class DHT {
 
         // Create a few nodes
         for (int i = 0; i <64; i++) {
-            ActorRef node = system.actorOf(NodeActor.createActor(i, 4, 6), "node" + i);
+            ActorRef node = system.actorOf(NodeActor.createActor(i, 2, 6), "node" + i);
             nodes.add(node);
+
 			// AddNodeMessage addNodeMessage = new AddNodeMessage(node, i);
 			// for (ActorRef n : nodes) {
 			// 	n.tell(addNodeMessage, ActorRef.noSender());
@@ -46,19 +49,24 @@ public class DHT {
 				if (n.equals(nodes.get(i))) continue;
 				n.tell(addNodeMessage, ActorRef.noSender());
 			}
-			// log.info(nodes.get(i).toString());
+			// PrintRoutingTableMessage printRoutingTableMessage = new PrintRoutingTableMessage();
+			// nodes.get(i).tell(printRoutingTableMessage, ActorRef.noSender());
+
 		}
 
 		// tell node 0 to store key 30
 		KeyValue kv = new KeyValue("30", "hello");
 		nodes.get(10).tell(new StoreMessage(kv), ActorRef.noSender());
+		KeyValue kv2 = new KeyValue("19", "bonjour");
+		nodes.get(61).tell(new StoreMessage(kv2), ActorRef.noSender());
 
 		// tell node 0 to find node which key = 48
 		FindNodeMessage findNodeMessage = new FindNodeMessage(Integer.parseInt("48"), 3);
 		nodes.get(10).tell(findNodeMessage, ActorRef.noSender());
-		for (int idx : findNodeMessage.closestNodes) {
-			log.info("[Find_Node]: closest node id: {}", idx);
-		}
+		
+		// tell node 0 to find value which key = 30
+		FindValueMessage findValueMessage = new FindValueMessage("19");
+		nodes.get(10).tell(findValueMessage, ActorRef.noSender());
 
 
 		// We wait 5 seconds before ending system (by default)
