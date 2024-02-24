@@ -9,7 +9,7 @@
 #
 # Nom du programme (doit correspondre au fichier qui contient main())
 #
-PROG = RemoteControl
+PROG = MainFrame
 
 #
 # Fichiers sources .java
