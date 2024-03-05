@@ -1,0 +1,24 @@
+#dd1 {
+    border: 1px solid;
+    padding: 9px;
+}
+#dd2 {
+    img {
+        float: left;
+        margin-right: 14px;
+    }
+}
+#dd3 {
+    background-color: slategrey;
+    margin: 10px;
+}
+.front-div {
+    position: fixed;
+    top: 119px;
+    left: 119px;
+    width: 415px;
+    height: 415px;
+}
+.front-div:active {
+    display: none;
+}
