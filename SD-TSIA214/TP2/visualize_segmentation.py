@@ -18,4 +18,4 @@ def visualize_segmentation(mail_filename, visualized_mail_filename, path):
 		mail.close() 
 	return
 
-visualize_segmentation("dat/mail1.dat", 'path_test.txt', path)
+# visualize_segmentation("dat/mail1.dat", 'path_test.txt', path)

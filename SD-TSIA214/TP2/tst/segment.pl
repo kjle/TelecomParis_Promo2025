@@ -1,9 +1,9 @@
 # -*- Perl -*- 
 #
-# Segmente virtuellement un mail ï¿½ partir du meilleur chemin de Viterbi
+# Segmente virtuellement un mail à partir du meilleur chemin de Viterbi
 # Usage: perl segment.pl mailfn segmfn
 #   avec mailfn le nom du fichier de mail
-#        segmfn le nom du fichier produit par viterbi (une ligne par ï¿½tat)
+#        segmfn le nom du fichier produit par viterbi (une ligne par état)
 
 $mailfn = $ARGV[0];
 $pathfn = $ARGV[1];
