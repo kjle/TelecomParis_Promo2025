@@ -1,2 +1,3 @@
-# SD-TSIA-214
-NLP lab
+# SD-TSIA214
+
+/!\ Only could run on a Unix Machine !
