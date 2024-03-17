@@ -7,16 +7,21 @@ Diplôme d'ingénieur
 ## 2023-2024
 ```
 |-- TSIA
-    |-- TSIA201
-    |-- TSIA202a
-    |-- SD-TSIA204
-    |-- SD-TSIA211
+    |-- TSIA201 Représentations des signaux
+    |-- TSIA202a Séries chronologiques
+    |-- SD-TSIA204 Statistique : modèles linéaires
+    |-- SD-TSIA211 Optimization for Machine Learning
+    |-- SD-TSIA210 Machine Learning
+    |-- SD-TSIA214 Machine Learning for Text Mining
 |-- SLR
-    |-- SLR201
-    |-- SLR206
-    |-- SLR203
+    |-- SLR201 Programmation Avancée et Gestion de Projet (en Java)
+    |-- SLR206 Fondements des algorithmes répartis
+    |-- SLR203 Introduction aux technologies de développement de logiciel réparti
+    |-- SLR202 Modélisation et Conception de Système Logiciel
+    |-- SLR210 Blockchain: bases algorithmiques
 |-- créneau D
-    |-- MDI210
-    |-- MDI220
-    |-- INF224
+    |-- MDI210 Optimisation et analyse numérique
+    |-- MDI220 Statistiques
+    |-- INF224 Paradigmes de programmation, théorie et pratique
+    |-- INF203 Développement WEB
 ```
