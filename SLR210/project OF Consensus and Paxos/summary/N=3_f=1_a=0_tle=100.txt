@@ -1,0 +1,12 @@
+Time for first process to decide: 4ms
+**************[PARAM INFO]************
+N = 3
+LEADER_ELECTION_TIMEOUT = 100
+CRASH_NUMBER = 1
+CRASH_PROBABILITY = 0
+BOUND_OF_PROPOSED_NUMBER = 2
+ABORT_TIMEOUT = 100
+**************[NODE INFO]*************
+NODE	[1]	VALUE	[0]	TIME[4ms]
+NODE	[2]	VALUE	[0]
+NODE	[3]	VALUE	[0]	TIME[6ms]

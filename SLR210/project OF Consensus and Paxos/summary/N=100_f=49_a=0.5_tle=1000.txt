@@ -1,0 +1,61 @@
+**************[CONCURRENCY ERREOR]*************
+Time for first process to decide: 120ms
+**************[PARAM INFO]************
+N = 100
+LEADER_ELECTION_TIMEOUT = 1000
+CRASH_NUMBER = 49
+CRASH_PROBABILITY = 0.5
+BOUND_OF_PROPOSED_NUMBER = 2
+ABORT_TIMEOUT = 100
+**************[NODE INFO]*************
+NODE	[2]	VALUE	[0]	<------------------ uncheck
+NODE	[3]	VALUE	[0]	<------------------ uncheck
+NODE	[8]	VALUE	[0]	<------------------ uncheck
+NODE	[12]	VALUE	[0]	<------------------ uncheck
+NODE	[15]	VALUE	[0]	<------------------ uncheck
+NODE	[16]	VALUE	[0]	<------------------ uncheck
+NODE	[17]	VALUE	[0]	<------------------ uncheck
+NODE	[19]	VALUE	[0]	<------------------ uncheck
+NODE	[22]	VALUE	[0]	<------------------ uncheck
+NODE	[24]	VALUE	[0]	<------------------ uncheck
+NODE	[25]	VALUE	[0]	<------------------ uncheck
+NODE	[26]	VALUE	[0]	<------------------ uncheck
+NODE	[27]	VALUE	[0]	<------------------ uncheck
+NODE	[28]	VALUE	[0]	<------------------ uncheck
+NODE	[29]	VALUE	[0]	<------------------ uncheck
+NODE	[30]	VALUE	[0]	<------------------ uncheck
+NODE	[36]	VALUE	[0]	<------------------ uncheck
+NODE	[37]	VALUE	[0]	<------------------ uncheck
+NODE	[38]	VALUE	[0]	<------------------ uncheck
+NODE	[39]	VALUE	[0]	<------------------ uncheck
+NODE	[40]	VALUE	[0]	<------------------ uncheck
+NODE	[41]	VALUE	[0]	<------------------ uncheck
+NODE	[42]	VALUE	[0]	<------------------ uncheck
+NODE	[44]	VALUE	[0]	<------------------ uncheck
+NODE	[45]	VALUE	[0]	<------------------ uncheck
+NODE	[46]	VALUE	[0]	<------------------ uncheck
+NODE	[47]	VALUE	[0]	<------------------ uncheck
+NODE	[50]	VALUE	[0]	<------------------ uncheck
+NODE	[51]	VALUE	[0]	<------------------ uncheck
+NODE	[55]	VALUE	[0]	<------------------ uncheck
+NODE	[56]	VALUE	[0]	<------------------ uncheck
+NODE	[58]	VALUE	[0]	<------------------ uncheck
+NODE	[61]	VALUE	[0]	<------------------ uncheck
+NODE	[64]	VALUE	[0]	<------------------ uncheck
+NODE	[66]	VALUE	[0]	<------------------ uncheck
+NODE	[69]	VALUE	[0]	<------------------ uncheck
+NODE	[71]	VALUE	[0]	<------------------ uncheck
+NODE	[73]	VALUE	[0]	<------------------ uncheck
+NODE	[74]	VALUE	[0]	<------------------ uncheck
+NODE	[77]	VALUE	[0]	<------------------ uncheck
+NODE	[78]	VALUE	[0]	<------------------ uncheck
+NODE	[79]	VALUE	[0]	<------------------ uncheck
+NODE	[80]	VALUE	[0]	<------------------ uncheck
+NODE	[83]	VALUE	[0]	<------------------ uncheck
+NODE	[85]	VALUE	[0]	<------------------ uncheck
+NODE	[86]	VALUE	[0]	<------------------ uncheck
+NODE	[89]	VALUE	[0]	<------------------ uncheck
+NODE	[91]	VALUE	[0]	<------------------ uncheck
+NODE	[92]	VALUE	[0]	<------------------ uncheck
+NODE	[97]	VALUE	[0]	<------------------ uncheck
+NODE	[99]	VALUE	[0]	<------------------ uncheck
