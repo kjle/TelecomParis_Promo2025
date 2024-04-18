@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style">
+  <notation:Diagram xmi:id="_9V9jsPsyEe6hGtEjW6kaAg" type="PapyrusUMLStateMachineDiagram" name="State Machine Diagram" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" xmi:id="_9V9jsfsyEe6hGtEjW6kaAg" type="StateMachine_Shape">
+      <children xsi:type="notation:DecorationNode" xmi:id="_9V9jsvsyEe6hGtEjW6kaAg" type="StateMachine_NameLabel">
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9V9js_syEe6hGtEjW6kaAg" width="700" height="20"/>
+      </children>
+      <children xsi:type="notation:BasicCompartment" xmi:id="_9V9jtPsyEe6hGtEjW6kaAg" type="StateMachine_RegionCompartment">
+        <children xsi:type="notation:Shape" xmi:id="_9V9jtfsyEe6hGtEjW6kaAg" type="Region_Shape">
+          <eAnnotations xmi:id="_9V9jtvsyEe6hGtEjW6kaAg" source="RegionAnnotationKey">
+            <details xmi:id="_9V9jt_syEe6hGtEjW6kaAg" key="RegionZoneKey" value=""/>
+          </eAnnotations>
+          <children xsi:type="notation:BasicCompartment" xmi:id="_9V9juPsyEe6hGtEjW6kaAg" type="Region_SubvertexCompartment">
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9V9jufsyEe6hGtEjW6kaAg"/>
+          </children>
+          <element href="LCCS.uml#_9V1n4PsyEe6hGtEjW6kaAg"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9V9juvsyEe6hGtEjW6kaAg" width="700" height="280"/>
+        </children>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9V9ju_syEe6hGtEjW6kaAg" y="20" width="700" height="280"/>
+      </children>
+      <element href="LCCS.uml#_9TxLUPsyEe6hGtEjW6kaAg"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9V9jvPsyEe6hGtEjW6kaAg" x="30" y="30" width="700" height="300"/>
+    </children>
+    <styles xsi:type="notation:StringValueStyle" xmi:id="_9V9jvfsyEe6hGtEjW6kaAg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xsi:type="notation:DiagramStyle" xmi:id="_9V9jvvsyEe6hGtEjW6kaAg"/>
+    <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_9V9jv_syEe6hGtEjW6kaAg" diagramKindId="org.eclipse.papyrus.uml.diagram.stateMachine">
+      <owner href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+    </styles>
+    <element href="LCCS.uml#_9TxLUPsyEe6hGtEjW6kaAg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_9WK_EPsyEe6hGtEjW6kaAg" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+    <styles xsi:type="notation:StringValueStyle" xmi:id="_9WK_EfsyEe6hGtEjW6kaAg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xsi:type="notation:DiagramStyle" xmi:id="_9WK_EvsyEe6hGtEjW6kaAg"/>
+    <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_9WK_E_syEe6hGtEjW6kaAg" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
+      <owner href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+    </styles>
+    <element href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_9WaPoPsyEe6hGtEjW6kaAg" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+    <children xsi:type="notation:Shape" xmi:id="_9WaPofsyEe6hGtEjW6kaAg" type="Interaction_Shape">
+      <children xsi:type="notation:DecorationNode" xmi:id="_9WaPovsyEe6hGtEjW6kaAg" type="Interaction_NameLabel"/>
+      <children xsi:type="notation:BasicCompartment" xmi:id="_9WaPo_syEe6hGtEjW6kaAg" type="Interaction_SubfragmentCompartment">
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9WaPpPsyEe6hGtEjW6kaAg"/>
+      </children>
+      <element href="LCCS.uml#_9WST0PsyEe6hGtEjW6kaAg"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_9WaPpfsyEe6hGtEjW6kaAg"/>
+    </children>
+    <styles xsi:type="notation:StringValueStyle" xmi:id="_9WaPpvsyEe6hGtEjW6kaAg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xsi:type="notation:DiagramStyle" xmi:id="_9WaPp_syEe6hGtEjW6kaAg"/>
+    <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_9WaPqPsyEe6hGtEjW6kaAg" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+      <owner href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+    </styles>
+    <element href="LCCS.uml#_9WST0PsyEe6hGtEjW6kaAg"/>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_9WfIIPsyEe6hGtEjW6kaAg" type="UseCase" name="Use Case Diagram" measurementUnit="Pixel">
+    <styles xsi:type="notation:StringValueStyle" xmi:id="_9WfIIfsyEe6hGtEjW6kaAg" name="diagram_compatibility_version" stringValue="1.4.0"/>
+    <styles xsi:type="notation:DiagramStyle" xmi:id="_9WfIIvsyEe6hGtEjW6kaAg"/>
+    <styles xsi:type="style:PapyrusDiagramStyle" xmi:id="_9WfII_syEe6hGtEjW6kaAg" diagramKindId="org.eclipse.papyrus.uml.diagram.useCase">
+      <owner href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+    </styles>
+    <element href="LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+  </notation:Diagram>
+</xmi:XMI>

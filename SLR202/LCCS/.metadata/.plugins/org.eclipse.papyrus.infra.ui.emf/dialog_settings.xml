@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_org.eclipse.papyrus.infra.hyperlink.specificHyperLinks">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.notation#_hnficPs7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.notation#_fc0z8Ps2Ee6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Classifier:classifier">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_X_rBsPs9Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_Sip_YPs9Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_opdJUPs7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_6Ox2sPs6Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_pkgRwPs6Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_oHv_4Ps6Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_DtwPYPs3Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_FcZigPs3Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_hneUUPs7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_nbIuUPs2Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_jX3GIPs2Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_fcxwoPs2Ee6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Package:mergedPackage">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Type:type">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_2l_Y8PwoEe6qB8FeKuT_Ng"/>
+				<item value="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+				<item value="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_X_rBsPs9Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_TwDjMPvYEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_Z42NwPvVEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_NiK2QPwoEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_uml:Type:type">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Type:type">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Constraint:bodyCondition">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Behavior:method">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:ConnectableElement:represents">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_9Q3SMvs7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_5fB_Uvs7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_72mTo_s7Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_BHtIQvs5Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_bueOs_s9Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_pThgg_wsEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_BHtvUPs5Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_2Dllw_xEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_Wr4P8PwsEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:PartDecomposition:decomposedAs">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_platform:/resource/LCCS/LCCS.uml:uml:ConnectableElement:represents">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:UseCase:useCase">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_Bdgg0PxEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_MuP1QPxEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_Qzl6APxEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_gcBncPxEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_o-HkUPxEEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_y3ExAPxFEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_KOoQ0PxHEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:NamedElement:signature">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_OHQ1cPwqEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Event:event">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_y7LUMP0REe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_9VIxoP0REe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_krpTYP0REe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_uml:Event:event">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_0E_iEPtHEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Port:port">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Event:event">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Port:port">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_platform:/resource/LCCS/LCCS.uml:uml:Event:event">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_0E_iEPtHEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Constraint:stateInvariant">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:StateMachine:submachine">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Operation:operation">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_49TjsPwqEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_ccYM4P0GEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_platform:/resource/LCCS/LCCS.uml:uml:StateMachine:submachine">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_9SWPAPsyEe6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_jX3GIPs2Ee6hGtEjW6kaAg"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_9TxLUPsyEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:InstanceSpecification:instance">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:UseCase:useCase">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Constraint:guard">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_Z9PpQP0MEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:Element:constrainedElement">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history_container_uml:Element:constrainedElement">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_9V1n4PsyEe6hGtEjW6kaAg"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Namespace:context">
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__platform:/resource/LCCS/LCCS.uml:uml:Operation:operation">
+		<section name="History">
+			<list key="PreviousSelection">
+				<item value="platform:/resource/LCCS/LCCS.uml#_PoNDwPwqEe6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_iwdCwPz1Ee6qB8FeKuT_Ng"/>
+				<item value="platform:/resource/LCCS/LCCS.uml#_OHQ1cPwqEe6qB8FeKuT_Ng"/>
+			</list>
+		</section>
+	</section>
+	<section name="org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider_history__uml:BehavioralFeature:specification">
+	</section>
+</section>
