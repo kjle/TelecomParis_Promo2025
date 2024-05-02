@@ -115,9 +115,9 @@ public class MyFTPClient {
             // os.newLine();
             // os.flush();
 
-            // os.write("QUIT");
-            // os.newLine();
-            // os.flush();
+            os.write("QUIT");
+            os.newLine();
+            os.flush();
 
             // Read data sent from the server.
             // By reading the input stream of the Client Socket.
