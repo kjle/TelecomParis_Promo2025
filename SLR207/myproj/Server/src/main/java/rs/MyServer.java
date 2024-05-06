@@ -29,16 +29,17 @@ public class MyServer {
     private static int ftpPort = 8423;
     private static int socketPort = 9999;
 
+    private static String homeDirPath = "/dev/shm/";
+
     public static void main(String[] args) {
         MyServer myServer = new MyServer();
-        myServer.startFTPServer(ftpPort, usr, pwd);
+        myServer.startFTPServer(ftpPort, usr, pwd, homeDirPath);
         myServer.startSocketServer(socketPort);
     }
 
-    public void startFTPServer(int port, String username, String password) {
+    public void startFTPServer(int port, String username, String password, String homeDirPath) {
         PropertyConfigurator.configure(MyServer.class.getResource("/log4J.properties"));
         FtpServerFactory serverFactory = new FtpServerFactory();
-        // int port = 8423; // Replace 3456 with the desired port number
 
         ListenerFactory listenerFactory = new ListenerFactory();
         listenerFactory.setPort(port);
@@ -66,13 +67,9 @@ public class MyServer {
         UserManager userManager = userManagerFactory.createUserManager();
         // Create a user
         BaseUser user = new BaseUser();
-        // user.setName("jkang-23"); // Replace "username" with the desired username
-        // user.setPassword("8888"); // Replace "password" with the desired password
         user.setName(username);
         user.setPassword(password);
-        // String username = user.getName();
-        // String homeDirectory = System.getProperty("java.io.tmpdir")  + "/" + username; 
-        String homeDirectory = "/dev/shm/" + user.getName(); // Replace "/path/to/home/directory" with the desired home directory path
+        String homeDirectory = homeDirPath + user.getName();
         File directory = new File(homeDirectory); // Convert the string to a File object
         if (!directory.exists()) { // Check if the directory exists
             if (directory.mkdirs()) {

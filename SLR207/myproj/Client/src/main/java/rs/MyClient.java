@@ -6,6 +6,8 @@ import org.apache.commons.net.ftp.FTPFile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,66 +17,92 @@ import java.net.UnknownHostException;
 
 public class MyClient {
 
-    private static String [] servers = {"tp-3a107-10", "tp-3a107-11", "tp-3a107-12"};
-    // private static String [] servers = {"localhost"};
+    // private static String [] servers = {"tp-3a107-10", "tp-3a107-11", "tp-3a107-12"};
+    private static String [] servers = {"localhost"};
     private static String usr = "jkang-23";
     private static String pwd = "8888";
     private static int ftpPort = 8423;
     private static int socketPort = 9999;
-    private static String fileDirPath = "./Users/gaalokkang/Desktop/TelecomParis_Promo2025/SLR207/myproj/dataset/";
+    // local directory path
+    private static String localDirPath = "./dataset";
 
     public static void main(String[] args) {
         MyClient myClient = new MyClient();
         FTPClient ftpClient = new FTPClient();
-        for (String server : servers) {
-            myClient.startFTPClient(ftpClient, server, ftpPort, usr, pwd);
-            myClient.startSocketClient(server, socketPort);
+
+        File localDir = new File(localDirPath);
+        File[] files = localDir.listFiles();
+        int fileAssign = 0;
+        int serverNum = servers.length;
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    fileAssign = (fileAssign + 1) % serverNum;
+                    String server = servers[fileAssign];
+                    try {
+                        myClient.startFTPClient(ftpClient, server, ftpPort, usr, pwd);
+
+                        // check if the file exists on the ftp server
+                        FTPFile[] remoteFiles = ftpClient.listFiles();
+                        boolean fileExists = false;
+                        for (FTPFile remoteFile : remoteFiles) {
+                            if (remoteFile.getName().equals(file.getName())) {
+                                fileExists = true;
+                                break;
+                            }
+                        }
+
+                        // if not exists, upload the file to the ftp server
+                        // else only read the file content from the ftp server
+                        if (!fileExists) {
+                            FileInputStream inputStream = new FileInputStream(file);
+                            ftpClient.storeFile(file.getName(), inputStream);
+                            inputStream.close();
+                            System.out.println("[info] " + file.getName() + " uploaded successfully.");
+                        } else {
+                            InputStream inputStream = ftpClient.retrieveFileStream(file.getName());
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                System.out.println(line);
+                            }
+                            reader.close();
+                            ftpClient.completePendingCommand();
+                        }
+
+                        ftpClient.logout();
+                        ftpClient.disconnect();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    // System.out.println(file.getName());
+                }
+            }
         }
+        // for (String server : servers) {
+        //     try {
+        //         myClient.startFTPClient(ftpClient, server, ftpPort, usr, pwd);
+        //         // send files to the server logic
+        //         ftpClient.logout();
+        //         ftpClient.disconnect();
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        //     // myClient.startFTPClient(ftpClient, server, ftpPort, usr, pwd);
+        //     // myClient.startSocketClient(server, socketPort);
+        // }
     
     }
 
     public void startFTPClient(FTPClient ftpClient, String server, int port, String username, String password) {
         try {
+            // Connect to the server
             ftpClient.connect(server, port);
             ftpClient.login(username, password);
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-
-            // Code to display files
-            FTPFile[] files = ftpClient.listFiles();
-            boolean fileExists = false;
-            for (FTPFile file : files) {
-                if (file.getName().equals("bonjour.txt")) {
-                    fileExists = true;
-                    break;
-                }
-            }
-
-            if (!fileExists) {
-                String content = "bonjour " + server;
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(content.getBytes());
-                ftpClient.storeFile("bonjour.txt", inputStream);
-                int errorCode = ftpClient.getReplyCode();
-                if (errorCode != 226) {
-                    System.out.println("File upload failed. FTP Error code: " + errorCode);
-                } else {
-                    System.out.println("File uploaded successfully.");
-                }
-            } else {
-                // Code to retrieve and display file content
-                InputStream inputStream = ftpClient.retrieveFileStream("bonjour.txt");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-                reader.close();
-                ftpClient.completePendingCommand();
-            }
-
-            ftpClient.logout();
-            ftpClient.disconnect();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
