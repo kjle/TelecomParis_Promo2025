@@ -23,3 +23,4 @@ for c in ${computers[@]}; do
   echo ${command2[*]}
   "${command2[@]}" &
 done
+

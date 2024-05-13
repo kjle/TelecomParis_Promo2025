@@ -8,7 +8,9 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
@@ -31,10 +33,26 @@ public class MyServer {
 
     private static String homeDirPath = "/dev/shm/";
 
+    public static Map<String, Integer> map = new HashMap<>();
+
     public static void main(String[] args) {
         MyServer myServer = new MyServer();
-        myServer.startFTPServer(ftpPort, usr, pwd, homeDirPath);
-        myServer.startSocketServer(socketPort);
+        Thread serverFtpThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                myServer.startFTPServer(ftpPort, usr, pwd, homeDirPath);
+            }
+        });
+        Thread serverSocketThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                myServer.startSocketServer(socketPort);
+            }
+        });
+        // myServer.startFTPServer(ftpPort, usr, pwd, homeDirPath);
+        // myServer.startSocketServer(socketPort);
+        serverFtpThread.start();
+        serverSocketThread.start();
     }
 
     public void startFTPServer(int port, String username, String password, String homeDirPath) {
@@ -52,12 +70,12 @@ public class MyServer {
         if (!userFile.exists()) {
             try {
                 if (userFile.createNewFile()) {
-                    System.out.println("File created: " + userFile.getName());
+                    System.out.println("[FTP] File created: " + userFile.getName());
                 } else {
-                    System.out.println("File already exists.");
+                    System.out.println("[FTP] File already exists.");
                 }
             } catch (IOException e) {
-                System.out.println("An error occurred.");
+                System.out.println("[FTP] An error occurred.");
                 e.printStackTrace();
             }
         }
@@ -73,9 +91,9 @@ public class MyServer {
         File directory = new File(homeDirectory); // Convert the string to a File object
         if (!directory.exists()) { // Check if the directory exists
             if (directory.mkdirs()) {
-                System.out.println("Directory created: " + directory.getAbsolutePath());
+                System.out.println("[FTP] Directory created: " + directory.getAbsolutePath());
             } else {
-                System.out.println("Failed to create directory.");
+                System.out.println("[FTP] Failed to create directory.");
             }
         }
         user.setHomeDirectory(homeDirectory);
@@ -100,7 +118,7 @@ public class MyServer {
         // start the server
         try {
             server.start();
-            System.out.println("FTP Server started on port " + port);
+            System.out.println("[FTP] FTP Server started on port " + port);
             
         } catch (FtpException e) {
             // TODO Auto-generated catch block
@@ -122,12 +140,12 @@ public class MyServer {
             System.exit(1);
         }
         try {
-            System.out.println("Server is waiting to accept user...");
+            System.out.println("[socket] Server is waiting to accept user...");
  
             // Accept client connection request
             // Get new Socket at Server.    
             socketOfServer = listener.accept();
-            System.out.println("Accept a client!");
+            System.out.println("[socket] Accept a client!");
  
             // Open input and output streams
             is = new BufferedReader(new InputStreamReader(socketOfServer.getInputStream()));
@@ -145,7 +163,21 @@ public class MyServer {
                 os.newLine();
                 // Flush data.
                 os.flush();  
-                System.out.println("Server receive: " + line);
+                System.out.println("[socket] Server receive: " + line);
+
+                if (line.equals("MAP")) {
+                    os.write(">> MAP OK");
+                    os.newLine();
+                    os.flush();
+                    CallbakMAP();
+                }
+
+                if (line.equals("START")) {
+                    os.write(">> START OK");
+                    os.newLine();
+                    os.flush();
+                    CallbakSTART();
+                }
  
  
                 // If users send QUIT (To end conversation).
@@ -161,6 +193,34 @@ public class MyServer {
             System.out.println(e);
             e.printStackTrace();
         }
-        System.out.println("Sever stopped!");
+        System.out.println("[socket] Sever stopped!");
+    }
+
+    public static void CallbakMAP() {
+        System.out.println("[MAP] Callback MAP");
+        String fileDir = homeDirPath + usr;
+        File directory = new File(fileDir);
+        if (!directory.exists()) {
+            System.out.println("[MAP] Directory does not exist.");
+        } else {
+            File[] files = directory.listFiles();
+            for (File file : files) {
+                String content = "";
+                if (file.isFile()) {
+                    content += file.getName() + "\n";
+                }
+                String[] words = content.split(" ");
+                for (String word : words) {
+                    int hash = word.hashCode();
+
+
+                }
+            }
+        }
+
+    }
+
+    public static void CallbakSTART() {
+        System.out.println("[START] Callback START");
     }
 }
