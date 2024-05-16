@@ -1,185 +1,148 @@
 package rs;
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.FileNotFoundException;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Logger;
+
 
 public class MyClient {
 
-    private static String [] servers = {"tp-3a107-14", "tp-3a107-13", "tp-3a107-12"};
-    // private static String [] servers = {"localhost"};
-    private static String usr = "jkang-23";
-    private static String pwd = "8888";
-    private static int ftpPort = 8423;
-    private static int socketPort = 9999;
+    public static boolean localFlag = false;
+
+    public static String [] servers;
+    public static String usr = "jkang-23";
+    public static String pwd = "8888";
+    public static int ftpPort = 8423;
+    public static int socketPort = 9999;
     // local directory path
-    private static String localDirPath = "./dataset";
+    public static String localDirPath = "./dataset";
+    public static Logger logger = Logger.getLogger(MyClient.class.getName());
 
-    public static void main(String[] args) {
-        MyClient myClient = new MyClient();
-
-        Thread ftpThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                FTPClient ftpClient = new FTPClient();
-
-                File localDir = new File(localDirPath);
-                File[] files = localDir.listFiles();
-                int fileAssign = 0;
-                int serverNum = servers.length;
-
-                if (files != null) {
-                    for (File file : files) {
-                        if (file.isFile()) {
-                            fileAssign = (fileAssign + 1) % serverNum;
-                            String server = servers[fileAssign];
-                            try {
-                                myClient.startFTPClient(ftpClient, server, ftpPort, usr, pwd);
-
-                                // check if the file exists on the ftp server
-                                FTPFile[] remoteFiles = ftpClient.listFiles();
-                                boolean fileExists = false;
-                                for (FTPFile remoteFile : remoteFiles) {
-                                    if (remoteFile.getName().equals(file.getName())) {
-                                        fileExists = true;
-                                        break;
-                                    }
-                                }
-
-                                // if not exists, upload the file to the ftp server
-                                // else only read the file content from the ftp server
-                                if (!fileExists) {
-                                    FileInputStream inputStream = new FileInputStream(file);
-                                    ftpClient.storeFile(file.getName(), inputStream);
-                                    inputStream.close();
-                                    System.out.println("[info] " + file.getName() + " uploaded successfully.");
-                                } else {
-                                    InputStream inputStream = ftpClient.retrieveFileStream(file.getName());
-                                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                                    String line;
-                                    while ((line = reader.readLine()) != null) {
-                                        System.out.println(line);
-                                    }
-                                    reader.close();
-                                    ftpClient.completePendingCommand();
-                                }
-
-                                ftpClient.logout();
-                                ftpClient.disconnect();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            // System.out.println(file.getName());
-                        }
-                    }
-                }
-
-            }
-        });
-
-        ftpThread.start();
-
-        for (String server : servers) {
-            Thread socketThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    myClient.startSocketClient(server, socketPort);
-                    // for (String server : servers) {
-                    //     myClient.startSocketClient(server, socketPort);
-                    // }
-                }
-            });
-            socketThread.start();
-        }
-
-
-    }
-
-    public void startFTPClient(FTPClient ftpClient, String server, int port, String username, String password) {
+    public static String[] readMachine(String filePath) {
+        ArrayList<String> machines = new ArrayList<>();
         try {
-            // Connect to the server
-            ftpClient.connect(server, port);
-            ftpClient.login(username, password);
-            ftpClient.enterLocalPassiveMode();
-            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-        } catch (IOException e) {
+            File myObj = new File(filePath);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                machines.add(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return machines.toArray(new String[0]);
     }
 
-    public void startSocketClient(String serverHost, int port) {
-        // Server Host
-        // final String serverHost = "tp-1a226-01.enst.fr";
-        // final String serverHost = "localhost";
+    public static void main(String[] args) {
 
-        Socket socketOfClient = null;
-        BufferedWriter os = null;
-        BufferedReader is = null;
-
-        try {
-            // Send a request to connect to the server is listening
-            // on machine 'localhost' port 9999.
-            socketOfClient = new Socket(serverHost, port);
-
-            // Create output stream at the client (to send data to the server)
-            os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
-
-            // Input stream at Client (Receive data from the server).
-            is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
-
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + serverHost);
-            return;
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " + serverHost);
-            return;
+        // read servers from machines.txt
+        if (!localFlag) {
+            servers = readMachine("machines.txt");
+            logger.info("[info][MyClient] Change to distributed mode !");
+        } else {
+            servers = new String[] {"localhost"};
+            logger.info("[info][MyClient] Change to local mode !");
         }
 
+        // start ftp client and assign files to servers
+        for (int i=0; i<servers.length; i++) {
+            FTPThread ftpThread = new FTPThread(i);
+            ftpThread.start();
+            logger.info("[info][MyClient] FTPThread [" + i + "] started and connected to [" + servers[i] + "]:" + ftpPort);
+        }
+
+        // start socket client
+        SocketThread[] socketThreads = new SocketThread[servers.length];
+        for (int i=0; i<servers.length; i++) {
+            socketThreads[i] = new SocketThread(i, servers[i], socketPort);
+            socketThreads[i].start();
+            logger.info("[info][MyClient] SocketThread  [" + i + "] started and connected to [" + servers[i] + "]: " + socketPort);
+        }
+
+        // make sure all socket servers are ready
         try {
-            // Write data to the output stream of the Client Socket.
-            // os.write("START");
-            // os.newLine();
-            // os.flush();  
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-            // MAP msg
-            os.write("MAP");
-            os.newLine();
-            os.flush();
-
-            // 
-
-            // os.write("QUIT");
-            // os.newLine();
-            // os.flush();
-
-            // Read data sent from the server.
-            // By reading the input stream of the Client Socket.
+        for (int i=0; i<servers.length; i++) {
+            socketThreads[i].mySocketClient.socketClientSend("MAP");
             String responseLine;
-            while ((responseLine = is.readLine()) != null) {
-                System.out.println("Client receive: " + responseLine);
-                if (responseLine.indexOf("OK") != -1) {
+            while (true) {
+                responseLine = socketThreads[i].mySocketClient.socketClientReceive();
+                if (responseLine.equals("OK")) {
+                    socketThreads[i].mySocketClient.socketClientSend("QUIT");
                     break;
                 }
             }
-
-            os.close();
-            is.close();
-            socketOfClient.close();
-        } catch (UnknownHostException e) {
-            System.err.println("Trying to connect to unknown host: " + e);
-        } catch (IOException e) {
-            System.err.println("IOException:  " + e);
+            socketThreads[i].mySocketClient.disconnectSocketClientToServer();
         }
+
     }
 
+}
+
+class FTPThread extends Thread {
+    private int index;
+    private Logger logger = Logger.getLogger(FTPThread.class.getName());
+
+    FTPThread (int index) {
+        this.index = index;
+    }
+
+    @Override
+    public void run() {
+        MyFTPClient myFTPClient = new MyFTPClient(new FTPClient(), MyClient.ftpPort, MyClient.servers[index], MyClient.usr, MyClient.pwd);
+        myFTPClient.connectFTPClientToServer();
+        
+        File localDir = new File(MyClient.localDirPath);
+        File[] files = localDir.listFiles();
+        int serverNum = MyClient.servers.length;
+        if (files != null) {
+            for (int i=0; i<files.length; i++) {
+                if (files[i].isFile()) {
+                    if (i % serverNum == index) {
+                        myFTPClient.uploadFileToServer(files[i]);
+                        logger.info("[info][FTPThread] " + files[i].getName() + " assigned to " + MyClient.servers[index]);
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        myFTPClient.disconnectFTPClientToServer();
+
+    }
+}
+
+class SocketThread extends Thread {
+    private int index;
+    private String server;
+    private int port;
+    public MySocketClient mySocketClient = null;
+    private Logger logger = Logger.getLogger(SocketThread.class.getName());
+
+    SocketThread (int index, String server, int port) {
+        this.index = index;
+        this.server = server;
+        this.port = port;
+    }
+
+    @Override
+    public void run() {
+        mySocketClient = new MySocketClient(new Socket(), server, port);
+        logger.info("[info][SocketThread] Socket client [" + index + "] connected to " + server);
+
+        // mySocketClient.socketClientSend("111");
+        // mySocketClient.socketClientSend("QUIT");
+
+    }
 }
