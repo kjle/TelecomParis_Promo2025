@@ -1,5 +1,6 @@
 package rs;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -22,30 +23,52 @@ public class MyServer {
 
         SocketThread socketThread = new SocketThread();
         socketThread.start();
+
+        // listen to the socket server, waiting for the message from the client
+        String message = socketThread.mySocketServer.socketServerReceive();
+        if (message.equals("Connect_Established")) {
+            while(true) {
+                message = socketThread.mySocketServer.socketServerReceive();
+                logger.info("[info][MyServer] receive message: " + message);
+                if (message.equals("MAP")) {
+                    MAPHandler();
+                    socketThread.mySocketServer.socketServerSend("OK");
+                } else if (message.equals("START")) {
+                    socketThread.mySocketServer.socketServerSend("OK");
+                } else if (message.equals("QUIT")) {
+                    socketThread.mySocketServer.closeSocketServer();
+                    break;
+                }
+            }
+        } else {
+            logger.warning("[warning][MyServer] Connection to server is closed!");
+        }
+       
     }
 
 
-    public static void CallbakMAP() {
+    public static void MAPHandler() {
         System.out.println("[MAP] Callback MAP");
-        // String fileDir = homeDirPath + usr;
-        // File directory = new File(fileDir);
-        // if (!directory.exists()) {
-        //     System.out.println("[MAP] Directory does not exist.");
-        // } else {
-        //     File[] files = directory.listFiles();
-        //     for (File file : files) {
-        //         String content = "";
-        //         if (file.isFile()) {
-        //             content += file.getName() + "\n";
-        //         }
-        //         String[] words = content.split(" ");
-        //         for (String word : words) {
-        //             int hash = word.hashCode();
+        
+        String fileDir = homeDirPath + usr;
+        File directory = new File(fileDir);
+        if (!directory.exists()) {
+            System.out.println("[MAP] Directory does not exist.");
+        } else {
+            File[] files = directory.listFiles();
+            for (File file : files) {
+                String content = "";
+                if (file.isFile()) {
+                    content += file.getName() + "\n";
+                }
+                String[] words = content.split(" ");
+                for (String word : words) {
+                    int hash = word.hashCode();
 
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
     }
 
@@ -61,29 +84,7 @@ class SocketThread extends Thread {
     @Override
     public void run() {
         mySocketServer = new MySocketServer(MyServer.socketPort);
-        String message = null;
-        message = mySocketServer.socketServerReceive();
-
-        if (message.equals("Connect_Established")) {
-            
-            while(true) {
-                message = mySocketServer.socketServerReceive();
-                logger.info("[info][SocketThread] receive message: " + message);
-                if (message.equals("MAP")) {
-                    MyServer.CallbakMAP();
-                    mySocketServer.socketServerSend("OK");
-                } else if (message.equals("START")) {
-                    MyServer.CallbakSTART();
-                    mySocketServer.socketServerSend("OK");
-                } else if (message.equals("QUIT")) {
-                    mySocketServer.closeSocketServer();
-                    break;
-                }
-            }
-        } else {
-            logger.warning("[warning][SocketThread] Connection to server is closed!");
-        }
-
+        
     }
 
 }
