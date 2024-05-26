@@ -1,4 +1,3 @@
 rs\MyServer.class
+rs\ThreadListerner.class
 rs\MySocketServer.class
-rs\SocketThread.class
-rs\MyFTPServer.class
