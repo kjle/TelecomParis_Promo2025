@@ -40,7 +40,8 @@ public class MyClient {
         PRESHUFFLE_END, // all servers have sent their WORDS to the respective server, ready to send WAITSHUFFLE
         WAITSHUFFLE_END, // all servers have received the WORDS from others, ready to send SHUFFLE
         SHUFFLE_END, // all servers have built the shuffleMap, ready to send CALCULATE
-        CALCULATE_END, // all servers have calculated their min and max and send them back, ready to send PRESHUFFLE2
+        CALCULATE_END, // all servers have calculated their min and max and send them back
+        RANGE_END, // all servers have built their rangeMap, contains <key, val>=<cntNum, servIdx>, ready to send PRESHUFFLE2
         PRESHUFFLE2_END, // PRESHUFFLE with max and min values, ready to send SHUFFLE2
         SHUFFLE2_END, // build wordsCountMap, ready to send QUIT
         END, // all processes are done, ready to print the result and quit
@@ -112,6 +113,7 @@ public class MyClient {
             }
 
             // start here: send other msgs to all servers 
+            // SPLIT: servers build hashmap of word
             for (int i = 0; i < servers.size(); i++) {
                 oss[i].write("SPLIT");
                 oss[i].newLine();
@@ -150,6 +152,54 @@ public class MyClient {
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.CALCULATE_END) {
+                    for (int i = 0 ; i < servers.size(); i ++) {
+                        responses[i] = iss[i].readLine();
+                    }
+                    int fmax = Integer.MIN_VALUE;
+                    int fmin = Integer.MAX_VALUE;
+                    for (int i = 0 ; i < servers.size(); i ++) {
+                        // System.out.println("[INFO][MyClient][main] responses[" + i + "]: " + responses[i]);
+                        String [] res = responses[i].split(";");
+                        if (res[0].equals("0")) {
+                            continue;
+                        }
+                        fmax = Math.max(fmax, Integer.parseInt(res[0]));
+                        fmin = Math.min(fmin, Integer.parseInt(res[1]));
+                    }
+                    // calculate the range
+                    // int range = (int)Math.floor((fmax - fmin + 1) / servers.size());
+                    double expval = (double)(fmax - fmin + 1) / (double)servers.size();
+                    double floorval = Math.floor(expval);
+                    double diff = expval - floorval;
+                    // System.out.println("[INFO][MyClient][main] expval: " + expval + ", floorval: " + floorval);
+                    int range = (int)((diff >= 0.5) ? (Math.ceil(expval)) : (floorval));
+                    System.out.println("[INFO][MyClient][main] fmax: " + fmax + ", fmin: " + fmin + ", range: " + range);
+                    // send the range respectively to all servers
+                    int rmin = fmin;
+                    String msg = ""; // range for each server, i.e. serverIdx,fmax,fmin;
+                    for (int i = 0; i < servers.size() - 1; i++) {
+                        fmin = fmax - range + 1;
+                        if (fmin <= rmin || fmax <= rmin) {
+                            // oss[i].write("0,0");
+                            msg += i + ",0,0;";
+                            // System.out.println("[INFO][MyClient][main] send fmax: 0, fmin: 0 to server " + i);
+                            continue;
+                        }
+                        // oss[i].write(fmax + "," + fmin);
+                        msg += i + "," + fmax + "," + fmin + ";";
+                        // System.out.println("[INFO][MyClient][main] send fmax: " + fmax + ", fmin: " + fmin + " to server " + i);
+                        fmax = fmin - 1;
+                    }
+                    // oss[servers.size() - 1].write(fmax + ";" + rmin);
+                    msg += servers.size() - 1 + "," + fmax + "," + rmin + ";";
+                    // System.out.println("[INFO][MyClient][main] send fmax: " + fmax + ", fmin: " + rmin + " to server " + (servers.size() - 1));
+                    System.out.println("[INFO][MyClient][main] send range msg: " + msg);
+                    for (int i = 0; i < servers.size(); i++) {
+                        oss[i].write(msg);
+                        oss[i].newLine();
+                        oss[i].flush();
+                    }
+                } else if (responseTypeFlag == ResonseTypeFlag.RANGE_END) {  
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("PRESHUFFLE2");
                         oss[i].newLine();
@@ -205,6 +255,8 @@ public class MyClient {
             return ResonseTypeFlag.SHUFFLE_END;
         else if (responses[0].equals("CALCULATE_OK"))
             return ResonseTypeFlag.CALCULATE_END;
+        else if (responses[0].equals("RANGE_OK"))
+            return ResonseTypeFlag.RANGE_END;
         else if (responses[0].equals("PRESHUFFLE2_OK"))
             return ResonseTypeFlag.PRESHUFFLE2_END;
         else if (responses[0].equals("SHUFFLE2_OK"))
