@@ -35,11 +35,25 @@ public class MyServer {
 
     private static String homeDirPath = "/dev/shm/";
 
-    private static HashMap<Integer, String> serversINFOMap;
     public static int index;
     public static int serversNum;
     private static ThreadListerner[] threadListerners;
+    private static ServerSocket listerner = null;
+    private static Socket socketOfServer;
+    private static Socket [] sockets;
+    private static BufferedReader is;
+    private static BufferedWriter os;
+    private static BufferedWriter[] oss = null;
 
+    private static HashMap<Integer, String> svrIdx_svrAddr_map; // server info : <serverIdx, serverAddress>
+    private static HashMap<Integer, List<String>> toSvrIdx_wList_map; // words info: each words should go to which server, <serverIdx, wordsList>
+    private static HashMap<Integer, Integer> range_svrIdx_map; // range map for all servers in Calculate, <count_range(count include), serverIdx>
+
+    private static HashMap<String, Integer> words_cnt_pre_map; // words count map respective to this server in Pershuffle, <words, count>
+    private static HashMap<Integer, HashMap<String, Integer>> words_cnt_map; //merge all threads' maps into one map, <serverIdx, <words, count>>
+    private static HashMap<String, List<Integer>> words_cList_map; // merge all maps(words_cnt_pre_map and words_cnt_map) into one map, <words, countList>
+    private static HashMap<Integer, List<String>> cnt_wList_map; // merge all maps into one map to build count wordsList map, <count, wordsList>
+    private static HashMap<Integer, List<String>> cnt_wList_final_map; // final count wordsList map in Preshuffle2 and Shuffle2, <count, wordsList>
 
     public static void main(String[] args) {
 
@@ -49,25 +63,20 @@ public class MyServer {
         myServer.openFTPServer(ftpPort, usr, pwd, homeDirPath);
 
         // start socket server
-        ServerSocket listerner = null;
         String line;
-        Socket socketOfServer;
-        BufferedReader is;
-        BufferedWriter os;
-        BufferedWriter[] oss = null;
-        serversINFOMap = new HashMap<Integer, String>();
 
-        HashMap<Integer, List<String>> wordsMap = new HashMap<Integer, List<String>>();
-        HashMap<String, Integer> wordsPreshuffleMap = new HashMap<String, Integer>();
+        svrIdx_svrAddr_map = new HashMap<Integer, String>();
+        toSvrIdx_wList_map = new HashMap<Integer, List<String>>();
+        words_cnt_pre_map = new HashMap<String, Integer>();
 
-        HashMap<Integer, HashMap<String, Integer>> threadPreshuffleMap = new HashMap<Integer, HashMap<String, Integer>>();
-        HashMap<Integer, List<String>> countShuffleMap = new HashMap<Integer, List<String>>();
-        HashMap<Integer, Integer> rangeMap = new HashMap<Integer, Integer>();
+        words_cnt_map = new HashMap<Integer, HashMap<String, Integer>>();
+        range_svrIdx_map = new HashMap<Integer, Integer>();
 
-        HashMap<String, List<Integer>> wordsShuffleMap = new HashMap<String, List<Integer>>();
-        HashMap<Integer, List<String>> wordsShuffle2Map = new HashMap<Integer, List<String>>();
+        words_cList_map = new HashMap<String, List<Integer>>();
+        cnt_wList_map = new HashMap<Integer, List<String>>();
 
-        HashMap<Integer, List<String>> wordsCountMap = new HashMap<Integer, List<String>>();
+        cnt_wList_final_map = new HashMap<Integer, List<String>>();
+
 
         try {
             listerner = new ServerSocket(socketPort);
@@ -98,339 +107,417 @@ public class MyServer {
                     String [] tokens = msgline.split(";");
                     for (int i = 0; i < tokens.length; i++) {
                         String[] token = tokens[i].split(" ");
-                        serversINFOMap.put(Integer.parseInt(token[0]), token[1]);
+                        svrIdx_svrAddr_map.put(Integer.parseInt(token[0]), token[1]);
                         if (!(token[2].isEmpty()) && token[2].equals("thisserver")) {
                             index = Integer.parseInt(token[0]);
                         }
                     }
                     msgINFO = true;
-                    serversNum = serversINFOMap.size();
+                    serversNum = svrIdx_svrAddr_map.size();
                     // System.out.println("[INFO][MyServer][main] serversNum: " + serversNum + " index: " + index);
                     // open listener threads
                     threadListerners = openThreadListerners(serversNum, socketPort, index);
                     // open socket client threads
-                    oss = openThreadSockets(serversNum, socketPort, index, serversINFOMap);
+                    oss = openThreadSockets(serversNum, socketPort, index, svrIdx_svrAddr_map);
                 }
 
                 // get msg
                 line = is.readLine();
 
-                ////////// receive QUIT msg //////////
-                if (line.equals("QUIT")) {
-                    // print local map
-                    System.out.println("[INFO][MyServer][main][" + index +"] //////////Local map//////////");
-                    for (Map.Entry<Integer, List<String> > entry : wordsShuffle2Map.entrySet()) {
-                        System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
-                    }
-                    os.write("QUIT_OK");
-                    os.newLine();
-                    os.flush();
-
-                    os.close();
-                    is.close();
-                    socketOfServer.close();
-                    for (int i = 0; i < serversNum; i++) {
-                        if (i == index) {
-                            continue;
-                        }
-                        oss[i].close();
-                        threadListerners[i].closeThread();
-                    }
-                    break;
+                ////////// receive SPLIT msg //////////                
+                if(line.equals("SPLIT")){
+                    SPLITHandler();
                 }
                 ////////// receive PRESHUFFLE msg //////////
                 else if (line.equals("PRESHUFFLE")) {
-                    // send SHUFFLE msg to other servers
-                    System.out.println("[INFO][MyServer][main][" + index +"][PRESHUFFLE]");
-                    // // print wordsMap
-                    // System.out.println("[INFO][MyServer][main][" + index +"] //////////wordsMap//////////");
-                    // for (Map.Entry<Integer, List<String> > entry : wordsMap.entrySet()) {
-                    //     System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
-                    // }
-
-                    for (Map.Entry<Integer, List<String> > entry : wordsMap.entrySet()) {
-                        if (serversINFOMap.containsKey(entry.getKey()) && entry.getKey() != index) {
-                            String msg = "$PRESHUFFLE_THREAD$;";
-                            for (String word : entry.getValue()) {
-                                msg += word + ";";
-                            }
-                            oss[entry.getKey()].write(msg);
-                            oss[entry.getKey()].newLine();
-                            oss[entry.getKey()].flush();
-                        } else {
-                            for (int i = 0; i < entry.getValue().size(); i++) {
-                                if (wordsPreshuffleMap.containsKey(entry.getValue().get(i))) {
-                                    int count = wordsPreshuffleMap.get(entry.getValue().get(i));
-                                    wordsPreshuffleMap.put(entry.getValue().get(i), count + 1);
-                                } else {
-                                    wordsPreshuffleMap.put(entry.getValue().get(i), 1);
-                                }
-                            }
-                        }
-                    }
-                    os.write("PRESHUFFLE_OK");
-                    os.newLine();
-                    os.flush();
-                }
-                ////////// receive WAITSHUFFLE msg //////////
-                else if (line.equals("WAITSHUFFLE")) {
-                    System.out.println("[INFO][MyServer][main][" + index +"][WAITSHUFFLE]");
-                    // wait for PRESHUFFLE_THREAD_READY
-                    while (true) {
-                        boolean allReady = true;
-                        for (int i = 0; i < serversNum; i++) {
-                            if (i == index) {
-                                continue;
-                            }
-                            if (!threadListerners[i].PRESHUFFLE_THREAD_READY) {
-                                // System.out.println("[INFO][MyServer][main][" + index +"][WAITSHUFFLE] server " + i + " is not ready.");
-                                allReady = false;
-                                break;
-                            }
-                        }
-                        if (allReady) {
-                            break;
-                        }
-                    }
-                    System.out.println("[INFO][MyServer][main][" + index +"][WAITSHUFFLE] all servers are ready.");
-                    // send back
-                    os.write("WAITSHUFFLE_OK");
-                    os.newLine();
-                    os.flush();
+                    PRESHUFFLEHandler();
                 }
                 ////////// receive SHUFFLE msg //////////
                 else if (line.equals("SHUFFLE")) {
-                    System.out.println("[INFO][MyServer][main][" + index +"][SHUFFLE]");
-                    // put all threads' maps into one hashmap, i.e. threadPreshuffleMap
-                    int cnt = 0;
-                    for (ThreadListerner thread : threadListerners) {
-                        if (thread != null) {
-                            HashMap<String, Integer> map = thread.getMapThread();
-                            threadPreshuffleMap.put(cnt, map);
-                        }
-                        cnt += 1;
-                    }
-
-                    // merge all maps into one map, i.e. wordsShuffleMap
-                    for (Map.Entry<String, Integer> entry : wordsPreshuffleMap.entrySet()) {
-                        if (wordsShuffleMap.containsKey(entry.getKey())) {
-                            wordsShuffleMap.get(entry.getKey()).add(entry.getValue());
-                        } else {
-                            List<Integer> list = new ArrayList<Integer>();
-                            list.add(entry.getValue());
-                            wordsShuffleMap.put(entry.getKey(), list);
-                        }
-                    }
-                    for (Map.Entry<Integer, HashMap<String, Integer> > entry : threadPreshuffleMap.entrySet()) {
-                        for (Map.Entry<String, Integer> entry2 : entry.getValue().entrySet()) {
-                            if (wordsShuffleMap.containsKey(entry2.getKey())) {
-                                wordsShuffleMap.get(entry2.getKey()).add(entry2.getValue());
-                            } else {
-                                List<Integer> list = new ArrayList<Integer>();
-                                list.add(entry2.getValue());
-                                wordsShuffleMap.put(entry2.getKey(), list);
-                            }
-                        }
-                    }
-                    // send back
-                    os.write("SHUFFLE_OK");
-                    os.newLine();
-                    os.flush();
+                    SHUFFLEHandler();
                 }
                 ////////// receive CALCULATE msg //////////
                 else if (line.equals("CALCULATE")) {
-                    // // print wordsShuffMap
-                    // System.out.println("[INFO][MyServer][main][" + index +"] //////////wordsShuffMap//////////");
-                    // for (Map.Entry<String, List<Integer> > entry : wordsShuffMap.entrySet()) {
-                    //     System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
-                    // }
-
-                    System.out.println("[INFO][MyServer][main][" + index +"][CALCULATE]");
-                    // calculate the max and min count of each word
-                    int max = Integer.MIN_VALUE;
-                    int min = Integer.MAX_VALUE;
-                    for (Map.Entry<String, List<Integer> > entry : wordsShuffleMap.entrySet()) {
-                        int sum = 0;
-                        for (int i = 0; i < entry.getValue().size(); i++) {
-                           sum += entry.getValue().get(i);
-                        }
-                        if (sum > max) {
-                            max = sum;
-                        }
-                        if (sum < min) {
-                            min = sum;
-                        }
-                        // merge all words and counts into one map, i.e. wordsCountMap
-                        if (wordsCountMap.containsKey(sum)) {
-                            wordsCountMap.get(sum).add(entry.getKey());
-                        } else {
-                            List<String> list = new ArrayList<String>();
-                            list.add(entry.getKey());
-                            wordsCountMap.put(sum, list);
-                        }
-                    }
-                    if (max == Integer.MIN_VALUE || min == Integer.MAX_VALUE) {
-                        max = 0;
-                        min = 0;
-                    }
-
-                    // System.out.println("[INFO][MyServer][main][" + index +"] max: " + max + " min: " + min);
-                    // // print wordsCountMap
-                    // System.out.println("[INFO][MyServer][main][" + index +"] //////////wordsCountMap//////////");
-                    // for (Map.Entry<Integer, List<String> > entry : wordsCountMap.entrySet()) {
-                    //     System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
-                    // }
-                    // send back
-                    os.write("CALCULATE_OK");
-                    os.newLine();
-                    os.flush();
-                    // send fmax fmin
-                    os.write(max + ";" + min);
-                    os.newLine();
-                    os.flush();
-                    // receive fmax fmin
-                    line = is.readLine();
-                    String [] tokens = line.split(";");
-                    for (int i = 0; i < tokens.length; i++) {
-                        String [] token = tokens[i].split(",");
-                        for (int rg = Integer.parseInt(token[2]); rg <= Integer.parseInt(token[1]); rg++) {
-                            if (rg == 0) {
-                                continue;
-                            }
-                            rangeMap.put(rg, Integer.parseInt(token[0]));
-                        }
-                    }
-                    
-                    os.write("RANGE_OK");
-                    os.newLine();
-                    os.flush();
+                    CALCULATEHandler();
                 }
                 ////////// receive PRESHUFFLE2 msg //////////
                 else if(line.equals("PRESHUFFLE2")){
-                    System.out.println("[INFO][MyServer][main][" + index +"][PRESHUFFLE2]");
-                    // // print rangeMap
-                    // System.out.println("[INFO][MyServer][main][" + index +"] //////////rangeMap//////////");
-                    // for (Map.Entry<Integer, Integer> entry : rangeMap.entrySet()) {
-                    //     if (entry.getValue() == index)
-                    //         System.out.println("[INFO][MyServer][main][" + index +"] count:" + entry.getKey() + "->serverIdx:" + entry.getValue());
-                    // }
-                    for (Map.Entry<Integer, List<String>> entry : wordsCountMap.entrySet()) {
-                        if (rangeMap.get(entry.getKey()) != index) {
-                            String msg = "$PRESHUFFLE2_THREAD$;" + entry.getKey() + ";";
-                            for (String word : entry.getValue()) {
-                                msg += word + ";";
-                            }
-                            oss[rangeMap.get(entry.getKey())].write(msg);
-                            oss[rangeMap.get(entry.getKey())].newLine();
-                            oss[rangeMap.get(entry.getKey())].flush();
-                            System.out.println("[INFO][MyServer][main][" + index +"][PRESHUFFLE2] send to server " + rangeMap.get(entry.getKey()) + " msg: " + msg);
-                        } else {
-                            if (wordsShuffle2Map.containsKey(entry.getKey())) {
-                                for (String word : entry.getValue()) {
-                                    wordsShuffle2Map.get(entry.getKey()).add(word);
-                                }
-                            } else {
-                                wordsShuffle2Map.put(entry.getKey(), entry.getValue());
-                            }
-                        }
-                    }
-                    // need to send END PRESHUFFLE2_THREAD msg ?
-                    for (int i = 0; i < serversNum; i++) {
-                        if (i == index) {
-                            continue;
-                        }
-                        oss[i].write("$TERMINATE_WHILE$");
-                        oss[i].newLine();
-                        oss[i].flush();
-                    }
-
-                    // send back
-                    os.write("PRESHUFFLE2_OK");
-                    os.newLine();
-                    os.flush();
+                    PRESHUFFLE2Handler();
                 }
                 ////////// receive SHUFFLE2 msg //////////
                 else if (line.equals("SHUFFLE2")) {
-                    System.out.println("[INFO][MyServer][main][" + index +"][SHUFFLE2]");
-                    // wait for all threads are ready
-                    while (true) {
-                        boolean allReady = true;
-                        for (int i = 0; i < serversNum; i++) {
-                            if (i == index) {
-                                continue;
-                            }
-                            if (!threadListerners[i].PRESHUFFLE2_THREAD_READY) {
-                                // System.out.println("[INFO][MyServer][main][" + index +"][WAITSHUFFLE] server " + i + " is not ready.");
-                                allReady = false;
-                                break;
-                            }
-                        }
-                        if (allReady) {
-                            break;
-                        }
-                    }
-                    System.out.println("[INFO][MyServer][main][" + index +"][SHUFFLE2] all servers are ready.");
-                    
-                    for (ThreadListerner thread : threadListerners) {
-                        if (thread != null) {
-                            for (Map.Entry<Integer, List<String>> entry : thread.mapThread2.entrySet()) {
-                                if (wordsShuffle2Map.containsKey(entry.getKey())) {
-                                    for (String word : entry.getValue()) {
-                                        wordsShuffle2Map.get(entry.getKey()).add(word);
-                                    }
-                                } else {
-                                    wordsShuffle2Map.put(entry.getKey(), entry.getValue());
-                                }
-                            }
-                        }
-                    }
-                    // send back
-                    os.write("SHUFFLE2_OK");
-                    os.newLine();
-                    os.flush();
+                    SHUFFLE2Handler();
                 }
-                ////////// build hashmap of words i.e. wordsMap//////////
-                else if(line.equals("SPLIT")){
-                    System.out.println("[INFO][MyServer][main][" + index +"][SPLIT]");
-                    File localDir = new File(homeDirPath + usr + "/");
-                    File[] files = localDir.listFiles();
-                    for (File file : files) {
-                        if (file.isFile() && file.getName().endsWith(".txt")) {
-                            // read file
-                            try {
-                                Scanner scanner = new Scanner(file);
-                                while (scanner.hasNextLine()) {
-                                    String txtline = scanner.nextLine();
-                                    String[] txtTokens = txtline.split("\\s+");
-                                    for (String txtToken : txtTokens) {
-                                        int toWhichServer = Math.abs(txtToken.hashCode()) % serversNum;
-                                        if (wordsMap.containsKey(toWhichServer)) {
-                                            wordsMap.get(toWhichServer).add(txtToken);
-                                        } else {
-                                            List<String> wordsList = new ArrayList<String>();
-                                            wordsList.add(txtToken);
-                                            wordsMap.put(toWhichServer, wordsList);
-                                        }
-                                    }
-                                }
-                                scanner.close();
-                            } catch (FileNotFoundException e) {
-                                System.out.println("[ERROR][MyServer][main] An error occurred about build wordsMap.");
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    // send back SPLIT_OK msg
-                    os.write("SPLIT_OK");
-                    os.newLine();
-                    os.flush();
+                ////////// receive QUIT msg //////////
+                else if (line.equals("QUIT")) {
+                    QUITHandler();
+                    break;
                 }
             }
         } catch (IOException e) {
             System.err.println("[ERROR][MyServer][main] An error occurred about socket msg receive.");
             e.printStackTrace();
         }
+    }
 
+    private static void waitForThreadsReady(ThreadListerner[] threadListerners) {
+        while (true) {
+            boolean allReady = true;
+            for (int i = 0; i < serversNum; i++) {
+                if (i == index) {
+                    continue;
+                }
+                if (!threadListerners[i].PRESHUFFLE_THREAD_READY) {
+                    allReady = false;
+                    break;
+                }
+            }
+            if (allReady) {
+                break;
+            }
+        }
+    }
+
+    private static void SPLITHandler () {
+        System.out.println("[INFO][MyServer][SPLIT][" + index +"]");
+        File localDir = new File(homeDirPath + usr + "/");
+        File[] files = localDir.listFiles();
+        for (File file : files) {
+            if (file.isFile() && file.getName().endsWith(".txt")) {
+                try {
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNextLine()) {
+                        String txtline = scanner.nextLine();
+                        String[] txtTokens = txtline.split("\\s+");
+                        for (String txtToken : txtTokens) {
+                            int toWhichServer = Math.abs(txtToken.hashCode()) % serversNum;
+                            if (toSvrIdx_wList_map.containsKey(toWhichServer)) {
+                                toSvrIdx_wList_map.get(toWhichServer).add(txtToken);
+                            } else {
+                                List<String> wordsList = new ArrayList<String>();
+                                wordsList.add(txtToken);
+                                toSvrIdx_wList_map.put(toWhichServer, wordsList);
+                            }
+                        }
+                    }
+                    scanner.close();
+                } catch (FileNotFoundException e) {
+                    System.out.println("[ERROR][MyServer][SPLIT] An error occurred about build toSvrIdx_wList_map.");
+                    e.printStackTrace();
+                }
+            }
+        }
+        // send back
+        try {
+            os.write("SPLIT_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][SPLIT][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void PRESHUFFLEHandler() {
+        System.out.println("[INFO][MyServer][PRESHUFFLE][" + index +"]");
+
+        for (Map.Entry<Integer, List<String> > entry : toSvrIdx_wList_map.entrySet()) {
+            if (svrIdx_svrAddr_map.containsKey(entry.getKey()) && entry.getKey() != index) {
+                String msg = "$PRESHUFFLE_THREAD$;";
+                for (String word : entry.getValue()) {
+                    msg += word + ";";
+                }
+                try {
+                    oss[entry.getKey()].write(msg);
+                    oss[entry.getKey()].newLine();
+                    oss[entry.getKey()].flush();
+                } catch (IOException e) {
+                    System.err.println("[ERROR][MyServer][PRESHUFFLE][" + index +"] bufferedwrite oss error.");
+                    e.printStackTrace();
+                }
+            } else {
+                for (int i = 0; i < entry.getValue().size(); i++) {
+                    if (words_cnt_pre_map.containsKey(entry.getValue().get(i))) {
+                        int count = words_cnt_pre_map.get(entry.getValue().get(i));
+                        words_cnt_pre_map.put(entry.getValue().get(i), count + 1);
+                    } else {
+                        words_cnt_pre_map.put(entry.getValue().get(i), 1);
+                    }
+                }
+            }
+        }
+
+        // // print words_cnt_pre_map
+        // System.out.println("[INFO][MyServer][main][" + index +"] //////////words_cnt_pre_map//////////");
+        // for (Map.Entry<String, Integer> entry : words_cnt_pre_map.entrySet()) {
+        //     System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
+        // }
+
+        // send back
+        try {
+            os.write("PRESHUFFLE_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][PRESHUFFLE][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void SHUFFLEHandler () {
+        System.out.println("[INFO][MyServer][SHUFFLE][" + index +"]");
+        // wait for all threads are ready
+        waitForThreadsReady(threadListerners);
+        
+        // put all threads' maps into one hashmap, i.e. words_cnt_map
+        int cnt = 0;
+        for (ThreadListerner thread : threadListerners) {
+            if (thread != null) {
+                HashMap<String, Integer> map = thread.get_words_cnt_thread_map();
+                words_cnt_map.put(cnt, map);
+            }
+            cnt += 1;
+        }
+
+        // merge all maps into one map, i.e. words_cList_map
+        for (Map.Entry<String, Integer> entry : words_cnt_pre_map.entrySet()) {
+            if (words_cList_map.containsKey(entry.getKey())) {
+                words_cList_map.get(entry.getKey()).add(entry.getValue());
+            } else {
+                List<Integer> list = new ArrayList<Integer>();
+                list.add(entry.getValue());
+                words_cList_map.put(entry.getKey(), list);
+            }
+        }
+        for (Map.Entry<Integer, HashMap<String, Integer> > entry : words_cnt_map.entrySet()) {
+            for (Map.Entry<String, Integer> entry2 : entry.getValue().entrySet()) {
+                if (words_cList_map.containsKey(entry2.getKey())) {
+                    words_cList_map.get(entry2.getKey()).add(entry2.getValue());
+                } else {
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(entry2.getValue());
+                    words_cList_map.put(entry2.getKey(), list);
+                }
+            }
+        }
+        // // print words_cList_map
+        // System.out.println("[INFO][MyServer][main][" + index +"] //////////words_cList_map//////////");
+        // for (Map.Entry<String, List<Integer> > entry : words_cList_map.entrySet()) {
+        //     System.out.println("[INFO][MyServer][main][" + index +"] " + entry.getKey() + " " + entry.getValue());
+        // }
+        
+        // send back
+        try {
+            os.write("SHUFFLE_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][SHUFFLE][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }          
+    }
+
+    private static void CALCULATEHandler () {
+        System.out.println("[INFO][MyServer][CALCULATE][" + index +"]");
+        // calculate the max and min count of each word
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (Map.Entry<String, List<Integer> > entry : words_cList_map.entrySet()) {
+            int sum = 0;
+            for (int i = 0; i < entry.getValue().size(); i++) {
+               sum += entry.getValue().get(i);
+            }
+            if (sum > max) {
+                max = sum;
+            }
+            if (sum < min) {
+                min = sum;
+            }
+            // merge all words and counts into one map, i.e. cnt_wList_map
+            if (cnt_wList_map.containsKey(sum)) {
+                cnt_wList_map.get(sum).add(entry.getKey());
+            } else {
+                List<String> list = new ArrayList<String>();
+                list.add(entry.getKey());
+                cnt_wList_map.put(sum, list);
+            }
+        }
+        if (max == Integer.MIN_VALUE || min == Integer.MAX_VALUE) {
+            max = 0;
+            min = 0;
+        }
+
+        // send back
+        try {
+            os.write("CALCULATE_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][CALCULATE][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+
+        // send fmax fmin
+        try {
+            os.write(max + ";" + min);
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][CALCULATE][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+
+        // receive fmax fmin
+        
+        try {
+            String line = is.readLine();
+            String [] tokens = line.split(";");
+            String rangePrint = "";
+            for (int i = 0; i < tokens.length; i++) {
+                String [] token = tokens[i].split(",");
+                for (int rg = Integer.parseInt(token[2]); rg <= Integer.parseInt(token[1]); rg++) {
+                    if (rg == 0) {
+                        continue;
+                    }
+                    range_svrIdx_map.put(rg, Integer.parseInt(token[0]));
+                    if (token[0].equals(String.valueOf(index))) {
+                        rangePrint += rg + " ";
+                    }
+                }
+            }
+            System.out.println("[INFO][MyServer][RANGE][" + index +"] range: " + rangePrint);
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][RANGE][" + index +"] bufferedread is error.");
+            e.printStackTrace();
+        }
+        
+        // send back
+        try {
+            os.write("RANGE_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][RANGE][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void PRESHUFFLE2Handler () {
+        System.out.println("[INFO][MyServer][PRESHUFFLE2][" + index +"]");
+
+        for (Map.Entry<Integer, List<String>> entry : cnt_wList_map.entrySet()) {
+            if (range_svrIdx_map.get(entry.getKey()) != index) {
+                String msg = "$PRESHUFFLE2_THREAD$;" + entry.getKey() + ";";
+                for (String word : entry.getValue()) {
+                    msg += word + ";";
+                }
+                try {
+                    oss[range_svrIdx_map.get(entry.getKey())].write(msg);
+                    oss[range_svrIdx_map.get(entry.getKey())].newLine();
+                    oss[range_svrIdx_map.get(entry.getKey())].flush();
+                    // System.out.println("[INFO][MyServer][main][" + index +"][PRESHUFFLE2] send to server " + range_svrIdx_map.get(entry.getKey()) + " msg: " + msg);
+                } catch (IOException e) {
+                    System.err.println("[ERROR][MyServer][PRESHUFFLE2][" + index +"] bufferedwrite oss error.");
+                    e.printStackTrace();
+                }
+                // System.out.println("[DEBUG][MyServer][main][" + index +"][PRESHUFFLE2] send to server " + range_svrIdx_map.get(entry.getKey()) + " msg: " + msg);
+            } else {
+                if (cnt_wList_final_map.containsKey(entry.getKey())) {
+                    for (String word : entry.getValue()) {
+                        cnt_wList_final_map.get(entry.getKey()).add(word);
+                    }
+                } else {
+                    cnt_wList_final_map.put(entry.getKey(), entry.getValue());
+                }
+            }
+        }
+        // need to send END PRESHUFFLE2_THREAD to end the conversation of threads
+        for (int i = 0; i < serversNum; i++) {
+            if (i == index) {
+                continue;
+            }
+            try {
+                oss[i].write("$TERMINATE_WHILE$");
+                oss[i].newLine();
+                oss[i].flush();
+            } catch (IOException e) {
+                System.err.println("[ERROR][MyServer][PRESHUFFLE2][" + index +"] bufferedwrite oss error.");
+                e.printStackTrace();
+            }
+        }
+
+        // send back
+        try {
+            os.write("PRESHUFFLE2_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][PRESHUFFLE2][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void SHUFFLE2Handler () {
+        System.out.println("[INFO][MyServer][SHUFFLE2][" + index +"]");
+        // wait for all threads are ready
+        waitForThreadsReady(threadListerners);
+        // System.out.println("[DEBUG][MyServer][SHUFFLE2][" + index +"] all servers are ready.");
+                    
+        for (ThreadListerner thread : threadListerners) {
+            if (thread != null) {
+                HashMap<Integer, List<String>> cnt_words_thread_map = thread.get_cnt_words_thread_map();
+                for (Map.Entry<Integer, List<String>> entry : cnt_words_thread_map.entrySet()) {
+                    if (cnt_wList_final_map.containsKey(entry.getKey())) {
+                        for (String word : entry.getValue()) {
+                            cnt_wList_final_map.get(entry.getKey()).add(word);
+                        }
+                    } else {
+                        cnt_wList_final_map.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+        }
+        // send back
+        try {
+            os.write("SHUFFLE2_OK");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][SHUFFLE2][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }        
+    }
+
+    private static void QUITHandler () {
+        // print
+        System.out.println("[INFO][MyServer][" + index +"] //////////Words Count//////////");
+        for (Map.Entry<Integer, List<String> > entry : cnt_wList_final_map.entrySet()) {
+            System.out.println("[INFO][MyServer][" + index +"] " + entry.getKey() + " " + entry.getValue());
+        }
+        try {
+            os.write("QUIT_OK");
+            os.newLine();
+            os.flush();
+        } catch(IOException e) {
+            System.err.println("[ERROR][MyServer][QUIT][" + index +"] bufferedwrite os error.");
+            e.printStackTrace();
+        }
+        try {
+            os.close();
+            is.close();
+            socketOfServer.close();
+            for (int i = 0; i < serversNum; i++) {
+                if (i == index) {
+                    continue;
+                }
+                sockets[i].close();
+                oss[i].close();
+                threadListerners[i].closeThread();
+            }
+        } catch (IOException e) {
+            System.err.println("[ERROR][MyServer][QUIT][" + index +"] close error.");
+            e.printStackTrace();
+        }
     }
 
     /// @brief open FTP server to receive files
@@ -513,9 +600,9 @@ public class MyServer {
     /// @param serversNum number of servers
     /// @param socketport base port number
     /// @param index index of this server
-    /// @param serversINFOMap servers information map
+    /// @param svrIdx_svrAddr_map servers information map
     /// @return oss BufferedWriter array
-    public static BufferedWriter[] openThreadSockets(int serversNum, int socketport, int index, HashMap<Integer, String> serversINFOMap) {
+    private static BufferedWriter[] openThreadSockets(int serversNum, int socketport, int index, HashMap<Integer, String> svrIdx_svrAddr_map) {
         BufferedWriter[] oss = new BufferedWriter[serversNum];
         try {
             Thread.sleep(500);
@@ -523,15 +610,16 @@ public class MyServer {
             System.err.println("[ERROR][MyServer][main] An error occurred about sleep.");
             e.printStackTrace();
         }
-
+        
+        sockets = new Socket[serversNum];
         try {
             for (int i = 0; i < serversNum; i++) {
                 if (i == index) {
                     continue;
                 }
-                Socket socket = new Socket(serversINFOMap.get(i), socketPort + index + 1);
-                System.out.println("[INFO][MyServer][openThreadSocket][" + index + "] connect to server: " + serversINFOMap.get(i) + " success!");
-                oss[i] = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                sockets[i] = new Socket(svrIdx_svrAddr_map.get(i), socketPort + index + 1);
+                System.out.println("[INFO][MyServer][openThreadSocket][" + index + "] connect to server: " + svrIdx_svrAddr_map.get(i) + " success!");
+                oss[i] = new BufferedWriter(new OutputStreamWriter(sockets[i].getOutputStream()));
             }
         } catch (IOException e) {
             System.err.println("[ERROR][MyServer][main] An error occurred about open socket threads.");
@@ -545,7 +633,7 @@ public class MyServer {
     /// @param socketport base port number
     /// @param index index of this server
     /// @return threadListerners
-    public static ThreadListerner[] openThreadListerners(int serversNum, int socketport, int index) {
+    private static ThreadListerner[] openThreadListerners(int serversNum, int socketport, int index) {
         ThreadListerner[] threadListerners = new ThreadListerner[serversNum];
         try {
             for (int i = 0; i < serversNum; i++) {
@@ -564,25 +652,28 @@ public class MyServer {
         return threadListerners;
     }
 
-
 }
 
 class ThreadListerner extends Thread {
     private ServerSocket listerner;
     private BufferedReader is;
     private InputStreamReader isReader;
-    private HashMap<String, Integer> mapThread = new HashMap<String, Integer>();
-    public HashMap<Integer, List<String>> mapThread2 = new HashMap<Integer, List<String>>();
+    private HashMap<String, Integer> words_cnt_thread_map = new HashMap<String, Integer>(); // words count map respective to other server in Pershuffle, execute by thread, <words, count>
+    private HashMap<Integer, List<String>> cnt_words_thread_map = new HashMap<Integer, List<String>>(); // count words map respective to other server in Pershuffle2, execute by thread, <count, wordsList>
 
+    // flag to indicate whether the thread is ready, true means ready
     public boolean PRESHUFFLE_THREAD_READY = true;
-    public boolean PRESHUFFLE2_THREAD_READY = true;
 
     public ThreadListerner(ServerSocket listerner) {
         this.listerner = listerner;
     }
 
-    public HashMap<String, Integer> getMapThread() {
-        return mapThread;
+    public HashMap<String, Integer> get_words_cnt_thread_map() {
+        return words_cnt_thread_map;
+    }
+
+    public HashMap<Integer, List<String>> get_cnt_words_thread_map() {
+        return cnt_words_thread_map;
     }
 
     public void closeThread() {
@@ -606,35 +697,34 @@ class ThreadListerner extends Thread {
 
             while (true) {
                 String line = is.readLine();
-                System.out.println("[INFO][ThreadListerner][idx="+ MyServer.index +"][run] msg:" + line);
+                // System.out.println("[DEBUG][ThreadListerner][idx="+ MyServer.index +"][run] msg:" + line);
                 String [] tokens = line.split(";");
                 if(tokens[0].contains("$PRESHUFFLE_THREAD$")) {
-                    // System.out.println("[INFO][ThreadListerner][idx="+ MyServer.index +"][run] msg:" + line);
+                    // System.out.println("[DEBUG][ThreadListerner][idx="+ MyServer.index +"][run] msg:" + line);
                     PRESHUFFLE_THREAD_READY = false;
                     for (int i = 1; i < tokens.length; i++) {
-                        if (mapThread.containsKey(tokens[i])) {
-                            int count = mapThread.get(tokens[i]);
-                            mapThread.put(tokens[i], count + 1);
+                        if (words_cnt_thread_map.containsKey(tokens[i])) {
+                            int count = words_cnt_thread_map.get(tokens[i]);
+                            words_cnt_thread_map.put(tokens[i], count + 1);
                         } else {
-                            mapThread.put(tokens[i], 1);
+                            words_cnt_thread_map.put(tokens[i], 1);
                         }
-                        // System.out.println("[INFO][ThreadListerner][idx="+ MyServer.index +"][i="+ i +"][run] PRESHUFFLE_THREAD_READY:" + PRESHUFFLE_THREAD_READY);
+                        // System.out.println("[DEBUG][ThreadListerner][idx="+ MyServer.index +"][i="+ i +"][run] PRESHUFFLE_THREAD_READY:" + PRESHUFFLE_THREAD_READY);
                     }
                     PRESHUFFLE_THREAD_READY = true;
                 } else if (tokens[0].contains("$PRESHUFFLE2_THREAD$")) {
-                    // do something here
-                    PRESHUFFLE2_THREAD_READY = false;
+                    PRESHUFFLE_THREAD_READY = false;
                     int count = Integer.parseInt(tokens[1]);
                     for (int i = 2; i < tokens.length; i++) {
-                        if (mapThread2.containsKey(count)) {
-                            mapThread2.get(count).add(tokens[i]);
+                        if (cnt_words_thread_map.containsKey(count)) {
+                            cnt_words_thread_map.get(count).add(tokens[i]);
                         } else {
                             List<String> list = new ArrayList<String>();
                             list.add(tokens[i]);
-                            mapThread2.put(count, list);
+                            cnt_words_thread_map.put(count, list);
                         }
                     }
-                    PRESHUFFLE2_THREAD_READY = true;
+                    PRESHUFFLE_THREAD_READY = true;
                 } else if (tokens[0].contains("$TERMINATE_WHILE$")) {
                     break;
                 }

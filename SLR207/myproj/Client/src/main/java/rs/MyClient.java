@@ -11,10 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,12 +31,11 @@ public class MyClient {
     // local directory path
     private static String localDirPath = "./dataset";
 
-    public static HashMap<Integer, String> serversINFOMap = new HashMap<Integer, String>();
+    public static HashMap<Integer, String> svrIdx_svrAddr_map = new HashMap<Integer, String>();
 
     public enum ResonseTypeFlag {
         SPLIT_END, // all servers have built hashmap of word, ready to send PRESHUFFLE
         PRESHUFFLE_END, // all servers have sent their WORDS to the respective server, ready to send WAITSHUFFLE
-        WAITSHUFFLE_END, // all servers have received the WORDS from others, ready to send SHUFFLE
         SHUFFLE_END, // all servers have built the shuffleMap, ready to send CALCULATE
         CALCULATE_END, // all servers have calculated their min and max and send them back
         RANGE_END, // all servers have built their rangeMap, contains <key, val>=<cntNum, servIdx>, ready to send PRESHUFFLE2
@@ -49,7 +46,6 @@ public class MyClient {
     }
 
     public static void main(String[] args) {
-        MyClient myClient = new MyClient();
         if (localFlag) {
             servers.add("localhost");
         } else {
@@ -71,7 +67,7 @@ public class MyClient {
 
         // build the server info map
         for (int i = 0; i < servers.size(); i++) {
-            serversINFOMap.put(i, servers.get(i));
+            svrIdx_svrAddr_map.put(i, servers.get(i));
         }
 
         Socket [] socketClients = new Socket[servers.size()];
@@ -92,22 +88,22 @@ public class MyClient {
         }
 
         try {
-            // send serversINFOmsg to all servers
+            // send svrIdx and svrAddr to all servers
             for (int i = 0; i < servers.size(); i++) {
-                String serversINFOmsg = "";
-                for (Map.Entry<Integer, String> entry : serversINFOMap.entrySet()) {
-                    serversINFOmsg += entry.getKey() + " " + entry.getValue();
+                String svrmsg = "";
+                for (Map.Entry<Integer, String> entry : svrIdx_svrAddr_map.entrySet()) {
+                    svrmsg += entry.getKey() + " " + entry.getValue();
                     if (entry.getKey() == i) {
-                        serversINFOmsg += " thisserver";
+                        svrmsg += " thisserver";
                     } else {
-                        serversINFOmsg += " otherserver";
+                        svrmsg += " otherserver";
                     }
-                    if (entry.getKey() != serversINFOMap.size() - 1) {
-                        serversINFOmsg += ";";
+                    if (entry.getKey() != svrIdx_svrAddr_map.size() - 1) {
+                        svrmsg += ";";
                     }
                 }
-                System.out.println("[INFO][MyClient][main] serversINFOmsg: " + serversINFOmsg);
-                oss[i].write(serversINFOmsg);
+                System.out.println("[INFO][MyClient][main] svrmsg: " + svrmsg);
+                oss[i].write(svrmsg);
                 oss[i].newLine();
                 oss[i].flush();
             }
@@ -135,12 +131,6 @@ public class MyClient {
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.PRESHUFFLE_END) {
                     for (int i = 0; i < servers.size(); i++) {
-                        oss[i].write("WAITSHUFFLE");
-                        oss[i].newLine();
-                        oss[i].flush();
-                    }
-                } else if (responseTypeFlag == ResonseTypeFlag.WAITSHUFFLE_END) {
-                    for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("SHUFFLE");
                         oss[i].newLine();
                         oss[i].flush();
@@ -167,7 +157,6 @@ public class MyClient {
                         fmin = Math.min(fmin, Integer.parseInt(res[1]));
                     }
                     // calculate the range
-                    // int range = (int)Math.floor((fmax - fmin + 1) / servers.size());
                     double expval = (double)(fmax - fmin + 1) / (double)servers.size();
                     double floorval = Math.floor(expval);
                     double diff = expval - floorval;
@@ -180,20 +169,17 @@ public class MyClient {
                     for (int i = 0; i < servers.size() - 1; i++) {
                         fmin = fmax - range + 1;
                         if (fmin <= rmin || fmax <= rmin) {
-                            // oss[i].write("0,0");
                             msg += i + ",0,0;";
                             // System.out.println("[INFO][MyClient][main] send fmax: 0, fmin: 0 to server " + i);
                             continue;
                         }
-                        // oss[i].write(fmax + "," + fmin);
                         msg += i + "," + fmax + "," + fmin + ";";
                         // System.out.println("[INFO][MyClient][main] send fmax: " + fmax + ", fmin: " + fmin + " to server " + i);
                         fmax = fmin - 1;
                     }
-                    // oss[servers.size() - 1].write(fmax + ";" + rmin);
                     msg += servers.size() - 1 + "," + fmax + "," + rmin + ";";
                     // System.out.println("[INFO][MyClient][main] send fmax: " + fmax + ", fmin: " + rmin + " to server " + (servers.size() - 1));
-                    System.out.println("[INFO][MyClient][main] send range msg: " + msg);
+                    System.out.println("[DEBUG][MyClient][main] send range msg: " + msg);
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write(msg);
                         oss[i].newLine();
@@ -230,7 +216,7 @@ public class MyClient {
             }
 
         } catch (Exception e) {
-            System.err.println("[ERRO][MyClient][main] An error occurred while sending msg.");
+            System.err.println("[ERROR][MyClient][main] An error occurred while sending msg.");
             e.printStackTrace();
         }
         
@@ -249,8 +235,6 @@ public class MyClient {
             return ResonseTypeFlag.SPLIT_END;
         else if (responses[0].equals("PRESHUFFLE_OK"))
             return ResonseTypeFlag.PRESHUFFLE_END;
-        else if (responses[0].equals("WAITSHUFFLE_OK"))
-            return ResonseTypeFlag.WAITSHUFFLE_END;
         else if (responses[0].equals("SHUFFLE_OK"))
             return ResonseTypeFlag.SHUFFLE_END;
         else if (responses[0].equals("CALCULATE_OK"))
@@ -286,72 +270,6 @@ public class MyClient {
         }
         return machines;
     }
-
-    public void startSocketClient(String serverHost, int port) {
-        // Server Host
-        // final String serverHost = "tp-1a226-01.enst.fr";
-        // final String serverHost = "localhost";
-
-        Socket socketOfClient = null;
-        BufferedWriter os = null;
-        BufferedReader is = null;
-
-        try {
-            // Send a request to connect to the server is listening
-            // on machine 'localhost' port 9999.
-            socketOfClient = new Socket(serverHost, port);
-
-            // Create output stream at the client (to send data to the server)
-            os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
-
-            // Input stream at Client (Receive data from the server).
-            is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
-
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + serverHost);
-            return;
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " + serverHost);
-            return;
-        }
-
-        try {
-            // Write data to the output stream of the Client Socket.
-            // os.write("START");
-            // os.newLine();
-            // os.flush();  
-
-            // MAP msg
-            os.write("MAP");
-            os.newLine();
-            os.flush();
-
-            // 
-
-            os.write("QUIT");
-            os.newLine();
-            os.flush();
-
-            // Read data sent from the server.
-            // By reading the input stream of the Client Socket.
-            String responseLine;
-            while ((responseLine = is.readLine()) != null) {
-                System.out.println("Client receive: " + responseLine);
-                if (responseLine.indexOf("OK") != -1) {
-                    break;
-                }
-            }
-
-            os.close();
-            is.close();
-            socketOfClient.close();
-        } catch (UnknownHostException e) {
-            System.err.println("Trying to connect to unknown host: " + e);
-        } catch (IOException e) {
-            System.err.println("IOException:  " + e);
-        }
-    }
-
 }
 
 class FTPThread extends Thread {
