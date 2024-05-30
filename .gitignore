@@ -90,3 +90,16 @@ SLR203/.DS_Store
 SLR203/AKKA/18SearchActorsWithNameOrPath/.DS_Store
 .DS_Store
 SLR203/.DS_Store
+SD-TSIA203/TP2/data/cifar-10-batches-py/batches.meta
+SD-TSIA203/TP2/data/cifar-10-batches-py/data_batch_1
+SD-TSIA203/TP2/data/cifar-10-batches-py/data_batch_2
+SD-TSIA203/TP2/data/cifar-10-batches-py/data_batch_3
+SD-TSIA203/TP2/data/cifar-10-batches-py/data_batch_4
+SD-TSIA203/TP2/data/cifar-10-batches-py/data_batch_5
+SD-TSIA203/TP2/data/cifar-10-batches-py/readme.html
+SD-TSIA203/TP2/data/cifar-10-batches-py/test_batch
+SD-TSIA203/TP2/data/cifar-10-python.tar.gz
+SD-TSIA203/TP2/lenet.pth
+SD-TSIA203/TP2/lenet_cifar10.pth
+SD-TSIA203/TP2/lenet_early_stopping.pth
+SD-TSIA203/TP2/lenet_sequential.pth
