@@ -183,13 +183,15 @@ public class MyServer {
         File localDir = new File(homeDirPath + usr + "/");
         File[] files = localDir.listFiles();
         for (File file : files) {
-            if (file.isFile() && file.getName().endsWith(".txt")) {
+            if (file.isFile() && file.getName().endsWith(".wet")) {
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
                         String txtline = scanner.nextLine();
                         String[] txtTokens = txtline.split("\\s+");
+                        // System.out.println("[DEBUG][MyServer][SPLIT][" + index +"] " + txtTokens.length);
                         for (String txtToken : txtTokens) {
+                            // System.out.println("[DEBUG][MyServer][SPLIT][" + index +"] " + txtToken);
                             int toWhichServer = Math.abs(txtToken.hashCode()) % serversNum;
                             if (toSvrIdx_wList_map.containsKey(toWhichServer)) {
                                 toSvrIdx_wList_map.get(toWhichServer).add(txtToken);

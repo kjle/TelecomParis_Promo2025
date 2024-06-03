@@ -30,6 +30,8 @@ public class MyClient {
     private static int socketPort = 9009;
     // local directory path
     private static String localDirPath = "./dataset";
+    // private static String localDirPath = "/cal/commoncrawl";
+
 
     public static HashMap<Integer, String> svrIdx_svrAddr_map = new HashMap<Integer, String>();
 
@@ -51,17 +53,44 @@ public class MyClient {
         } else {
             servers = readMachine("machines.txt");
         }
+////////////////////// SET TIME //////////////////////
+        long timeCommunication = 0;
+        long timeComputation = 0;
+        long timeSynchronization = 0;
+
 ////////////////////// DISTRIBUTED DOCUMENTS TO SERVERS //////////////////////
+        // time start
+        long startTime = System.currentTimeMillis();
+
+        FTPThread [] ftpThreads = new FTPThread[servers.size()];
+
         for (int idx = 0; idx < servers.size(); idx++) {
-            FTPThread ftpThread = new FTPThread(new FTPClient(), servers.get(idx), idx, servers.size(),usr, pwd, ftpPort, localDirPath);
-            ftpThread.start();
+            ftpThreads[idx] = new FTPThread(new FTPClient(), servers.get(idx), idx, servers.size(),usr, pwd, ftpPort, localDirPath);
+            ftpThreads[idx].start();
         }
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // wait fot ftp close
+        while(true) {
+            boolean allClosed = true;
+            for (int i = 0; i < servers.size(); i++) {
+                if (ftpThreads[i].isAlive()) {
+                    allClosed = false;
+                    break;
+                }
+            }
+            if (allClosed) {
+                break;
+            }
         }
+
+        // try {
+        //     Thread.sleep(1000);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+        // time end
+        long endTime = System.currentTimeMillis();
+        timeCommunication += endTime - startTime;
 
 ////////////////////// SOCKET CLIENT //////////////////////
 
@@ -87,7 +116,11 @@ public class MyClient {
             System.exit(1);
         }
 
+        
         try {
+            // time start
+            startTime = System.currentTimeMillis();
+
             // send svrIdx and svrAddr to all servers
             for (int i = 0; i < servers.size(); i++) {
                 String svrmsg = "";
@@ -107,6 +140,12 @@ public class MyClient {
                 oss[i].newLine();
                 oss[i].flush();
             }
+            // time end
+            endTime = System.currentTimeMillis();
+            timeSynchronization += endTime - startTime;
+
+            // time start
+            startTime = System.currentTimeMillis();
 
             // start here: send other msgs to all servers 
             // SPLIT: servers build hashmap of word
@@ -124,23 +163,50 @@ public class MyClient {
                 }
                 responseTypeFlag = checkResponseType(responses);
                 if (responseTypeFlag == ResonseTypeFlag.SPLIT_END) {
+                    // time end
+                    endTime = System.currentTimeMillis();
+                    timeComputation += endTime - startTime;
+
+                    // time start for computation
+                    startTime = System.currentTimeMillis();
+
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("PRESHUFFLE");
                         oss[i].newLine();
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.PRESHUFFLE_END) {
+                    // time end for computation
+                    endTime = System.currentTimeMillis();
+                    timeComputation += endTime - startTime;
+
+                    // time start for communication shuffle
+                    startTime = System.currentTimeMillis();
+                   
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("SHUFFLE");
                         oss[i].newLine();
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.SHUFFLE_END) {
+                    // time end for shuffle
+                    endTime = System.currentTimeMillis();
+                    timeCommunication += endTime - startTime;
+
+                    // time start for send reduce1
+                    startTime = System.currentTimeMillis();
+
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("CALCULATE");
                         oss[i].newLine();
                         oss[i].flush();
                     }
+                    // time end for send reduce1
+                    endTime = System.currentTimeMillis();
+                    timeSynchronization += endTime - startTime;
+
+                    // time start for computation reduec1
+                    startTime = System.currentTimeMillis();
                 } else if (responseTypeFlag == ResonseTypeFlag.CALCULATE_END) {
                     for (int i = 0 ; i < servers.size(); i ++) {
                         responses[i] = iss[i].readLine();
@@ -163,6 +229,14 @@ public class MyClient {
                     // System.out.println("[INFO][MyClient][main] expval: " + expval + ", floorval: " + floorval);
                     int range = (int)((diff >= 0.5) ? (Math.ceil(expval)) : (floorval));
                     System.out.println("[INFO][MyClient][main] fmax: " + fmax + ", fmin: " + fmin + ", range: " + range);
+                    
+                    // time end for computation reduec1
+                    endTime = System.currentTimeMillis();
+                    timeComputation += endTime - startTime;
+
+                    // time start for send groupes
+                    startTime = System.currentTimeMillis();
+
                     // send the range respectively to all servers
                     int rmin = fmin;
                     String msg = ""; // range for each server, i.e. serverIdx,fmax,fmin;
@@ -186,25 +260,56 @@ public class MyClient {
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.RANGE_END) {  
+                    // time end for send groupes
+                    endTime = System.currentTimeMillis();
+                    timeSynchronization += endTime - startTime;
+
+                    // time start for map2 computation
+                    startTime = System.currentTimeMillis();
+
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("PRESHUFFLE2");
                         oss[i].newLine();
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.PRESHUFFLE2_END) {
+                    // time end for map2 computation
+                    endTime = System.currentTimeMillis();
+                    timeComputation += endTime - startTime;
+
+                    // time start for shuffle2 communication
+                    startTime = System.currentTimeMillis();
+
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("SHUFFLE2");
                         oss[i].newLine();
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.SHUFFLE2_END) {
+                    // time end for shuffle2 communication
+                    endTime = System.currentTimeMillis();
+                    timeCommunication += endTime - startTime;
+
+                    // time start for computation reduce2
+                    startTime = System.currentTimeMillis();
+
                     for (int i = 0; i < servers.size(); i++) {
                         oss[i].write("QUIT");
                         oss[i].newLine();
                         oss[i].flush();
                     }
                 } else if (responseTypeFlag == ResonseTypeFlag.END) {
-                    // do something before END, i.e. calculate the tot time
+                    // time end for computation reduce2
+                    endTime = System.currentTimeMillis();
+                    timeComputation += endTime - startTime;
+
+                    System.out.println("[INFO][MyClient][main] All processes are done.");
+                    System.out.println("[INFO][MyClient][main] Time for communication: " + timeCommunication + " ms.");
+                    System.out.println("[INFO][MyClient][main] Time for computation: " + timeComputation + " ms.");
+                    System.out.println("[INFO][MyClient][main] Time for synchronization: " + timeSynchronization + " ms.");
+                    double ratio = (double)(timeCommunication + timeSynchronization) / timeComputation; 
+                    System.out.println("[INFO][MyClient][main] Time ratio: " + ratio);
+                    System.out.println("[INFO][MyClient][main] Time total: " + (timeCommunication + timeComputation + timeSynchronization) + " ms.");
                     break;
                 }
             }
