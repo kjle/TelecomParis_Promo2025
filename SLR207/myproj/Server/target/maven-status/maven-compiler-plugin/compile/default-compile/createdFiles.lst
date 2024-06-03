@@ -1,3 +1,3 @@
-rs/ThreadListerner.class
-rs/MySocketServer.class
-rs/MyServer.class
+rs\MyServer.class
+rs\ThreadListerner.class
+rs\MySocketServer.class

@@ -226,13 +226,21 @@ public class MyServer {
         for (Map.Entry<Integer, List<String> > entry : toSvrIdx_wList_map.entrySet()) {
             if (svrIdx_svrAddr_map.containsKey(entry.getKey()) && entry.getKey() != index) {
                 String msg = "$PRESHUFFLE_THREAD$;";
+                int wc = 0;
                 for (String word : entry.getValue()) {
                     msg += word + ";";
+                    wc += 1;
+                    if (wc == 10000) {
+                        System.out.println("[INFO][MyServer][PRESHUFFLE][" + index +"] send to server[" + entry.getKey() + "] word: " + word);
+                        wc = 0;
+                    }
+                    // System.out.println("[INFO][MyServer][PRESHUFFLE][" + index +"] send to Thread[" + entry.getKey() + "] word: " + word);
                 }
                 try {
                     oss[entry.getKey()].write(msg);
                     oss[entry.getKey()].newLine();
                     oss[entry.getKey()].flush();
+                    // System.out.println("[INFO][MyServer][PRESHUFFLE][" + index +"] send to thread[" + entry.getKey() + "] msg: " + msg);
                 } catch (IOException e) {
                     System.err.println("[ERROR][MyServer][PRESHUFFLE][" + index +"] bufferedwrite oss error.");
                     e.printStackTrace();

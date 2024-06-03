@@ -29,8 +29,8 @@ public class MyClient {
     private static int ftpPort = 8423;
     private static int socketPort = 9009;
     // local directory path
-    private static String localDirPath = "./dataset";
-    // private static String localDirPath = "/cal/commoncrawl";
+    // private static String localDirPath = "./dataset";
+    private static String localDirPath = "/cal/commoncrawl";
 
 
     public static HashMap<Integer, String> svrIdx_svrAddr_map = new HashMap<Integer, String>();
@@ -432,7 +432,11 @@ class FTPThread extends Thread {
         File localDir = new File(this.localDirPath);
         File[] files = localDir.listFiles();
         if (files != null) {
+            int uploadedFileNum = 0;
             for (int i=0; i<files.length; i++) {
+                if (uploadedFileNum >= 1) {
+                    break;
+                }
                 if (files[i].isFile()) {
                     if (i % serversNum == idx) {
                         // upload the files[i] to the server
@@ -447,7 +451,7 @@ class FTPThread extends Thread {
                                     break;
                                 }
                             }
-                            System.out.println("[INFO][FTPThread][run] " + files[i].getName() + " exists on the server: " + fileExists);
+                            // System.out.println("[DEBUG][FTPThread][run] " + files[i].getName() + " exists on the server: " + fileExists);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -458,23 +462,24 @@ class FTPThread extends Thread {
                                 ftpClient.storeFile(files[i].getName(), inputStream);
                                 inputStream.close();
                                 System.out.println("[INFO][FTPThread][run] " + files[i].getName() + " uploaded successfully.");
+                                uploadedFileNum += 1;
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
-                            // read files[i] from the server
-                            try {
-                                InputStream inputStream = ftpClient.retrieveFileStream(files[i].getName());
-                                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                                String line;
-                                while ((line = reader.readLine()) != null) {
-                                    System.out.println(line);
-                                }
-                                reader.close();
-                                ftpClient.completePendingCommand();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                        // } else {
+                        //     // read files[i] from the server
+                        //     try {
+                        //         InputStream inputStream = ftpClient.retrieveFileStream(files[i].getName());
+                        //         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                        //         String line;
+                        //         while ((line = reader.readLine()) != null) {
+                        //             System.out.println(line);
+                        //         }
+                        //         reader.close();
+                        //         ftpClient.completePendingCommand();
+                        //     } catch (IOException e) {
+                        //         e.printStackTrace();
+                        //     }
                         }
                     } else {
                         continue;
