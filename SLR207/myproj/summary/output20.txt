@@ -1,0 +1,18 @@
+[INFO][MyClient][main] servers number: 20
+[INFO][MyClient][main] Time for ftp sending splits: 3205 ms.
+[INFO][MyClient][main] Time for sending node info: 11 ms.
+[INFO][MyClient][main] Time for SPLIT: 85270 ms.
+[INFO][MyClient][main] Time for PRESHUFFLE: 2093 ms.
+[INFO][MyClient][main] Time for WAITREADY: 61 ms.
+[INFO][MyClient][main] Time for SHUFFLE: 188 ms.
+[INFO][MyClient][main] Time for CALCULATE: 119 ms.
+[INFO][MyClient][main] Time for RANGE: 230 ms.
+[INFO][MyClient][main] Time for PRESHUFFLE2: 1164 ms.
+[INFO][MyClient][main] Time for WAITREADY2: 195 ms.
+[INFO][MyClient][main] Time for SHUFFLE2: 249 ms.
+[INFO][MyClient][main] All processes are done.
+[INFO][MyClient][main] Time for communication: 6720 ms.
+[INFO][MyClient][main] Time for computation: 85921 ms.
+[INFO][MyClient][main] Time for synchronization: 146 ms.
+[INFO][MyClient][main] Time ratio: 0.0799106155654613
+[INFO][MyClient][main] Time total: 92787 ms.
