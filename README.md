@@ -13,15 +13,22 @@ Diplôme d'ingénieur
     |-- SD-TSIA211 Optimization for Machine Learning
     |-- SD-TSIA210 Machine Learning
     |-- SD-TSIA214 Machine Learning for Text Mining
+    |-- SD-TSIA203 Introduction to deep learning
+    |-- TSIA206 Analyse des signaux de musique et de parole : méthodes et applications
 |-- SLR
     |-- SLR201 Programmation Avancée et Gestion de Projet (en Java)
     |-- SLR206 Fondements des algorithmes répartis
     |-- SLR203 Introduction aux technologies de développement de logiciel réparti
     |-- SLR202 Modélisation et Conception de Système Logiciel
     |-- SLR210 Blockchain: bases algorithmiques
+    |-- SLR204 Bases de la vérification des systèmes distribués
+    |-- SLR207 Technologies de calcul parallèle à grande échelle
 |-- créneau D
     |-- MDI210 Optimisation et analyse numérique
     |-- MDI220 Statistiques
     |-- INF224 Paradigmes de programmation, théorie et pratique
     |-- INF203 Développement WEB
+    |-- SES202 Finance d’entreprise
+|-- Langues et culture
+    |-- LC-ATELIER-Différence CV
 ```
