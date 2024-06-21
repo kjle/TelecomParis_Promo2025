@@ -30,7 +30,7 @@ public class MyClient {
     private static int ftpPort = 8423;
     private static int socketPort = 9009;
     // total number of files to be distributed
-    private static int fileNum = 0;
+    private static int fileNum = 0; // 0 - all files; x > 0 - only x files
     // local directory path
     private static String localDirPath = "./dataset";
     // private static String localDirPath = "/cal/commoncrawl";

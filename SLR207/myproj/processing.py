@@ -92,3 +92,4 @@ ax2.set_ylabel('Time Ratio', color='tab:red')
 ax2.tick_params(axis='y', labelcolor='tab:red')
 
 plt.savefig('figure/dual_axis.png')
+
