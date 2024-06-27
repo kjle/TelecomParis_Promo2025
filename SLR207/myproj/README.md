@@ -7,7 +7,7 @@ This project demonstrates the implementation of a Hadoop MapReduce, which is use
 Here is the structure of the project and the purpose of each folder and file:
 
 ```
-Myproj/
+myproj/
 |--- Client/    # client directory
 |   |--- src/main/java/rs/MyClient.java   # java src code
 |   |--- tarjet/    # target directory for .jar and dependencies
@@ -88,7 +88,7 @@ to execute `run.sh`.
 
 It will generate `result.csv`, `summary/*.txt`, `figure/*.png` automatically.
 
-### 2. Other COnfigurations
+### 2. Other Configurations
 
 #### 2.1 JAVA Configuration
 
@@ -150,6 +150,8 @@ computer="tp-3a107-09"  # target computer IP address
 remoteFolder="~/Desktop/SLR207/myproj"  # target folder of this project in target computer
 largeDataNames=("CC-MAIN-20230320083513-20230320113513-00000.warc.wet") # input files
 ```
+
+Attention: `commandsplit=("ssh" "$login@$computer" "cp /cal/commoncrawl/$largeDataName $dataFolder/;split -n 10 $dataFolder/$largeDataName -d -a 2 $dataFolder/$largeDataName-;rm $dataFolder/$largeDataName;")` This command enables that split all the input files into 10 small files in advance. If You don't need to do this, just remove `split -n 10 $dataFolder/$largeDataName -d -a 2 $dataFolder/$largeDataName-;rm $dataFolder/$largeDataName;`! And if your test input files is not in `/cal/commoncrawl/`, just change it to your folder.
 
 Then, config `deploy_new.sh` file. This file is used to `scp` all files about server to the computers in the `machines.txt`, and execute `myserver-1-jar-with-dependencies.jar`.
 If you are a user of Télécom Paris, just modify
