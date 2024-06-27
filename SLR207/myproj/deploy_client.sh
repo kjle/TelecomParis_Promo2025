@@ -1,18 +1,19 @@
 #!/bin/bash
 login="jkang-23"
+computer="tp-3a107-09"
+remoteFolder="~/Desktop/SLR207/myproj"
+largeDataNames=("CC-MAIN-20230320083513-20230320113513-00000.warc.wet")
+
 localFolder="."
 clientFolder="Client"
 targetFolder="$clientFolder/target"
 machinePath="$localFolder/machines.txt"
 
-remoteFolder="~/Desktop/SLR207/myproj"
 remoteClientFolder="$remoteFolder/$clientFolder"
-largeDataNames=("CC-MAIN-20230320083513-20230320113513-00000.warc.wet")
+
 dataFolder="$remoteFolder/dataset"
 
 nameOfTheJarToExecute="myclient-1-jar-with-dependencies.jar"
-
-computer="tp-3a107-09"
 
 command0=("ssh" "$login@$computer" "lsof -ti | xargs kill -9 2>/dev/null; rm -rf $remoteFolder/;mkdir -p $remoteClientFolder;mkdir $dataFolder;")
 command1=("scp" "-r" "$targetFolder" "$login@$computer:$remoteClientFolder")
